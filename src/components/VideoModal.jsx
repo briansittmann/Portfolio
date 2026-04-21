@@ -8,9 +8,12 @@ export default function VideoModal({ isOpen, onClose, videoUrl }) {
     return () => document.removeEventListener('keydown', handleKey)
   }, [isOpen, onClose])
 
-  const embedUrl = videoUrl
-    ? videoUrl.replace('watch?v=', 'embed/') + '?autoplay=1'
-    : ''
+  const getEmbedUrl = (url) => {
+    const shortsMatch = url.match(/shorts\/([^?&]+)/)
+    if (shortsMatch) return `https://www.youtube.com/embed/${shortsMatch[1]}?autoplay=1`
+    return url.replace('watch?v=', 'embed/') + '?autoplay=1'
+  }
+  const embedUrl = videoUrl ? getEmbedUrl(videoUrl) : ''
 
   return (
     <AnimatePresence>

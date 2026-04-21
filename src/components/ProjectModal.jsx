@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import { useLanguage } from '../context/LanguageContext'
 import VideoModal from './VideoModal'
 
-export default function ProjectModal({ isOpen, onClose, project, coverImage, videoUrl, repoUrl, repoBackUrl }) {
+export default function ProjectModal({ isOpen, onClose, project, coverImage, videoUrl, repoUrl, repoBackUrl, presentationUrl }) {
   const { lang } = useLanguage()
   const [videoOpen, setVideoOpen] = useState(false)
 
@@ -30,7 +30,8 @@ export default function ProjectModal({ isOpen, onClose, project, coverImage, vid
   const repoLabel     = lang === 'es' ? 'Ver Repositorio'    : 'View Repository'
   const repoFrontLabel= lang === 'es' ? 'Ver Frontend'       : 'View Frontend'
   const repoBackLabel = lang === 'es' ? 'Ver Backend'        : 'View Backend'
-  const detailsLabel  = lang === 'es' ? 'Características'    : 'Highlights'
+  const detailsLabel      = lang === 'es' ? 'Características'    : 'Highlights'
+  const presentationLabel = lang === 'es' ? 'Ver Presentación'   : 'View Presentation'
 
   return (
     <AnimatePresence>
@@ -122,7 +123,7 @@ export default function ProjectModal({ isOpen, onClose, project, coverImage, vid
                 )}
 
                 {/* Action buttons */}
-                {(videoUrl || repoUrl || repoBackUrl) && (
+                {(videoUrl || repoUrl || repoBackUrl || presentationUrl) && (
                   <div className="flex flex-col sm:flex-row gap-4">
                     {videoUrl && (
                       <button
@@ -165,6 +166,17 @@ export default function ProjectModal({ isOpen, onClose, project, coverImage, vid
                         {repoLabel}
                       </a>
                     ) : null}
+                    {presentationUrl && (
+                      <a
+                        href={presentationUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="w-full sm:w-auto px-8 py-4 rounded-full border border-black/10 dark:border-outline-variant/30 text-on-background font-bold flex items-center justify-center gap-2 hover:bg-surface-container-low dark:hover:bg-surface-container-high transition-all duration-300"
+                      >
+                        <span className="material-symbols-outlined">picture_as_pdf</span>
+                        {presentationLabel}
+                      </a>
+                    )}
                   </div>
                 )}
               </div>

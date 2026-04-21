@@ -13,7 +13,7 @@ const images = [
 ]
 
 const projectMeta = [
-  { coverImage: caloriaBanner, videoUrl: null, repoUrl: 'https://github.com/briansittmann/CalorIA_SDK53', repoBackUrl: 'https://github.com/briansittmann/caloria-backend' },
+  { coverImage: caloriaBanner, videoUrl: 'https://youtube.com/shorts/SMwFc1f5Tf8', repoUrl: 'https://github.com/briansittmann/CalorIA_SDK53', repoBackUrl: 'https://github.com/briansittmann/caloria-backend', presentationUrl: '/Presentacion_CalorIA.pdf' },
   { coverImage: null,          videoUrl: null, repoUrl: null },
   { coverImage: plataformer2D, videoUrl: 'https://www.youtube.com/watch?v=5bU7d4cKiBE', repoUrl: 'https://github.com/briansittmann/plataformer2D' },
 ]
@@ -108,6 +108,7 @@ export default function Projects() {
         videoUrl={selectedIndex !== null ? projectMeta[selectedIndex].videoUrl : null}
         repoUrl={selectedIndex !== null ? projectMeta[selectedIndex].repoUrl : null}
         repoBackUrl={selectedIndex !== null ? projectMeta[selectedIndex].repoBackUrl : null}
+        presentationUrl={selectedIndex !== null ? projectMeta[selectedIndex].presentationUrl : null}
       />
     </section>
   )

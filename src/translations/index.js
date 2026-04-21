@@ -40,7 +40,7 @@ const translations = {
           tags:  ['React Native', 'Spring Boot', 'MongoDB'],
           title: 'CalorIA',
           desc:  'AI-powered nutrition mobile app that tracks daily calories and macros, logs foods via a local catalog or an OpenAI assistant, and generates personalized recipes based on remaining nutrients, preferences and allergies.',
-          label: 'View App',
+          label: 'View Demo',
           details: [
             { icon: 'robot_2',    title: 'AI Integration', desc: 'Two custom OpenAI assistants analyze foods in real time and generate personalized recipes based on remaining macros, dietary preferences and allergies.' },
             { icon: 'lock',       title: 'JWT Security',   desc: 'Stateless auth with Spring Security. Token stored locally via AsyncStorage and auto-injected in every request through an Axios interceptor.' },
@@ -124,7 +124,7 @@ const translations = {
           tags:  ['React Native', 'Spring Boot', 'MongoDB'],
           title: 'CalorIA',
           desc:  'App móvil de nutrición impulsada por IA que registra calorías y macros, registra alimentos mediante un catálogo local o un asistente OpenAI, y genera recetas personalizadas según los nutrientes restantes, preferencias y alergias.',
-          label: 'Ver App',
+          label: 'Ver Demo',
           details: [
             { icon: 'robot_2', title: 'Integración IA',   desc: 'Dos asistentes OpenAI personalizados analizan alimentos en tiempo real y generan recetas basadas en los macros restantes, preferencias dietéticas y alergias.' },
             { icon: 'lock',    title: 'Seguridad JWT',    desc: 'Autenticación sin estado con Spring Security. Token almacenado localmente con AsyncStorage e inyectado automáticamente en cada petición mediante un interceptor Axios.' },
