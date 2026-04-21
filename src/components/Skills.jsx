@@ -93,7 +93,7 @@ export default function Skills() {
                 initial={{ opacity: 0, y: 30 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.5, delay: 0.2 + i * 0.1 }}
-                className="p-8 rounded-2xl bg-white/50 dark:bg-surface-container-high/40 backdrop-blur-sm border border-black/5 dark:border-outline-variant/15 space-y-4 shadow-sm cursor-default"
+                className="surface-card p-8 space-y-4 cursor-default"
                 whileHover={{ scale: 1.05, boxShadow: isDark ? DARK_SHADOW : LIGHT_SHADOW }}
                 whileTap={{ scale: 1.05, boxShadow: isDark ? DARK_SHADOW : LIGHT_SHADOW }}
                 transition={{ duration: 0.5 }}

@@ -98,4 +98,26 @@
   .theme-transition {
     transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease;
   }
+
+  /* Buttons */
+  .btn-primary {
+    @apply px-6 py-4 rounded-full liquid-gradient text-on-primary-fixed font-bold
+           flex items-center justify-center gap-2
+           hover:shadow-lg hover:shadow-primary/30 hover:-translate-y-0.5
+           transition-all duration-300;
+  }
+
+  .btn-outline {
+    @apply px-6 py-4 rounded-full border border-black/10 dark:border-outline-variant/30
+           text-on-background font-bold flex items-center justify-center gap-2
+           hover:bg-surface-container-low dark:hover:bg-surface-container-high
+           transition-all duration-300;
+  }
+
+  /* Reusable surface card */
+  .surface-card {
+    @apply glass-effect dark:bg-surface-container-high
+           border border-black/5 dark:border-outline-variant/15
+           rounded-2xl shadow-sm;
+  }
 }

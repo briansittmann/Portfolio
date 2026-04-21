@@ -118,7 +118,7 @@ export default function ProjectModal({ isOpen, onClose, project, coverImage, vid
                           initial={{ opacity: 0, y: 20 }}
                           animate={{ opacity: 1, y: 0 }}
                           transition={{ duration: 0.4, delay: i * 0.1 }}
-                          className="glass-effect dark:bg-surface-container-high p-6 rounded-2xl border border-black/5 dark:border-outline-variant/15 shadow-sm cursor-default space-y-2"
+                          className="surface-card p-6 cursor-default space-y-2"
                           whileHover={{ scale: 1.05, boxShadow: isDark ? DARK_SHADOW : LIGHT_SHADOW }}
                           whileTap={{ scale: 1.05, boxShadow: isDark ? DARK_SHADOW : LIGHT_SHADOW }}
                         >
@@ -135,53 +135,30 @@ export default function ProjectModal({ isOpen, onClose, project, coverImage, vid
                 {(videoUrl || repoUrl || repoBackUrl || presentationUrl) && (
                   <div className="grid grid-cols-2 gap-3">
                     {videoUrl && (
-                      <button
-                        onClick={() => setVideoOpen(true)}
-                        className="px-6 py-4 rounded-full liquid-gradient text-on-primary-fixed font-bold flex items-center justify-center gap-2 hover:shadow-lg hover:shadow-primary/30 hover:-translate-y-0.5 transition-all duration-300"
-                      >
+                      <button onClick={() => setVideoOpen(true)} className="btn-primary">
                         <span className="material-symbols-outlined text-base">play_circle</span>
                         {project.label}
                       </button>
                     )}
                     {presentationUrl && (
-                      <a
-                        href={presentationUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="px-6 py-4 rounded-full border border-black/10 dark:border-outline-variant/30 text-on-background font-bold flex items-center justify-center gap-2 hover:bg-surface-container-low dark:hover:bg-surface-container-high transition-all duration-300"
-                      >
+                      <a href={presentationUrl} target="_blank" rel="noopener noreferrer" className="btn-outline">
                         <span className="material-symbols-outlined text-base">picture_as_pdf</span>
                         {presentationLabel}
                       </a>
                     )}
                     {repoUrl && repoBackUrl ? (
                       <>
-                        <a
-                          href={repoUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="px-6 py-4 rounded-full border border-black/10 dark:border-outline-variant/30 text-on-background font-bold flex items-center justify-center gap-2 hover:bg-surface-container-low dark:hover:bg-surface-container-high transition-all duration-300"
-                        >
+                        <a href={repoUrl} target="_blank" rel="noopener noreferrer" className="btn-outline">
                           <span className="material-symbols-outlined text-base">smartphone</span>
                           {repoFrontLabel}
                         </a>
-                        <a
-                          href={repoBackUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="px-6 py-4 rounded-full border border-black/10 dark:border-outline-variant/30 text-on-background font-bold flex items-center justify-center gap-2 hover:bg-surface-container-low dark:hover:bg-surface-container-high transition-all duration-300"
-                        >
+                        <a href={repoBackUrl} target="_blank" rel="noopener noreferrer" className="btn-outline">
                           <span className="material-symbols-outlined text-base">dns</span>
                           {repoBackLabel}
                         </a>
                       </>
                     ) : repoUrl ? (
-                      <a
-                        href={repoUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="px-6 py-4 rounded-full border border-black/10 dark:border-outline-variant/30 text-on-background font-bold flex items-center justify-center gap-2 hover:bg-surface-container-low dark:hover:bg-surface-container-high transition-all duration-300"
-                      >
+                      <a href={repoUrl} target="_blank" rel="noopener noreferrer" className="btn-outline">
                         <span className="material-symbols-outlined text-base">code</span>
                         {repoLabel}
                       </a>
