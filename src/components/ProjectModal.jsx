@@ -8,7 +8,7 @@ const DARK_SHADOW  = '0 8px 32px rgba(133, 173, 255, 0.45)'
 const LIGHT_SHADOW = '0 8px 32px rgba(0, 113, 227, 0.25)'
 
 export default function ProjectModal({ isOpen, onClose, project, coverImage, videoUrl, repoUrl, repoBackUrl, presentationUrl }) {
-  const { lang } = useLanguage()
+  const { t } = useLanguage()
   const { isDark } = useTheme()
   const [videoOpen, setVideoOpen] = useState(false)
 
@@ -30,13 +30,9 @@ export default function ProjectModal({ isOpen, onClose, project, coverImage, vid
 
   if (!project) return null
 
-  const stackLabel    = lang === 'es' ? 'Stack Tecnológico'  : 'Tech Stack'
-  const descLabel     = lang === 'es' ? 'Descripción'        : 'Description'
-  const repoLabel     = lang === 'es' ? 'Ver Repositorio'    : 'View Repository'
-  const repoFrontLabel= lang === 'es' ? 'Ver Frontend'       : 'View Frontend'
-  const repoBackLabel = lang === 'es' ? 'Ver Backend'        : 'View Backend'
-  const detailsLabel      = lang === 'es' ? 'Características'    : 'Highlights'
-  const presentationLabel = lang === 'es' ? 'Ver Presentación'   : 'View Presentation'
+  const { stack: stackLabel, description: descLabel, highlights: detailsLabel,
+          repo: repoLabel, repoFront: repoFrontLabel, repoBack: repoBackLabel,
+          presentation: presentationLabel } = t.modal
 
   return (
     <AnimatePresence>

@@ -1,23 +1,8 @@
 import { motion, useInView } from 'framer-motion'
 import { useRef, useState } from 'react'
 import { useLanguage } from '../context/LanguageContext'
-import frogNinjaCover from '../assets/images/frogNinjaCover.png'
-import plataformer2D from '../assets/images/plataformer2D.png'
-import caloriaBanner from '../assets/images/caloriaBanner.jpg'
-import caloriaScreens from '../assets/images/caloriaScreens.png'
+import { projectImages, projectMeta } from '../data/projectMeta'
 import ProjectModal from './ProjectModal'
-
-const images = [
-  caloriaBanner,
-  'https://lh3.googleusercontent.com/aida-public/AB6AXuD2QwqHgFUT2NoSydVC-I2s4x-nbnCJozpguBH4n2h1jtz0wthfUommIBIR7PULaiGa-WC0JAMoVPoYYh3ZHHxwudPbLHA7Y8w513Qf_mQ7Fnwozwyj29HGrNqS8xrY9RQtsoIRUFl8UCsm1cQeweFv1n24O1eM8hAgYCEoZYRACzlgLELv1al1QIwYLmdSy3ZsSaErEE5YI3p-WTj1zNWdolKo-5uT1OANFrexi8OrNTWqw-4lHSxqAsFjjB1z9r8albsqBAu2ak0',
-  frogNinjaCover,
-]
-
-const projectMeta = [
-  { coverImage: caloriaScreens, videoUrl: 'https://youtube.com/shorts/SMwFc1f5Tf8', repoUrl: 'https://github.com/briansittmann/CalorIA_SDK53', repoBackUrl: 'https://github.com/briansittmann/caloria-backend', presentationUrl: '/Presentacion_CalorIA.pdf' },
-  { coverImage: null,          videoUrl: null, repoUrl: null },
-  { coverImage: plataformer2D, videoUrl: 'https://www.youtube.com/watch?v=5bU7d4cKiBE', repoUrl: 'https://github.com/briansittmann/plataformer2D' },
-]
 
 function ProjectCard({ project, img, delay, onClick }) {
   const ref = useRef(null)
@@ -94,7 +79,7 @@ export default function Projects() {
           <ProjectCard
             key={i}
             project={p}
-            img={images[i]}
+            img={projectImages[i]}
             delay={i * 0.12}
             onClick={() => setSelectedIndex(i)}
           />
@@ -105,7 +90,7 @@ export default function Projects() {
         isOpen={selectedIndex !== null}
         onClose={() => setSelectedIndex(null)}
         project={selectedIndex !== null ? t.projects.items[selectedIndex] : null}
-        coverImage={selectedIndex !== null ? (projectMeta[selectedIndex].coverImage ?? images[selectedIndex]) : null}
+        coverImage={selectedIndex !== null ? (projectMeta[selectedIndex].coverImage ?? projectImages[selectedIndex]) : null}
         videoUrl={selectedIndex !== null ? projectMeta[selectedIndex].videoUrl : null}
         repoUrl={selectedIndex !== null ? projectMeta[selectedIndex].repoUrl : null}
         repoBackUrl={selectedIndex !== null ? projectMeta[selectedIndex].repoBackUrl : null}

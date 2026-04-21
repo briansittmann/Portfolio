@@ -2,25 +2,10 @@ import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
 import { useLanguage } from '../context/LanguageContext'
 import { useTheme } from '../context/ThemeContext'
+import { techStack, brandColors } from '../data/skills'
 
 const DARK_SHADOW  = '0 8px 32px rgba(133, 173, 255, 0.45)'
 const LIGHT_SHADOW = '0 8px 32px rgba(0, 113, 227, 0.25)'
-
-const techStack = ['Java', 'Spring Boot', 'Hibernate', 'React Native', 'TypeScript', 'MySQL', 'Claude Code', 'MongoDB', 'Git', 'AWS']
-
-// Brand colors per technology
-const brandColors = {
-  'Java':         '#ED8B00',
-  'Spring Boot':  '#6DB33F',
-  'Hibernate':    '#BCAE79',
-  'React Native': '#61DAFB',
-  'TypeScript':   '#3178C6',
-  'MySQL':        '#4479A1',
-  'Claude Code':  '#D97706',
-  'MongoDB':      '#47A248',
-  'Git':          '#F05032',
-  'AWS':          '#FF9900',
-}
 
 function hexToRgb(hex) {
   const r = parseInt(hex.slice(1, 3), 16)

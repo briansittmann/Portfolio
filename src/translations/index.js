@@ -70,6 +70,15 @@ const translations = {
         { icon: 'architecture', title: 'Clean Architecture',   desc: 'Decoupling business logic from frameworks to ensure long-term maintainability.' },
       ],
     },
+    modal: {
+      stack:        'Tech Stack',
+      description:  'Description',
+      highlights:   'Highlights',
+      repo:         'View Repository',
+      repoFront:    'View Frontend',
+      repoBack:     'View Backend',
+      presentation: 'View Presentation',
+    },
     contact: {
       title:     "Let's",
       highlight: 'Collaborate',
@@ -153,6 +162,15 @@ const translations = {
         { icon: 'commit',       title: 'Flujo con Git',          desc: 'Ramificación estricta por feature y revisiones de código para mantener la salud del repositorio.' },
         { icon: 'architecture', title: 'Arquitectura Limpia',    desc: 'Desacoplamiento de la lógica de negocio de los frameworks para asegurar mantenibilidad a largo plazo.' },
       ],
+    },
+    modal: {
+      stack:        'Stack Tecnológico',
+      description:  'Descripción',
+      highlights:   'Características',
+      repo:         'Ver Repositorio',
+      repoFront:    'Ver Frontend',
+      repoBack:     'Ver Backend',
+      presentation: 'Ver Presentación',
     },
     contact: {
       title:     'Trabajemos',
