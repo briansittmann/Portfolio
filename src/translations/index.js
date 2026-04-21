@@ -49,13 +49,13 @@ const translations = {
         {
           tags:  ['WordPress', 'Shopify', 'Figma'],
           title: 'Freelance Web Projects',
-          desc:  'A selection of client websites built with WordPress, Shopify and WooCommerce — from custom layouts in Elementor to e-commerce storefronts.',
+          desc:  'Freelance projects where I used WordPress, Shopify and WooCommerce to help clients get their businesses online, from simple landing pages to small e-commerce stores.',
           label: 'View Projects',
           details: [
-            { icon: 'shopping_cart', title: 'Shopify & WooCommerce', desc: 'Custom storefronts built on Shopify and WooCommerce, optimised for conversion and tailored to each brand identity.' },
-            { icon: 'code',          title: 'Custom CSS & Velo',     desc: 'Advanced layout customisation and dynamic interactions on Wix and WordPress platforms.' },
-            { icon: 'layers',        title: 'Elementor & Gutenberg', desc: 'Precision design systems built on modular, lightweight block environments for fast delivery.' },
-            { icon: 'search',        title: 'SEO & Performance',     desc: 'Clean semantic markup and performance optimisation for better search visibility and load times.' },
+            { icon: 'shopping_cart', title: 'Shopify & WooCommerce', desc: 'Set up and customised online stores for clients who needed to start selling quickly without a big budget.' },
+            { icon: 'code',          title: 'Custom CSS & JavaScript', desc: 'Used custom code to go beyond what templates allow and match each client\'s specific needs.' },
+            { icon: 'layers',        title: 'Elementor & Gutenberg', desc: 'Built page layouts with Elementor and Gutenberg to give clients easy control over their own content.' },
+            { icon: 'search',        title: 'SEO Basics',            desc: 'Applied basic SEO practices so clients\' sites could be found more easily on search engines.' },
           ],
         },
         {
@@ -148,13 +148,13 @@ const translations = {
         {
           tags:  ['WordPress', 'Shopify', 'Figma'],
           title: 'Proyectos Web Freelance',
-          desc:  'Una selección de sitios web para clientes desarrollados con WordPress, Shopify y WooCommerce — desde layouts personalizados en Elementor hasta tiendas e-commerce.',
+          desc:  'Proyectos freelance donde usé WordPress, Shopify y WooCommerce para ayudar a clientes a tener presencia online, desde landing pages sencillas hasta pequeñas tiendas e-commerce.',
           label: 'Ver Proyectos',
           details: [
-            { icon: 'shopping_cart', title: 'Shopify & WooCommerce', desc: 'Tiendas personalizadas construidas sobre Shopify y WooCommerce, optimizadas para la conversión y adaptadas a cada marca.' },
-            { icon: 'code',          title: 'CSS Personalizado',     desc: 'Personalización avanzada de layouts e interacciones dinámicas en plataformas Wix y WordPress.' },
-            { icon: 'layers',        title: 'Elementor & Gutenberg', desc: 'Sistemas de diseño modulares construidos en entornos de bloques ligeros para entrega rápida.' },
-            { icon: 'search',        title: 'SEO y Rendimiento',     desc: 'Código semántico limpio y optimización de rendimiento para mayor visibilidad en buscadores.' },
+            { icon: 'shopping_cart', title: 'Shopify & WooCommerce', desc: 'Configuré y personalicé tiendas online para clientes que necesitaban empezar a vender sin un gran presupuesto.' },
+            { icon: 'code',          title: 'CSS y JavaScript',      desc: 'Usé código personalizado para ir más allá de las plantillas y adaptarme a las necesidades concretas de cada cliente.' },
+            { icon: 'layers',        title: 'Elementor & Gutenberg', desc: 'Construí layouts con Elementor y Gutenberg para que los clientes pudieran gestionar su propio contenido fácilmente.' },
+            { icon: 'search',        title: 'SEO Básico',            desc: 'Apliqué prácticas básicas de SEO para que los sitios de los clientes pudieran encontrarse más fácilmente en buscadores.' },
           ],
         },
         {

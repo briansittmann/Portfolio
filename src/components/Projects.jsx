@@ -4,7 +4,7 @@ import { useLanguage } from '../context/LanguageContext'
 import { projectImages, projectMeta } from '../data/projectMeta'
 import ProjectModal from './ProjectModal'
 
-function ProjectCard({ project, img, delay, onClick }) {
+function ProjectCard({ project, img, delay, onClick, imgClass = '' }) {
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-60px' })
 
@@ -21,7 +21,7 @@ function ProjectCard({ project, img, delay, onClick }) {
         <img
           src={img}
           alt={project.title}
-          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+          className={`w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 ${imgClass}`}
         />
         <div className="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
           <span className="px-6 py-2 bg-white/90 dark:bg-white backdrop-blur text-primary dark:text-black rounded-full font-bold text-sm shadow-xl">
@@ -82,6 +82,7 @@ export default function Projects() {
             img={projectImages[i]}
             delay={i * 0.12}
             onClick={() => setSelectedIndex(i)}
+            imgClass={i === 1 ? 'scale-110' : ''}
           />
         ))}
       </div>

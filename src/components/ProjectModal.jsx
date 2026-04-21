@@ -125,7 +125,7 @@ export default function ProjectModal({ isOpen, onClose, project, coverImage, car
               </div>
 
               {/* Content */}
-              <div className="px-8 pb-10 -mt-10 relative z-10 space-y-8">
+              <div className="px-8 pb-10 -mt-10 pt-7 relative z-10 space-y-8">
 
                 {/* Tags + title */}
                 <div>
