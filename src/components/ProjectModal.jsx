@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import { useLanguage } from '../context/LanguageContext'
 import VideoModal from './VideoModal'
 
-export default function ProjectModal({ isOpen, onClose, project, coverImage, videoUrl }) {
+export default function ProjectModal({ isOpen, onClose, project, coverImage, videoUrl, repoUrl }) {
   const { lang } = useLanguage()
   const [videoOpen, setVideoOpen] = useState(false)
 
@@ -27,6 +27,7 @@ export default function ProjectModal({ isOpen, onClose, project, coverImage, vid
 
   const stackLabel = lang === 'es' ? 'Stack Tecnológico' : 'Tech Stack'
   const descLabel  = lang === 'es' ? 'Descripción'       : 'Description'
+  const repoLabel  = lang === 'es' ? 'Ver Repositorio'   : 'View Repository'
 
   return (
     <AnimatePresence>
@@ -101,15 +102,30 @@ export default function ProjectModal({ isOpen, onClose, project, coverImage, vid
                   </div>
                 </div>
 
-                {/* Action button */}
-                {videoUrl && (
-                  <button
-                    onClick={() => setVideoOpen(true)}
-                    className="w-full sm:w-auto px-8 py-4 rounded-full liquid-gradient text-on-primary-fixed font-bold flex items-center justify-center gap-2 hover:shadow-lg hover:shadow-primary/30 hover:-translate-y-0.5 transition-all duration-300"
-                  >
-                    <span className="material-symbols-outlined">play_circle</span>
-                    {project.label}
-                  </button>
+                {/* Action buttons */}
+                {(videoUrl || repoUrl) && (
+                  <div className="flex flex-col sm:flex-row gap-4">
+                    {videoUrl && (
+                      <button
+                        onClick={() => setVideoOpen(true)}
+                        className="w-full sm:w-auto px-8 py-4 rounded-full liquid-gradient text-on-primary-fixed font-bold flex items-center justify-center gap-2 hover:shadow-lg hover:shadow-primary/30 hover:-translate-y-0.5 transition-all duration-300"
+                      >
+                        <span className="material-symbols-outlined">play_circle</span>
+                        {project.label}
+                      </button>
+                    )}
+                    {repoUrl && (
+                      <a
+                        href={repoUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="w-full sm:w-auto px-8 py-4 rounded-full border border-black/10 dark:border-outline-variant/30 text-on-background font-bold flex items-center justify-center gap-2 hover:bg-surface-container-low dark:hover:bg-surface-container-high transition-all duration-300"
+                      >
+                        <span className="material-symbols-outlined">code</span>
+                        {repoLabel}
+                      </a>
+                    )}
+                  </div>
                 )}
               </div>
             </div>

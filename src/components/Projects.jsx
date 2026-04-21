@@ -12,9 +12,9 @@ const images = [
 ]
 
 const projectMeta = [
-  { coverImage: null,          videoUrl: null },
-  { coverImage: null,          videoUrl: null },
-  { coverImage: plataformer2D, videoUrl: 'https://www.youtube.com/watch?v=5bU7d4cKiBE' },
+  { coverImage: null,          videoUrl: null,                                              repoUrl: null },
+  { coverImage: null,          videoUrl: null,                                              repoUrl: null },
+  { coverImage: plataformer2D, videoUrl: 'https://www.youtube.com/watch?v=5bU7d4cKiBE',   repoUrl: 'https://github.com/briansittmann/plataformer2D' },
 ]
 
 function ProjectCard({ project, img, delay, onClick }) {
@@ -105,6 +105,7 @@ export default function Projects() {
         project={selectedIndex !== null ? t.projects.items[selectedIndex] : null}
         coverImage={selectedIndex !== null ? (projectMeta[selectedIndex].coverImage ?? images[selectedIndex]) : null}
         videoUrl={selectedIndex !== null ? projectMeta[selectedIndex].videoUrl : null}
+        repoUrl={selectedIndex !== null ? projectMeta[selectedIndex].repoUrl : null}
       />
     </section>
   )

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-container": "#60136d",
+                        "surface-container": "#191919",
+                        "on-primary-fixed": "#000000",
+                        "surface-container-low": "#131313",
+                        "surface-dim": "#0e0e0e",
+                        "on-surface": "#ffffff",
+                        "secondary-container": "#474649",
+                        "error-container": "#9f0519",
+                        "on-tertiary-fixed-variant": "#6a1f76",
+                        "surface-container-lowest": "#000000",
+                        "inverse-primary": "#005bc2",
+                        "outline-variant": "#484848",
+                        "surface-tint": "#85adff",
+                        "primary": "#85adff",
+                        "on-secondary-fixed": "#3f3f41",
+                        "tertiary-container": "#f39cfb",
+                        "secondary-fixed": "#e4e2e4",
+                        "error": "#ff716c",
+                        "tertiary-fixed-dim": "#e48fec",
+                        "on-primary-fixed-variant": "#002a61",
+                        "secondary": "#e4e2e4",
+                        "tertiary-dim": "#e48fec",
+                        "on-primary": "#002c65",
+                        "secondary-dim": "#d6d3d6",
+                        "primary-fixed": "#6c9fff",
+                        "tertiary": "#fab0ff",
+                        "on-surface-variant": "#ababab",
+                        "primary-container": "#6c9fff",
+                        "surface-container-highest": "#262626",
+                        "on-secondary-fixed-variant": "#5c5b5d",
+                        "background": "#0e0e0e",
+                        "on-error": "#490006",
+                        "primary-dim": "#0070eb",
+                        "on-secondary": "#525154",
+                        "inverse-on-surface": "#555555",
+                        "surface": "#0e0e0e",
+                        "outline": "#757575",
+                        "primary-fixed-dim": "#5191ff",
+                        "on-tertiary-fixed": "#41004d",
+                        "on-error-container": "#ffa8a3",
+                        "secondary-fixed-dim": "#d6d3d6",
+                        "surface-container-high": "#1f1f1f",
+                        "surface-variant": "#262626",
+                        "inverse-surface": "#f9f9f9",
+                        "surface-bright": "#2c2c2c",
+                        "on-tertiary": "#6b1f77",
+                        "on-primary-container": "#00214f",
+                        "tertiary-fixed": "#f39cfb",
+                        "error-dim": "#d7383b",
+                        "on-secondary-container": "#d2cfd2",
+                        "on-background": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Inter"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-effect {
+            background: rgba(14, 14, 14, 0.6);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface-dim text-on-surface font-body selection:bg-primary selection:text-on-primary-container">
+<!-- Background Content Emulation (Dimmed) -->
+<div class="fixed inset-0 z-0 overflow-hidden opacity-20 grayscale pointer-events-none px-6">
+<header class="flex justify-between items-center py-8">
+<div class="text-2xl font-black tracking-tighter">The Liquid Curator</div>
+<span class="material-symbols-outlined">blur_on</span>
+</header>
+<div class="grid grid-cols-2 gap-4 mt-8">
+<div class="h-64 bg-surface-container rounded-lg"></div>
+<div class="h-64 bg-surface-container rounded-lg"></div>
+<div class="h-64 bg-surface-container rounded-lg"></div>
+<div class="h-64 bg-surface-container rounded-lg"></div>
+</div>
+</div>
+<!-- Modal Overlay -->
+<div class="fixed inset-0 z-50 flex items-end md:items-center justify-center p-0 md:p-6 bg-black/40 backdrop-blur-sm">
+<!-- Modal Container (Liquid Azure Style) -->
+<div class="glass-effect w-full max-w-2xl max-h-[839px] md:max-h-[751px] overflow-y-auto rounded-t-xl md:rounded-xl shadow-[0_24px_60px_-15px_rgba(0,0,0,0.5)] border border-outline-variant/15 flex flex-col">
+<!-- Close Button & Header Media -->
+<div class="relative w-full aspect-video shrink-0 overflow-hidden">
+<button class="absolute top-6 right-6 z-10 w-10 h-10 flex items-center justify-center rounded-full bg-surface-container-highest/80 text-on-surface backdrop-blur-md hover:scale-105 transition-transform duration-300">
+<span class="material-symbols-outlined">close</span>
+</button>
+<img alt="E-commerce API Architecture" class="w-full h-full object-cover" data-alt="Technical schematic of a server rack with glowing blue data streams and digital networking nodes in a dark professional datacenter" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBQQ74LiopHhNxJQxx403pFb_K5bdqzmXWGdt4QvfWN6CXqOnwGym6TDa6y8tBxjzGJP-XMsff5wl78SGFfxuvPNa-r0kzsPtQsJI3UTe1l6QQGUHD1nsM7lui46pmqr_P0CF6GA0sKbDEzjFA3HHsffWiYbPPUfqHZ_nxMs1XUYCHOtpKG_VxNJ19kv2B-6H2whffoLDGeARA-QXXZkU1zH5lUGfpt0Uu1ZVt1YPbkRckJW2jWWuqgj3WgUp1AQDSaBUs2txEug5U"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent"></div>
+</div>
+<!-- Content Area -->
+<div class="px-8 pb-12 -mt-12 relative z-10">
+<!-- Title & Metadata -->
+<div class="mb-8">
+<span class="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold tracking-widest mb-4 border border-primary/20 uppercase">Backend Engineering</span>
+<h1 class="text-4xl md:text-5xl font-black tracking-tight text-on-surface leading-none mb-2">E-commerce API</h1>
+<p class="text-on-surface-variant font-medium">Solución escalable para gestión de activos digitales</p>
+</div>
+<!-- Description -->
+<div class="space-y-6 mb-10">
+<section>
+<h2 class="text-sm font-bold text-primary uppercase tracking-widest mb-3">Descripción Técnica</h2>
+<p class="text-on-surface-variant leading-relaxed text-lg">
+                            Desarrollo de una arquitectura backend robusta enfocada en DAM (Digital Asset Management). Implementación de una API RESTful optimizada para el procesamiento de grandes volúmenes de datos transaccionales, garantizando integridad y alta disponibilidad.
+                        </p>
+</section>
+<section class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="p-5 rounded-lg bg-surface-container-low border border-outline-variant/10">
+<h3 class="font-bold text-on-surface mb-2 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-sm">database</span> Base de Datos
+                            </h3>
+<p class="text-sm text-on-surface-variant">Esquema relacional normalizado en PostgreSQL con optimización de consultas complejas y gestión de concurrencia mediante locking optimista.</p>
+</div>
+<div class="p-5 rounded-lg bg-surface-container-low border border-outline-variant/10">
+<h3 class="font-bold text-on-surface mb-2 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-sm">security</span> Seguridad
+                            </h3>
+<p class="text-sm text-on-surface-variant">Autenticación stateless basada en JWT con roles granulares y políticas de seguridad integradas a nivel de endpoint.</p>
+</div>
+</section>
+</div>
+<!-- Tech Stack Chips -->
+<div class="mb-12">
+<h2 class="text-sm font-bold text-primary uppercase tracking-widest mb-4">Stack Tecnológico</h2>
+<div class="flex flex-wrap gap-2">
+<span class="px-5 py-2 rounded-full bg-surface-container-high border border-outline-variant/20 text-on-surface text-sm font-medium hover:bg-surface-variant transition-colors">Java Spring Boot</span>
+<span class="px-5 py-2 rounded-full bg-surface-container-high border border-outline-variant/20 text-on-surface text-sm font-medium hover:bg-surface-variant transition-colors">PostgreSQL</span>
+<span class="px-5 py-2 rounded-full bg-surface-container-high border border-outline-variant/20 text-on-surface text-sm font-medium hover:bg-surface-variant transition-colors">Docker</span>
+<span class="px-5 py-2 rounded-full bg-surface-container-high border border-outline-variant/20 text-on-surface text-sm font-medium hover:bg-surface-variant transition-colors">JWT</span>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="flex flex-col sm:flex-row items-center gap-4">
+<a class="w-full sm:w-auto px-8 py-4 rounded-full bg-gradient-to-br from-primary to-primary-container text-on-primary-container font-bold text-center hover:scale-[1.02] transition-all duration-300 shadow-lg shadow-primary/20" href="#">
+                        Live Demo
+                    </a>
+<a class="w-full sm:w-auto px-8 py-4 rounded-full border border-outline-variant text-on-surface font-bold text-center hover:bg-surface-container-high transition-all duration-300" href="#">
+                        View Repository
+                    </a>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer Simulation (Hidden or suppressed as per context rules for Modal) -->
+</body></html>
