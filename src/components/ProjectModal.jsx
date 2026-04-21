@@ -72,32 +72,55 @@ export default function ProjectModal({ isOpen, onClose, project, coverImage, car
                   <span className="material-symbols-outlined">close</span>
                 </button>
 
-                <img
-                  key={carouselIdx}
-                  src={images[carouselIdx]}
-                  alt={project.title}
-                  className="w-full h-full object-cover transition-opacity duration-300"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-white dark:from-surface-container via-transparent to-transparent" />
+                <motion.div
+                  className="w-full h-full cursor-grab active:cursor-grabbing"
+                  drag={images.length > 1 ? 'x' : false}
+                  dragConstraints={{ left: 0, right: 0 }}
+                  dragElastic={0.2}
+                  onDragEnd={(_, info) => {
+                    if (info.offset.x < -50) next()
+                    else if (info.offset.x > 50) prev()
+                  }}
+                >
+                  <AnimatePresence mode="wait">
+                    <motion.img
+                      key={carouselIdx}
+                      src={images[carouselIdx]}
+                      alt={project.title}
+                      className="w-full h-full object-cover pointer-events-none select-none"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      transition={{ duration: 0.25 }}
+                    />
+                  </AnimatePresence>
+                </motion.div>
+
+                <div className="absolute inset-0 bg-gradient-to-t from-white dark:from-surface-container via-transparent to-transparent pointer-events-none" />
 
                 {images.length > 1 && (
-                  <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-3 px-4 py-2 bg-black/40 backdrop-blur-md rounded-full">
-                    <button onClick={prev} className="text-white hover:text-primary transition-colors">
+                  <>
+                    <button
+                      onClick={prev}
+                      className="absolute left-3 top-1/2 -translate-y-1/2 z-10 w-9 h-9 flex items-center justify-center rounded-full bg-black/40 text-white backdrop-blur-md hover:bg-black/60 hover:scale-110 transition-all duration-200"
+                    >
                       <span className="material-symbols-outlined text-lg leading-none">chevron_left</span>
                     </button>
-                    <div className="flex gap-1 items-center">
+                    <button
+                      onClick={next}
+                      className="absolute right-3 top-1/2 -translate-y-1/2 z-10 w-9 h-9 flex items-center justify-center rounded-full bg-black/40 text-white backdrop-blur-md hover:bg-black/60 hover:scale-110 transition-all duration-200"
+                    >
+                      <span className="material-symbols-outlined text-lg leading-none">chevron_right</span>
+                    </button>
+                    <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-10 flex gap-1.5 items-center pointer-events-none">
                       {images.map((_, i) => (
-                        <button
+                        <div
                           key={i}
-                          onClick={() => setCarouselIdx(i)}
-                          className={`h-1 rounded-full transition-all duration-300 ${i === carouselIdx ? 'w-6 bg-white' : 'w-1.5 bg-white/50 hover:bg-white/80'}`}
+                          className={`h-1 rounded-full transition-all duration-300 ${i === carouselIdx ? 'w-6 bg-white' : 'w-1.5 bg-white/50'}`}
                         />
                       ))}
                     </div>
-                    <button onClick={next} className="text-white hover:text-primary transition-colors">
-                      <span className="material-symbols-outlined text-lg leading-none">chevron_right</span>
-                    </button>
-                  </div>
+                  </>
                 )}
               </div>
 
