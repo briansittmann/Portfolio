@@ -1,0 +1,101 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Theme tokens (light) ─── */
+:root {
+  --color-primary:                  0 113 227;
+  --color-background:               251 251 253;
+  --color-on-background:            28 28 30;
+  --color-on-surface:               28 28 30;
+  --color-on-surface-variant:       72 72 74;
+  --color-surface-container:        242 242 247;
+  --color-surface-container-high:   235 235 239;
+  --color-surface-container-highest:229 229 234;
+  --color-surface-container-low:    249 249 251;
+  --color-outline-variant:          199 199 204;
+  --color-on-primary:               255 255 255;
+  --color-on-primary-fixed:         255 255 255;
+
+  --liquid-gradient: linear-gradient(135deg, #0071E3 0%, #00C7FF 100%);
+  --glass-bg:        rgba(255, 255, 255, 0.7);
+  --glass-blur:      blur(20px);
+}
+
+/* ─── Theme tokens (dark) ─── */
+.dark {
+  --color-primary:                  133 173 255;
+  --color-background:               14 14 14;
+  --color-on-background:            255 255 255;
+  --color-on-surface:               255 255 255;
+  --color-on-surface-variant:       171 171 171;
+  --color-surface-container:        25 25 25;
+  --color-surface-container-high:   31 31 31;
+  --color-surface-container-highest:38 38 38;
+  --color-surface-container-low:    19 19 19;
+  --color-outline-variant:          72 72 72;
+  --color-on-primary:               0 44 101;
+  --color-on-primary-fixed:         255 255 255;
+
+  --liquid-gradient: linear-gradient(45deg, #85adff 0%, #6c9fff 100%);
+  --glass-bg:        rgba(255, 255, 255, 0.05);
+  --glass-blur:      blur(12px);
+}
+
+/* ─── Base ─── */
+@layer base {
+  html {
+    font-family: 'Inter', sans-serif;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: rgb(var(--color-background));
+    color: rgb(var(--color-on-background));
+    min-height: 100dvh;
+  }
+}
+
+/* ─── Components ─── */
+@layer components {
+  /* Glassmorphism card / header */
+  .glass-effect {
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+  }
+
+  /* Accent gradient (buttons, blobs) */
+  .liquid-gradient {
+    background: var(--liquid-gradient);
+  }
+
+  /* Light-mode mesh background */
+  .mesh-bg {
+    background-color: rgb(var(--color-background));
+    background-image:
+      radial-gradient(at 0%   0%,   hsla(215, 100%, 95%, 1) 0, transparent 50%),
+      radial-gradient(at 100% 0%,   hsla(210, 100%, 96%, 1) 0, transparent 50%),
+      radial-gradient(at 100% 100%, hsla(215, 100%, 94%, 1) 0, transparent 50%),
+      radial-gradient(at 0%   100%, hsla(210, 100%, 95%, 1) 0, transparent 50%);
+  }
+
+  /* Dark mode: flat background, no mesh */
+  .dark .mesh-bg {
+    background-image: none;
+  }
+
+  /* Material Symbols */
+  .material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    font-family: 'Material Symbols Outlined', sans-serif;
+  }
+
+  /* Theme switch pill */
+  .theme-transition {
+    transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease;
+  }
+}
