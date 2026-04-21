@@ -21,6 +21,7 @@ function Card({ icon, title, desc, delay }) {
       transition={{ duration: 0.5, delay }}
       className="glass-effect dark:bg-surface-container-high p-8 rounded-2xl border border-black/5 dark:border-outline-variant/15 shadow-sm cursor-default"
       whileHover={{ scale: 1.05, boxShadow: isDark ? DARK_SHADOW : LIGHT_SHADOW }}
+      whileTap={{ scale: 1.05, boxShadow: isDark ? DARK_SHADOW : LIGHT_SHADOW }}
       transition={{ duration: 0.5 }}
     >
       <span className="material-symbols-outlined text-primary text-4xl mb-4 block">{icon}</span>

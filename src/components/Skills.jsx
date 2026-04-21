@@ -77,6 +77,12 @@ export default function Skills() {
                   boxShadow: `0 0 14px 3px rgba(${hexToRgb(brandColors[tech])}, ${isDark ? '0.6' : '0.35'})`,
                   transition: { duration: 0.2 },
                 }}
+                whileTap={{
+                  scale: 1.15,
+                  color: brandColors[tech],
+                  boxShadow: `0 0 14px 3px rgba(${hexToRgb(brandColors[tech])}, ${isDark ? '0.6' : '0.35'})`,
+                  transition: { duration: 0.2 },
+                }}
                 className="px-5 py-2.5 rounded-full glass-effect dark:bg-surface-container-high border border-black/5 dark:border-outline-variant/15 text-xs font-bold text-on-background dark:text-on-surface cursor-default"
               >
                 {tech}
@@ -104,6 +110,7 @@ export default function Skills() {
                 transition={{ duration: 0.5, delay: 0.2 + i * 0.1 }}
                 className="p-8 rounded-2xl bg-white/50 dark:bg-surface-container-high/40 backdrop-blur-sm border border-black/5 dark:border-outline-variant/15 space-y-4 shadow-sm cursor-default"
                 whileHover={{ scale: 1.05, boxShadow: isDark ? DARK_SHADOW : LIGHT_SHADOW }}
+                whileTap={{ scale: 1.05, boxShadow: isDark ? DARK_SHADOW : LIGHT_SHADOW }}
                 transition={{ duration: 0.5 }}
               >
                 <span className="material-symbols-outlined text-primary">{m.icon}</span>
