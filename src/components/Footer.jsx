@@ -1,5 +1,12 @@
 import { useLanguage } from '../context/LanguageContext'
 
+const linkHrefs = {
+  'Github':   'https://github.com/briansittmann',
+  'GitHub':   'https://github.com/briansittmann',
+  'LinkedIn': 'https://www.linkedin.com/in/brian-sittmann-50b6923b1',
+  'LinkedIn': 'https://www.linkedin.com/in/brian-sittmann-50b6923b1',
+}
+
 export default function Footer() {
   const { t } = useLanguage()
 
@@ -16,7 +23,9 @@ export default function Footer() {
           {t.footer.links.map(link => (
             <a
               key={link}
-              href="#"
+              href={linkHrefs[link] || '#'}
+              target={linkHrefs[link] ? '_blank' : undefined}
+              rel={linkHrefs[link] ? 'noopener noreferrer' : undefined}
               className="text-on-surface-variant hover:text-primary transition-colors duration-300 text-xs font-semibold"
             >
               {link}

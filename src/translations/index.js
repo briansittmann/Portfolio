@@ -15,7 +15,7 @@ const translations = {
       linkedin: 'LinkedIn',
     },
     about: {
-      title:     'The',
+      title:     'My',
       highlight: 'Background',
       p1: 'With a strong foundation in Multi-platform Application Development (DAM), I approach coding as a blend of logic and aesthetics. My journey started with a fascination for how data flows through systems, leading me to specialise in robust backend architectures.',
       p2: 'I focus on creating scalable Java Spring Boot services that serve as the reliable backbone for intuitive, fluid mobile and web interfaces. My philosophy: clean code is the bridge between complexity and great user experience.',

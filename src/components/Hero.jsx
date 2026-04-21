@@ -89,7 +89,9 @@ export default function Hero() {
               {t.hero.cv}
             </a>
             <a
-              href="#"
+              href="https://github.com/briansittmann"
+              target="_blank"
+              rel="noopener noreferrer"
               className="px-8 py-4 rounded-full glass-effect text-on-background font-bold flex items-center gap-2 hover:bg-[#004FA3]/20 hover:border-[#004FA3]/30 dark:hover:bg-white/10 dark:hover:border-white/20 transition-all duration-300 border border-black/5 dark:border-white/10 shadow-sm"
             >
               <span className="material-symbols-outlined text-primary">code</span>

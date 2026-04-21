@@ -3,7 +3,8 @@ import { useRef } from 'react'
 import { useLanguage } from '../context/LanguageContext'
 import { useTheme } from '../context/ThemeContext'
 
-const DARK_SHADOW = '0 8px 32px rgba(133, 173, 255, 0.45)'
+const DARK_SHADOW  = '0 8px 32px rgba(133, 173, 255, 0.45)'
+const LIGHT_SHADOW = '0 8px 32px rgba(0, 113, 227, 0.25)'
 
 const techStack = ['Java', 'Spring Boot', 'Hibernate', 'React Native', 'TypeScript', 'MySQL', 'Claude Code', 'MongoDB', 'Git', 'AWS']
 
@@ -58,6 +59,7 @@ export default function Skills() {
                   opacity: 1,
                   scale: 1,
                   y: [0, -5, 0],
+                  color: isDark ? '#ffffff' : '#1C1C1E',
                 } : {}}
                 transition={{
                   opacity:  { duration: 0.35, delay: i * 0.05 },
@@ -75,7 +77,7 @@ export default function Skills() {
                   boxShadow: `0 0 14px 3px rgba(${hexToRgb(brandColors[tech])}, ${isDark ? '0.6' : '0.35'})`,
                   transition: { duration: 0.2 },
                 }}
-                className="px-5 py-2.5 rounded-full glass-effect dark:bg-surface-container-high border border-black/5 dark:border-outline-variant/15 text-xs font-bold text-on-surface-variant dark:text-on-surface cursor-default"
+                className="px-5 py-2.5 rounded-full glass-effect dark:bg-surface-container-high border border-black/5 dark:border-outline-variant/15 text-xs font-bold text-on-background dark:text-on-surface cursor-default"
               >
                 {tech}
               </motion.span>
@@ -101,7 +103,7 @@ export default function Skills() {
                 animate={inView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.5, delay: 0.2 + i * 0.1 }}
                 className="p-8 rounded-2xl bg-white/50 dark:bg-surface-container-high/40 backdrop-blur-sm border border-black/5 dark:border-outline-variant/15 space-y-4 shadow-sm cursor-default"
-                whileHover={{ scale: 1.05, boxShadow: isDark ? DARK_SHADOW : undefined }}
+                whileHover={{ scale: 1.05, boxShadow: isDark ? DARK_SHADOW : LIGHT_SHADOW }}
                 transition={{ duration: 0.5 }}
               >
                 <span className="material-symbols-outlined text-primary">{m.icon}</span>

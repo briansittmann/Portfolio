@@ -5,8 +5,8 @@ import { useTheme } from '../context/ThemeContext'
 
 const icons = ['database', 'smartphone', 'terminal', 'sync']
 
-// Color primario dark: #85adff
-const DARK_SHADOW = '0 8px 32px rgba(133, 173, 255, 0.45)'
+const DARK_SHADOW  = '0 8px 32px rgba(133, 173, 255, 0.45)'
+const LIGHT_SHADOW = '0 8px 32px rgba(0, 113, 227, 0.25)'
 
 function Card({ icon, title, desc, delay }) {
   const ref = useRef(null)
@@ -20,7 +20,7 @@ function Card({ icon, title, desc, delay }) {
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.5, delay }}
       className="glass-effect dark:bg-surface-container-high p-8 rounded-2xl border border-black/5 dark:border-outline-variant/15 shadow-sm cursor-default"
-      whileHover={{ scale: 1.05, boxShadow: isDark ? DARK_SHADOW : undefined }}
+      whileHover={{ scale: 1.05, boxShadow: isDark ? DARK_SHADOW : LIGHT_SHADOW }}
       transition={{ duration: 0.5 }}
     >
       <span className="material-symbols-outlined text-primary text-4xl mb-4 block">{icon}</span>
