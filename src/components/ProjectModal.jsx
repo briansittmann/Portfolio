@@ -7,10 +7,15 @@ import VideoModal from './VideoModal'
 const DARK_SHADOW  = '0 8px 32px rgba(133, 173, 255, 0.45)'
 const LIGHT_SHADOW = '0 8px 32px rgba(0, 113, 227, 0.25)'
 
-export default function ProjectModal({ isOpen, onClose, project, coverImage, videoUrl, repoUrl, repoBackUrl, presentationUrl }) {
+export default function ProjectModal({ isOpen, onClose, project, coverImage, carouselImages, videoUrl, repoUrl, repoBackUrl, presentationUrl }) {
   const { t } = useLanguage()
   const { isDark } = useTheme()
   const [videoOpen, setVideoOpen] = useState(false)
+  const [carouselIdx, setCarouselIdx] = useState(0)
+
+  const images = carouselImages ?? (coverImage ? [coverImage] : [])
+  const prev = () => setCarouselIdx(i => (i - 1 + images.length) % images.length)
+  const next = () => setCarouselIdx(i => (i + 1) % images.length)
 
   useEffect(() => {
     const handleKey = e => {
@@ -25,6 +30,7 @@ export default function ProjectModal({ isOpen, onClose, project, coverImage, vid
 
   useEffect(() => {
     document.body.style.overflow = isOpen ? 'hidden' : ''
+    if (isOpen) setCarouselIdx(0)
     return () => { document.body.style.overflow = '' }
   }, [isOpen])
 
@@ -57,7 +63,7 @@ export default function ProjectModal({ isOpen, onClose, project, coverImage, vid
           >
             <div className="w-full max-w-2xl max-h-[90vh] md:max-h-[85vh] overflow-y-auto rounded-t-3xl md:rounded-3xl bg-white dark:bg-surface-container border border-black/5 dark:border-outline-variant/15 shadow-2xl flex flex-col" onClick={e => e.stopPropagation()}>
 
-              {/* Cover image */}
+              {/* Cover / Carousel */}
               <div className="relative w-full aspect-video shrink-0 overflow-hidden rounded-t-3xl md:rounded-t-3xl">
                 <button
                   onClick={onClose}
@@ -65,12 +71,34 @@ export default function ProjectModal({ isOpen, onClose, project, coverImage, vid
                 >
                   <span className="material-symbols-outlined">close</span>
                 </button>
+
                 <img
-                  src={coverImage}
+                  key={carouselIdx}
+                  src={images[carouselIdx]}
                   alt={project.title}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover transition-opacity duration-300"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-white dark:from-surface-container via-transparent to-transparent" />
+
+                {images.length > 1 && (
+                  <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-3 px-4 py-2 bg-black/40 backdrop-blur-md rounded-full">
+                    <button onClick={prev} className="text-white hover:text-primary transition-colors">
+                      <span className="material-symbols-outlined text-lg leading-none">chevron_left</span>
+                    </button>
+                    <div className="flex gap-1 items-center">
+                      {images.map((_, i) => (
+                        <button
+                          key={i}
+                          onClick={() => setCarouselIdx(i)}
+                          className={`h-1 rounded-full transition-all duration-300 ${i === carouselIdx ? 'w-6 bg-white' : 'w-1.5 bg-white/50 hover:bg-white/80'}`}
+                        />
+                      ))}
+                    </div>
+                    <button onClick={next} className="text-white hover:text-primary transition-colors">
+                      <span className="material-symbols-outlined text-lg leading-none">chevron_right</span>
+                    </button>
+                  </div>
+                )}
               </div>
 
               {/* Content */}

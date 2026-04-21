@@ -95,6 +95,7 @@ export default function Projects() {
         repoUrl={selectedIndex !== null ? projectMeta[selectedIndex].repoUrl : null}
         repoBackUrl={selectedIndex !== null ? projectMeta[selectedIndex].repoBackUrl : null}
         presentationUrl={selectedIndex !== null ? projectMeta[selectedIndex].presentationUrl : null}
+        carouselImages={selectedIndex !== null ? projectMeta[selectedIndex].carouselImages : null}
       />
     </section>
   )

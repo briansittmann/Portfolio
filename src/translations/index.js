@@ -51,6 +51,12 @@ const translations = {
           title: 'Freelance Web Projects',
           desc:  'A selection of client websites built with WordPress, Shopify and WooCommerce — from custom layouts in Elementor to e-commerce storefronts.',
           label: 'View Projects',
+          details: [
+            { icon: 'shopping_cart', title: 'Shopify & WooCommerce', desc: 'Custom storefronts built on Shopify and WooCommerce, optimised for conversion and tailored to each brand identity.' },
+            { icon: 'code',          title: 'Custom CSS & Velo',     desc: 'Advanced layout customisation and dynamic interactions on Wix and WordPress platforms.' },
+            { icon: 'layers',        title: 'Elementor & Gutenberg', desc: 'Precision design systems built on modular, lightweight block environments for fast delivery.' },
+            { icon: 'search',        title: 'SEO & Performance',     desc: 'Clean semantic markup and performance optimisation for better search visibility and load times.' },
+          ],
         },
         {
           tags:  ['Unity', 'C#'],
@@ -144,6 +150,12 @@ const translations = {
           title: 'Proyectos Web Freelance',
           desc:  'Una selección de sitios web para clientes desarrollados con WordPress, Shopify y WooCommerce — desde layouts personalizados en Elementor hasta tiendas e-commerce.',
           label: 'Ver Proyectos',
+          details: [
+            { icon: 'shopping_cart', title: 'Shopify & WooCommerce', desc: 'Tiendas personalizadas construidas sobre Shopify y WooCommerce, optimizadas para la conversión y adaptadas a cada marca.' },
+            { icon: 'code',          title: 'CSS Personalizado',     desc: 'Personalización avanzada de layouts e interacciones dinámicas en plataformas Wix y WordPress.' },
+            { icon: 'layers',        title: 'Elementor & Gutenberg', desc: 'Sistemas de diseño modulares construidos en entornos de bloques ligeros para entrega rápida.' },
+            { icon: 'search',        title: 'SEO y Rendimiento',     desc: 'Código semántico limpio y optimización de rendimiento para mayor visibilidad en buscadores.' },
+          ],
         },
         {
           tags:  ['Unity', 'C#'],
