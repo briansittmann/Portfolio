@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import { useLanguage } from '../context/LanguageContext'
 import VideoModal from './VideoModal'
 
-export default function ProjectModal({ isOpen, onClose, project, coverImage, videoUrl, repoUrl }) {
+export default function ProjectModal({ isOpen, onClose, project, coverImage, videoUrl, repoUrl, repoBackUrl }) {
   const { lang } = useLanguage()
   const [videoOpen, setVideoOpen] = useState(false)
 
@@ -25,9 +25,12 @@ export default function ProjectModal({ isOpen, onClose, project, coverImage, vid
 
   if (!project) return null
 
-  const stackLabel = lang === 'es' ? 'Stack Tecnológico' : 'Tech Stack'
-  const descLabel  = lang === 'es' ? 'Descripción'       : 'Description'
-  const repoLabel  = lang === 'es' ? 'Ver Repositorio'   : 'View Repository'
+  const stackLabel    = lang === 'es' ? 'Stack Tecnológico'  : 'Tech Stack'
+  const descLabel     = lang === 'es' ? 'Descripción'        : 'Description'
+  const repoLabel     = lang === 'es' ? 'Ver Repositorio'    : 'View Repository'
+  const repoFrontLabel= lang === 'es' ? 'Ver Frontend'       : 'View Frontend'
+  const repoBackLabel = lang === 'es' ? 'Ver Backend'        : 'View Backend'
+  const detailsLabel  = lang === 'es' ? 'Características'    : 'Highlights'
 
   return (
     <AnimatePresence>
@@ -102,8 +105,24 @@ export default function ProjectModal({ isOpen, onClose, project, coverImage, vid
                   </div>
                 </div>
 
+                {/* Detail highlight cards */}
+                {project.details && project.details.length > 0 && (
+                  <div>
+                    <h3 className="text-xs font-bold text-primary uppercase tracking-widest mb-3">{detailsLabel}</h3>
+                    <div className="grid sm:grid-cols-2 gap-4">
+                      {project.details.map((d, i) => (
+                        <div key={i} className="p-5 rounded-2xl bg-surface-container-low dark:bg-surface-container-high border border-black/5 dark:border-outline-variant/15 space-y-2">
+                          <span className="material-symbols-outlined text-primary">{d.icon}</span>
+                          <h4 className="font-bold text-on-background">{d.title}</h4>
+                          <p className="text-on-surface-variant text-sm leading-relaxed">{d.desc}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
                 {/* Action buttons */}
-                {(videoUrl || repoUrl) && (
+                {(videoUrl || repoUrl || repoBackUrl) && (
                   <div className="flex flex-col sm:flex-row gap-4">
                     {videoUrl && (
                       <button
@@ -114,7 +133,28 @@ export default function ProjectModal({ isOpen, onClose, project, coverImage, vid
                         {project.label}
                       </button>
                     )}
-                    {repoUrl && (
+                    {repoUrl && repoBackUrl ? (
+                      <>
+                        <a
+                          href={repoUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="w-full sm:w-auto px-8 py-4 rounded-full border border-black/10 dark:border-outline-variant/30 text-on-background font-bold flex items-center justify-center gap-2 hover:bg-surface-container-low dark:hover:bg-surface-container-high transition-all duration-300"
+                        >
+                          <span className="material-symbols-outlined">smartphone</span>
+                          {repoFrontLabel}
+                        </a>
+                        <a
+                          href={repoBackUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="w-full sm:w-auto px-8 py-4 rounded-full border border-black/10 dark:border-outline-variant/30 text-on-background font-bold flex items-center justify-center gap-2 hover:bg-surface-container-low dark:hover:bg-surface-container-high transition-all duration-300"
+                        >
+                          <span className="material-symbols-outlined">dns</span>
+                          {repoBackLabel}
+                        </a>
+                      </>
+                    ) : repoUrl ? (
                       <a
                         href={repoUrl}
                         target="_blank"
@@ -124,7 +164,7 @@ export default function ProjectModal({ isOpen, onClose, project, coverImage, vid
                         <span className="material-symbols-outlined">code</span>
                         {repoLabel}
                       </a>
-                    )}
+                    ) : null}
                   </div>
                 )}
               </div>

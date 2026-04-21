@@ -3,18 +3,19 @@ import { useRef, useState } from 'react'
 import { useLanguage } from '../context/LanguageContext'
 import frogNinjaCover from '../assets/images/frogNinjaCover.png'
 import plataformer2D from '../assets/images/plataformer2D.png'
+import caloriaBanner from '../assets/images/caloriaBanner.jpg'
 import ProjectModal from './ProjectModal'
 
 const images = [
-  'https://lh3.googleusercontent.com/aida-public/AB6AXuDR6MdHLwZ-f_tOzN4cVOCa3ux3uy8DD5m6sRqkTZ9tIx9DKEb7arhcxOPzchQOsesMHL2jb1KZLawAMXks4TZ0KY9HBFO22I0LdStNy2Lg65NAUW3iDDFh2yvtJfhEhwkD-eNLI7QJftMzI8tEmclZElhfWnKb0XslEzi16LuPnBOFionNZs-L5JQLDmgLacXqMzcLBiH6tXUHEppB7TTtY5RScML2NgwubBneCD9ot2eaIo0Zwy-M0votfKDezk6BnzfPGRW_17g',
+  caloriaBanner,
   'https://lh3.googleusercontent.com/aida-public/AB6AXuD2QwqHgFUT2NoSydVC-I2s4x-nbnCJozpguBH4n2h1jtz0wthfUommIBIR7PULaiGa-WC0JAMoVPoYYh3ZHHxwudPbLHA7Y8w513Qf_mQ7Fnwozwyj29HGrNqS8xrY9RQtsoIRUFl8UCsm1cQeweFv1n24O1eM8hAgYCEoZYRACzlgLELv1al1QIwYLmdSy3ZsSaErEE5YI3p-WTj1zNWdolKo-5uT1OANFrexi8OrNTWqw-4lHSxqAsFjjB1z9r8albsqBAu2ak0',
   frogNinjaCover,
 ]
 
 const projectMeta = [
-  { coverImage: null,          videoUrl: null,                                              repoUrl: null },
-  { coverImage: null,          videoUrl: null,                                              repoUrl: null },
-  { coverImage: plataformer2D, videoUrl: 'https://www.youtube.com/watch?v=5bU7d4cKiBE',   repoUrl: 'https://github.com/briansittmann/plataformer2D' },
+  { coverImage: caloriaBanner, videoUrl: null, repoUrl: 'https://github.com/briansittmann/CalorIA_SDK53', repoBackUrl: 'https://github.com/briansittmann/caloria-backend' },
+  { coverImage: null,          videoUrl: null, repoUrl: null },
+  { coverImage: plataformer2D, videoUrl: 'https://www.youtube.com/watch?v=5bU7d4cKiBE', repoUrl: 'https://github.com/briansittmann/plataformer2D' },
 ]
 
 function ProjectCard({ project, img, delay, onClick }) {
@@ -106,6 +107,7 @@ export default function Projects() {
         coverImage={selectedIndex !== null ? (projectMeta[selectedIndex].coverImage ?? images[selectedIndex]) : null}
         videoUrl={selectedIndex !== null ? projectMeta[selectedIndex].videoUrl : null}
         repoUrl={selectedIndex !== null ? projectMeta[selectedIndex].repoUrl : null}
+        repoBackUrl={selectedIndex !== null ? projectMeta[selectedIndex].repoBackUrl : null}
       />
     </section>
   )
