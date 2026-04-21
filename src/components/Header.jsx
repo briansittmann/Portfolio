@@ -47,7 +47,7 @@ export default function Header() {
 
   return (
     <header className="fixed top-0 w-full z-50 glass-effect border-b border-black/5 dark:border-white/5 theme-transition">
-      <div className="flex justify-between items-center px-8 h-[72px] max-w-7xl mx-auto">
+      <div className="flex justify-between items-center px-4 md:px-8 h-[72px] max-w-7xl mx-auto">
 
         {/* Logo */}
         <div className="flex items-center gap-2">
@@ -81,7 +81,7 @@ export default function Header() {
         </nav>
 
         {/* Right controls */}
-        <div className="flex items-center gap-3 ml-4 md:ml-0">
+        <div className="flex items-center gap-3 ml-2 md:ml-0">
 
           {/* Language selector */}
           <div className="relative" ref={dropdownRef}>
