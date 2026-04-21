@@ -47,10 +47,10 @@ const translations = {
           ],
         },
         {
-          tags:  ['React Native', 'Firebase'],
-          title: 'FitTrack Mobile',
-          desc:  'Cross-platform mobile application for personalized workout tracking with real-time data sync.',
-          label: 'View App',
+          tags:  ['WordPress', 'Shopify', 'Figma'],
+          title: 'Freelance Web Projects',
+          desc:  'A selection of client websites built with WordPress, Shopify and WooCommerce — from custom layouts in Elementor to e-commerce storefronts.',
+          label: 'View Projects',
         },
         {
           tags:  ['Unity', 'C#'],
@@ -131,10 +131,10 @@ const translations = {
           ],
         },
         {
-          tags:  ['React Native', 'Firebase'],
-          title: 'FitTrack Mobile',
-          desc:  'Aplicación móvil multiplataforma para seguimiento personalizado de entrenamientos con sincronización en tiempo real.',
-          label: 'Ver App',
+          tags:  ['WordPress', 'Shopify', 'Figma'],
+          title: 'Proyectos Web Freelance',
+          desc:  'Una selección de sitios web para clientes desarrollados con WordPress, Shopify y WooCommerce — desde layouts personalizados en Elementor hasta tiendas e-commerce.',
+          label: 'Ver Proyectos',
         },
         {
           tags:  ['Unity', 'C#'],
