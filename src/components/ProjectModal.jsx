@@ -1,10 +1,15 @@
 import { motion, AnimatePresence } from 'framer-motion'
 import { useEffect, useState } from 'react'
 import { useLanguage } from '../context/LanguageContext'
+import { useTheme } from '../context/ThemeContext'
 import VideoModal from './VideoModal'
+
+const DARK_SHADOW  = '0 8px 32px rgba(133, 173, 255, 0.45)'
+const LIGHT_SHADOW = '0 8px 32px rgba(0, 113, 227, 0.25)'
 
 export default function ProjectModal({ isOpen, onClose, project, coverImage, videoUrl, repoUrl, repoBackUrl, presentationUrl }) {
   const { lang } = useLanguage()
+  const { isDark } = useTheme()
   const [videoOpen, setVideoOpen] = useState(false)
 
   useEffect(() => {
@@ -112,27 +117,46 @@ export default function ProjectModal({ isOpen, onClose, project, coverImage, vid
                     <h3 className="text-xs font-bold text-primary uppercase tracking-widest mb-3">{detailsLabel}</h3>
                     <div className="grid sm:grid-cols-2 gap-4">
                       {project.details.map((d, i) => (
-                        <div key={i} className="p-5 rounded-2xl bg-surface-container-low dark:bg-surface-container-high border border-black/5 dark:border-outline-variant/15 space-y-2">
-                          <span className="material-symbols-outlined text-primary">{d.icon}</span>
-                          <h4 className="font-bold text-on-background">{d.title}</h4>
+                        <motion.div
+                          key={i}
+                          initial={{ opacity: 0, y: 20 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.4, delay: i * 0.1 }}
+                          className="glass-effect dark:bg-surface-container-high p-6 rounded-2xl border border-black/5 dark:border-outline-variant/15 shadow-sm cursor-default space-y-2"
+                          whileHover={{ scale: 1.05, boxShadow: isDark ? DARK_SHADOW : LIGHT_SHADOW }}
+                          whileTap={{ scale: 1.05, boxShadow: isDark ? DARK_SHADOW : LIGHT_SHADOW }}
+                        >
+                          <span className="material-symbols-outlined text-primary text-4xl block">{d.icon}</span>
+                          <h4 className="font-bold text-lg text-on-background">{d.title}</h4>
                           <p className="text-on-surface-variant text-sm leading-relaxed">{d.desc}</p>
-                        </div>
+                        </motion.div>
                       ))}
                     </div>
                   </div>
                 )}
 
-                {/* Action buttons */}
+                {/* Action buttons — 2-column grid */}
                 {(videoUrl || repoUrl || repoBackUrl || presentationUrl) && (
-                  <div className="flex flex-col sm:flex-row gap-4">
+                  <div className="grid grid-cols-2 gap-3">
                     {videoUrl && (
                       <button
                         onClick={() => setVideoOpen(true)}
-                        className="w-full sm:w-auto px-8 py-4 rounded-full liquid-gradient text-on-primary-fixed font-bold flex items-center justify-center gap-2 hover:shadow-lg hover:shadow-primary/30 hover:-translate-y-0.5 transition-all duration-300"
+                        className="px-6 py-4 rounded-full liquid-gradient text-on-primary-fixed font-bold flex items-center justify-center gap-2 hover:shadow-lg hover:shadow-primary/30 hover:-translate-y-0.5 transition-all duration-300"
                       >
-                        <span className="material-symbols-outlined">play_circle</span>
+                        <span className="material-symbols-outlined text-base">play_circle</span>
                         {project.label}
                       </button>
+                    )}
+                    {presentationUrl && (
+                      <a
+                        href={presentationUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="px-6 py-4 rounded-full border border-black/10 dark:border-outline-variant/30 text-on-background font-bold flex items-center justify-center gap-2 hover:bg-surface-container-low dark:hover:bg-surface-container-high transition-all duration-300"
+                      >
+                        <span className="material-symbols-outlined text-base">picture_as_pdf</span>
+                        {presentationLabel}
+                      </a>
                     )}
                     {repoUrl && repoBackUrl ? (
                       <>
@@ -140,18 +164,18 @@ export default function ProjectModal({ isOpen, onClose, project, coverImage, vid
                           href={repoUrl}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="w-full sm:w-auto px-8 py-4 rounded-full border border-black/10 dark:border-outline-variant/30 text-on-background font-bold flex items-center justify-center gap-2 hover:bg-surface-container-low dark:hover:bg-surface-container-high transition-all duration-300"
+                          className="px-6 py-4 rounded-full border border-black/10 dark:border-outline-variant/30 text-on-background font-bold flex items-center justify-center gap-2 hover:bg-surface-container-low dark:hover:bg-surface-container-high transition-all duration-300"
                         >
-                          <span className="material-symbols-outlined">smartphone</span>
+                          <span className="material-symbols-outlined text-base">smartphone</span>
                           {repoFrontLabel}
                         </a>
                         <a
                           href={repoBackUrl}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="w-full sm:w-auto px-8 py-4 rounded-full border border-black/10 dark:border-outline-variant/30 text-on-background font-bold flex items-center justify-center gap-2 hover:bg-surface-container-low dark:hover:bg-surface-container-high transition-all duration-300"
+                          className="px-6 py-4 rounded-full border border-black/10 dark:border-outline-variant/30 text-on-background font-bold flex items-center justify-center gap-2 hover:bg-surface-container-low dark:hover:bg-surface-container-high transition-all duration-300"
                         >
-                          <span className="material-symbols-outlined">dns</span>
+                          <span className="material-symbols-outlined text-base">dns</span>
                           {repoBackLabel}
                         </a>
                       </>
@@ -160,23 +184,12 @@ export default function ProjectModal({ isOpen, onClose, project, coverImage, vid
                         href={repoUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="w-full sm:w-auto px-8 py-4 rounded-full border border-black/10 dark:border-outline-variant/30 text-on-background font-bold flex items-center justify-center gap-2 hover:bg-surface-container-low dark:hover:bg-surface-container-high transition-all duration-300"
+                        className="px-6 py-4 rounded-full border border-black/10 dark:border-outline-variant/30 text-on-background font-bold flex items-center justify-center gap-2 hover:bg-surface-container-low dark:hover:bg-surface-container-high transition-all duration-300"
                       >
-                        <span className="material-symbols-outlined">code</span>
+                        <span className="material-symbols-outlined text-base">code</span>
                         {repoLabel}
                       </a>
                     ) : null}
-                    {presentationUrl && (
-                      <a
-                        href={presentationUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="w-full sm:w-auto px-8 py-4 rounded-full border border-black/10 dark:border-outline-variant/30 text-on-background font-bold flex items-center justify-center gap-2 hover:bg-surface-container-low dark:hover:bg-surface-container-high transition-all duration-300"
-                      >
-                        <span className="material-symbols-outlined">picture_as_pdf</span>
-                        {presentationLabel}
-                      </a>
-                    )}
                   </div>
                 )}
               </div>
