@@ -81,7 +81,7 @@ export default function Header() {
         </nav>
 
         {/* Right controls */}
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3 ml-4 md:ml-0">
 
           {/* Language selector */}
           <div className="relative" ref={dropdownRef}>

@@ -70,7 +70,7 @@ export default function Contact() {
             <div className="flex flex-col md:flex-row justify-center items-center gap-6">
               <a
                 href="mailto:brian.sittmann@hotmail.com"
-                className="text-2xl md:text-3xl font-bold text-on-background hover:text-primary transition-colors duration-300"
+                className="text-lg md:text-3xl font-bold text-on-background hover:text-primary transition-colors duration-300"
               >
                 brian.sittmann@hotmail.com
               </a>
