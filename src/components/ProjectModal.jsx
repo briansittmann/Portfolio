@@ -53,8 +53,9 @@ export default function ProjectModal({ isOpen, onClose, project, coverImage, vid
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 60 }}
             transition={{ duration: 0.35, ease: 'easeOut' }}
+            onClick={onClose}
           >
-            <div className="w-full max-w-2xl max-h-[90vh] md:max-h-[85vh] overflow-y-auto rounded-t-3xl md:rounded-3xl bg-white dark:bg-surface-container border border-black/5 dark:border-outline-variant/15 shadow-2xl flex flex-col">
+            <div className="w-full max-w-2xl max-h-[90vh] md:max-h-[85vh] overflow-y-auto rounded-t-3xl md:rounded-3xl bg-white dark:bg-surface-container border border-black/5 dark:border-outline-variant/15 shadow-2xl flex flex-col" onClick={e => e.stopPropagation()}>
 
               {/* Cover image */}
               <div className="relative w-full aspect-video shrink-0 overflow-hidden rounded-t-3xl md:rounded-t-3xl">

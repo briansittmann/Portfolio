@@ -33,8 +33,9 @@ export default function VideoModal({ isOpen, onClose, videoUrl }) {
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.92 }}
             transition={{ duration: 0.25, ease: 'easeOut' }}
+            onClick={onClose}
           >
-            <div className="w-full max-w-3xl relative">
+            <div className="w-full max-w-3xl relative" onClick={e => e.stopPropagation()}>
               <button
                 onClick={onClose}
                 className="absolute -top-12 right-0 w-10 h-10 flex items-center justify-center rounded-full bg-white/10 text-white hover:bg-white/20 transition-all duration-200"
