@@ -82,7 +82,7 @@ export default function Hero() {
             className="flex flex-wrap gap-4"
           >
             <a
-              href="/BrianSittmannCV.pdf"
+              href="/Brian_Sittmann_Java_Developer_CV.pdf"
               target="_blank"
               rel="noopener noreferrer"
               className="px-8 py-4 rounded-full liquid-gradient text-on-primary-fixed font-bold flex items-center gap-2 hover:shadow-lg hover:shadow-primary/30 transition-all duration-300 hover:-translate-y-0.5"
