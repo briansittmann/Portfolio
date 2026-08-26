@@ -2,13 +2,16 @@ import caloriaBanner   from '../assets/images/caloriaBanner.jpg'
 import caloriaScreens  from '../assets/images/caloriaScreens.png'
 import frogNinjaCover  from '../assets/images/frogNinjaCover.png'
 import plataformer2D   from '../assets/images/plataformer2D.png'
+import recuperarLogo   from '../assets/images/recuperar-logo.png'
 import webFreelance1   from '../assets/images/webFreelance1.png'
 import webFreelance2   from '../assets/images/webFreelance2.png'
 import webFreelance3   from '../assets/images/webFreelance3.png'
+import webFreelance4   from '../assets/images/webFreelance4.png'
+import webFreelance5   from '../assets/images/webFreelance5.png'
 
 export const projectImages = [
   caloriaBanner,
-  webFreelance3,
+  recuperarLogo,
   frogNinjaCover,
 ]
 
@@ -21,9 +24,10 @@ export const projectMeta = [
     presentationUrl: '/Presentacion_CalorIA.pdf',
   },
   {
-    carouselImages: [webFreelance1, webFreelance2, webFreelance3],
+    carouselImages: [webFreelance1, webFreelance2, webFreelance3, webFreelance4, webFreelance5],
     videoUrl:       null,
-    repoUrl:        null,
+    repoUrl:        'https://github.com/briansittmann/recuperAR',
+    websiteUrl:     'https://recuperarsm.com.ar',
   },
   {
     coverImage: plataformer2D,

@@ -220,7 +220,7 @@ export default function ContactModal({ isOpen, onClose }) {
                 </div>
                 <button
                   onClick={onClose}
-                  className="p-2 rounded-full text-on-surface-variant hover:text-primary hover:bg-primary/10 transition-all duration-200"
+                  className="w-9 h-9 flex items-center justify-center rounded-full text-on-surface-variant hover:text-primary hover:bg-primary/10 transition-all duration-200"
                   aria-label="Close"
                 >
                   <span className="material-symbols-outlined">close</span>

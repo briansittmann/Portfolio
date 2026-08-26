@@ -7,7 +7,7 @@ const translations = {
     },
     hero: {
       badge:    'Available for new opportunities',
-      title:    'Junior Full Stack',
+      title:    'Junior Java Backend',
       highlight:'Developer',
       subtitle: 'Java Spring Boot | React Native. Crafting fluid digital experiences with architectural precision.',
       cv:       'Download CV',
@@ -47,15 +47,15 @@ const translations = {
           ],
         },
         {
-          tags:  ['WordPress', 'Shopify', 'Figma'],
-          title: 'Freelance Web Projects',
-          desc:  'Freelance projects where I used WordPress, Shopify and WooCommerce to help clients get their businesses online, from simple landing pages to small e-commerce stores.',
-          label: 'View Projects',
+          tags:  ['React', 'PHP', 'MySQL'],
+          title: 'RecuperAR',
+          desc:  'Full-stack e-commerce for a supplier of orthopedic and rehabilitation equipment — wheelchairs, prosthetics and medical devices — built end-to-end with a custom PHP REST API and a React frontend.',
+          label: 'View Website',
           details: [
-            { icon: 'shopping_cart', title: 'Shopify & WooCommerce', desc: 'Set up and customised online stores for clients who needed to start selling quickly without a big budget.' },
-            { icon: 'code',          title: 'Custom CSS & JavaScript', desc: 'Used custom code to go beyond what templates allow and match each client\'s specific needs.' },
-            { icon: 'layers',        title: 'Elementor & Gutenberg', desc: 'Built page layouts with Elementor and Gutenberg to give clients easy control over their own content.' },
-            { icon: 'search',        title: 'SEO Basics',            desc: 'Applied basic SEO practices so clients\' sites could be found more easily on search engines.' },
+            { icon: 'shopping_cart',        title: 'Catalog & Cart',           desc: 'Category-based product catalog with a cart that persists in localStorage through checkout.' },
+            { icon: 'lock',                 title: 'JWT Auth in Pure PHP',     desc: 'Hand-rolled REST API in plain PHP, no frameworks, securing the admin panel with JWT authentication.' },
+            { icon: 'admin_panel_settings', title: 'Admin Dashboard',          desc: 'Protected panel to manage products, reorder multiple images per item, and track orders.' },
+            { icon: 'payments',             title: 'Bank Transfer Checkout',   desc: 'Order flow supporting bank-transfer payments with automatic email notifications.' },
           ],
         },
         {
@@ -84,6 +84,7 @@ const translations = {
       repoFront:    'View Frontend',
       repoBack:     'View Backend',
       presentation: 'View Presentation',
+      website:      'Visit Website',
     },
     contact: {
       title:     "Let's",
@@ -106,7 +107,7 @@ const translations = {
     },
     hero: {
       badge:    'Disponible para nuevas oportunidades',
-      title:    'Desarrollador Full Stack',
+      title:    'Desarrollador Backend Java',
       highlight:'Junior',
       subtitle: 'Java Spring Boot | React Native. Creando experiencias digitales fluidas con precisión arquitectónica.',
       cv:       'Descargar CV',
@@ -146,15 +147,15 @@ const translations = {
           ],
         },
         {
-          tags:  ['WordPress', 'Shopify', 'Figma'],
-          title: 'Proyectos Web Freelance',
-          desc:  'Proyectos freelance donde usé WordPress, Shopify y WooCommerce para ayudar a clientes a tener presencia online, desde landing pages sencillas hasta pequeñas tiendas e-commerce.',
-          label: 'Ver Proyectos',
+          tags:  ['React', 'PHP', 'MySQL'],
+          title: 'RecuperAR',
+          desc:  'E-commerce full-stack para un proveedor de equipamiento ortopédico y de rehabilitación — sillas de ruedas, prótesis y dispositivos médicos — construido de punta a punta con una API REST en PHP y un frontend en React.',
+          label: 'Ver Sitio Web',
           details: [
-            { icon: 'shopping_cart', title: 'Shopify & WooCommerce', desc: 'Configuré y personalicé tiendas online para clientes que necesitaban empezar a vender sin un gran presupuesto.' },
-            { icon: 'code',          title: 'CSS y JavaScript',      desc: 'Usé código personalizado para ir más allá de las plantillas y adaptarme a las necesidades concretas de cada cliente.' },
-            { icon: 'layers',        title: 'Elementor & Gutenberg', desc: 'Construí layouts con Elementor y Gutenberg para que los clientes pudieran gestionar su propio contenido fácilmente.' },
-            { icon: 'search',        title: 'SEO Básico',            desc: 'Apliqué prácticas básicas de SEO para que los sitios de los clientes pudieran encontrarse más fácilmente en buscadores.' },
+            { icon: 'shopping_cart',        title: 'Catálogo y Carrito',          desc: 'Catálogo de productos por categorías con un carrito persistente en localStorage hasta el checkout.' },
+            { icon: 'lock',                 title: 'Auth JWT en PHP Puro',        desc: 'API REST hecha a mano en PHP puro, sin frameworks, que protege el panel de administración con autenticación JWT.' },
+            { icon: 'admin_panel_settings', title: 'Panel de Administración',     desc: 'Panel protegido para gestionar productos, reordenar múltiples imágenes por producto y hacer seguimiento de pedidos.' },
+            { icon: 'payments',             title: 'Checkout por Transferencia', desc: 'Flujo de pedidos con pago por transferencia bancaria y notificaciones automáticas por email.' },
           ],
         },
         {
@@ -183,6 +184,7 @@ const translations = {
       repoFront:    'Ver Frontend',
       repoBack:     'Ver Backend',
       presentation: 'Ver Presentación',
+      website:      'Ver Sitio Web',
     },
     contact: {
       title:     'Trabajemos',

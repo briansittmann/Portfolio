@@ -104,7 +104,7 @@ export default function Header() {
                   <button
                     key={code}
                     onClick={() => { setLang(code); setLangOpen(false) }}
-                    className={`w-full text-left px-4 py-2.5 text-sm font-medium transition-colors duration-200 ${
+                    className={`w-full text-center px-4 py-2.5 text-sm font-medium transition-colors duration-200 ${
                       lang === code
                         ? 'text-primary font-semibold bg-primary/5'
                         : 'text-on-surface-variant hover:text-primary hover:bg-primary/5'

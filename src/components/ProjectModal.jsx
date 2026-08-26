@@ -7,7 +7,7 @@ import VideoModal from './VideoModal'
 const DARK_SHADOW  = '0 8px 32px rgba(133, 173, 255, 0.45)'
 const LIGHT_SHADOW = '0 8px 32px rgba(0, 113, 227, 0.25)'
 
-export default function ProjectModal({ isOpen, onClose, project, coverImage, carouselImages, videoUrl, repoUrl, repoBackUrl, presentationUrl }) {
+export default function ProjectModal({ isOpen, onClose, project, coverImage, carouselImages, videoUrl, repoUrl, repoBackUrl, presentationUrl, websiteUrl }) {
   const { t } = useLanguage()
   const { isDark } = useTheme()
   const [videoOpen, setVideoOpen] = useState(false)
@@ -38,7 +38,7 @@ export default function ProjectModal({ isOpen, onClose, project, coverImage, car
 
   const { stack: stackLabel, description: descLabel, highlights: detailsLabel,
           repo: repoLabel, repoFront: repoFrontLabel, repoBack: repoBackLabel,
-          presentation: presentationLabel } = t.modal
+          presentation: presentationLabel, website: websiteLabel } = t.modal
 
   return (
     <AnimatePresence>
@@ -168,11 +168,10 @@ export default function ProjectModal({ isOpen, onClose, project, coverImage, car
                         <motion.div
                           key={i}
                           initial={{ opacity: 0, y: 20 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ duration: 0.4, delay: i * 0.1 }}
+                          animate={{ opacity: 1, y: 0, transition: { duration: 0.4, delay: i * 0.1 } }}
                           className="surface-card p-6 cursor-default space-y-2"
-                          whileHover={{ scale: 1.05, boxShadow: isDark ? DARK_SHADOW : LIGHT_SHADOW }}
-                          whileTap={{ scale: 1.05, boxShadow: isDark ? DARK_SHADOW : LIGHT_SHADOW }}
+                          whileHover={{ scale: 1.05, boxShadow: isDark ? DARK_SHADOW : LIGHT_SHADOW, transition: { duration: 0.2, delay: 0 } }}
+                          whileTap={{ scale: 0.97, boxShadow: isDark ? DARK_SHADOW : LIGHT_SHADOW, transition: { duration: 0.15, delay: 0 } }}
                         >
                           <span className="material-symbols-outlined text-primary text-4xl block">{d.icon}</span>
                           <h4 className="font-bold text-lg text-on-background">{d.title}</h4>
@@ -184,13 +183,19 @@ export default function ProjectModal({ isOpen, onClose, project, coverImage, car
                 )}
 
                 {/* Action buttons — 2-column grid */}
-                {(videoUrl || repoUrl || repoBackUrl || presentationUrl) && (
+                {(videoUrl || repoUrl || repoBackUrl || presentationUrl || websiteUrl) && (
                   <div className="grid grid-cols-2 gap-3">
                     {videoUrl && (
                       <button onClick={() => setVideoOpen(true)} className="btn-primary">
                         <span className="material-symbols-outlined text-base">play_circle</span>
                         {project.label}
                       </button>
+                    )}
+                    {websiteUrl && (
+                      <a href={websiteUrl} target="_blank" rel="noopener noreferrer" className="btn-primary">
+                        <span className="material-symbols-outlined text-base">language</span>
+                        {websiteLabel}
+                      </a>
                     )}
                     {presentationUrl && (
                       <a href={presentationUrl} target="_blank" rel="noopener noreferrer" className="btn-outline">

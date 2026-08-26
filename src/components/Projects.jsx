@@ -95,6 +95,7 @@ export default function Projects() {
         videoUrl={selectedIndex !== null ? projectMeta[selectedIndex].videoUrl : null}
         repoUrl={selectedIndex !== null ? projectMeta[selectedIndex].repoUrl : null}
         repoBackUrl={selectedIndex !== null ? projectMeta[selectedIndex].repoBackUrl : null}
+        websiteUrl={selectedIndex !== null ? projectMeta[selectedIndex].websiteUrl : null}
         presentationUrl={selectedIndex !== null ? projectMeta[selectedIndex].presentationUrl : null}
         carouselImages={selectedIndex !== null ? projectMeta[selectedIndex].carouselImages : null}
       />
