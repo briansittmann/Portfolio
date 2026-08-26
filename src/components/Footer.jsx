@@ -3,8 +3,8 @@ import { useLanguage } from '../context/LanguageContext'
 const linkHrefs = {
   'Github':   'https://github.com/briansittmann',
   'GitHub':   'https://github.com/briansittmann',
-  'LinkedIn': 'https://www.linkedin.com/in/brian-sittmann-50b6923b1',
-  'LinkedIn': 'https://www.linkedin.com/in/brian-sittmann-50b6923b1',
+  'LinkedIn': 'https://www.linkedin.com/in/brian-sittmann',
+  'LinkedIn': 'https://www.linkedin.com/in/brian-sittmann',
 }
 
 export default function Footer() {

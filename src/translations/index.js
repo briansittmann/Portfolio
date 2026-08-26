@@ -19,9 +19,9 @@ const translations = {
       highlight: 'Background',
       p1: 'With a strong foundation in Multi-platform Application Development (DAM), I approach coding as a blend of logic and aesthetics. My journey started with a fascination for how data flows through systems, leading me to specialise in robust backend architectures.',
       p2: 'I focus on creating scalable Java Spring Boot services that serve as the reliable backbone for intuitive, fluid mobile and web interfaces. My philosophy: clean code is the bridge between complexity and great user experience.',
-      location:          'Valencia',
+      location:          'Dublin',
       locationLabel:     'Base Location',
-      availability:      'Remote',
+      availability:      'Immediate',
       availabilityLabel: 'Availability',
       cards: [
         { title: 'Backend Focus',  desc: 'Developing resilient APIs and efficient database schemas.' },
@@ -88,8 +88,8 @@ const translations = {
     contact: {
       title:     "Let's",
       highlight: 'Collaborate',
-      subtitle:  'Currently based in Valencia, Spain. Open to remote roles and interesting local projects.',
-      location:  'Valencia, Spain',
+      subtitle:  'Based in Dublin, Ireland. EU citizen with full right to work — no sponsorship required. Open to junior backend and full stack roles.',
+      location:  'Dublin, Ireland',
       cta:       'Start a Conversation',
     },
     footer: {
@@ -118,9 +118,9 @@ const translations = {
       highlight: 'Trayectoria',
       p1: 'Con una sólida base en Desarrollo de Aplicaciones Multiplataforma (DAM), enfoco el código como una mezcla entre lógica y estética. Mi camino comenzó con la fascinación por cómo fluyen los datos en los sistemas, lo que me llevó a especializarme en arquitecturas backend robustas.',
       p2: 'Me enfoco en crear servicios escalables con Java Spring Boot que sirvan como base sólida para interfaces móviles y web intuitivas y fluidas. Mi filosofía: el código limpio es el puente entre la complejidad y una gran experiencia de usuario.',
-      location:          'Valencia',
+      location:          'Dublín',
       locationLabel:     'Ubicación',
-      availability:      'Remoto',
+      availability:      'Inmediata',
       availabilityLabel: 'Disponibilidad',
       cards: [
         { title: 'Enfoque Backend',  desc: 'Desarrollo de APIs resilientes y esquemas de base de datos eficientes.' },
@@ -187,8 +187,8 @@ const translations = {
     contact: {
       title:     'Trabajemos',
       highlight: 'Juntos',
-      subtitle:  'Actualmente en Valencia, España. Disponible para roles remotos y proyectos locales interesantes.',
-      location:  'Valencia, España',
+      subtitle:  'Con base en Dublín, Irlanda. Ciudadano de la UE con pleno derecho a trabajar — sin necesidad de patrocinio. Abierto a puestos junior de backend y full stack.',
+      location:  'Dublín, Irlanda',
       cta:       'Iniciar Conversación',
     },
     footer: {

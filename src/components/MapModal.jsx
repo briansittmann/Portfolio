@@ -45,7 +45,7 @@ export default function MapModal({ isOpen, onClose }) {
               <div className="flex items-center justify-between px-6 py-4 border-b border-black/5 dark:border-outline-variant/15">
                 <div className="flex items-center gap-2">
                   <span className="material-symbols-outlined text-primary">location_on</span>
-                  <span className="font-bold text-on-background tracking-tight">Valencia, Spain</span>
+                  <span className="font-bold text-on-background tracking-tight">Dublin, Ireland</span>
                 </div>
                 <button
                   onClick={onClose}
@@ -59,8 +59,8 @@ export default function MapModal({ isOpen, onClose }) {
               {/* Map */}
               <div className="w-full h-96">
                 <iframe
-                  title="Valencia, Spain"
-                  src="https://www.openstreetmap.org/export/embed.html?bbox=-0.4537%2C39.4189%2C-0.3200%2C39.4894&layer=mapnik&marker=39.4699%2C-0.3763"
+                  title="Dublin, Ireland"
+                  src="https://www.openstreetmap.org/export/embed.html?bbox=-6.3268%2C53.3148%2C-6.1938%2C53.3848&layer=mapnik&marker=53.3498%2C-6.2603"
                   className="w-full h-full border-0"
                   loading="lazy"
                 />
@@ -69,7 +69,7 @@ export default function MapModal({ isOpen, onClose }) {
               {/* Footer */}
               <div className="px-6 py-3 bg-primary/5 dark:bg-surface-container-high text-center">
                 <a
-                  href="https://www.openstreetmap.org/?mlat=39.4699&mlon=-0.3763#map=13/39.4699/-0.3763"
+                  href="https://www.openstreetmap.org/?mlat=53.3498&mlon=-6.2603#map=13/53.3498/-6.2603"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-xs text-primary font-semibold hover:opacity-70 transition-opacity duration-200"

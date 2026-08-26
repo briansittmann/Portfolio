@@ -69,10 +69,10 @@ export default function Contact() {
             <p className="text-on-surface-variant text-xl">{t.contact.subtitle}</p>
             <div className="flex flex-col md:flex-row justify-center items-center gap-6">
               <a
-                href="mailto:brian.sittmann@hotmail.com"
+                href="mailto:brian.sittmann@gmail.com"
                 className="text-lg md:text-3xl font-bold text-on-background hover:text-primary transition-colors duration-300"
               >
-                brian.sittmann@hotmail.com
+                brian.sittmann@gmail.com
               </a>
               <button
                 onClick={() => setMapOpen(true)}
