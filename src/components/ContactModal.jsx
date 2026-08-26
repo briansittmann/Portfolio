@@ -7,6 +7,7 @@ const SERVICE_ID       = 'service_isiy1zh'
 const TEMPLATE_OWNER   = 'template_ysh9wyf'
 const TEMPLATE_VISITOR = 'template_61i9xnf'
 const PUBLIC_KEY       = 'HSL_-nSPsOfQ__zfp'
+const OWNER_EMAIL      = 'brian.sittmann@gmail.com'
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
@@ -143,6 +144,7 @@ export default function ContactModal({ isOpen, onClose }) {
         SERVICE_ID,
         TEMPLATE_OWNER,
         {
+          to_email:   OWNER_EMAIL,
           from_name:  form.name,
           from_email: form.email,
           subject:    form.subject,
