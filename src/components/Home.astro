@@ -239,11 +239,11 @@ const riseBox = 'overflow-clip pb-[0.12em] -mb-[0.12em]'
       <!-- Hero: the name at poster scale, the portrait set into it, and the facts answered as an API. -->
       <section class="px-4 pt-10 pb-16 sm:px-6 md:pt-14 md:pb-24 lg:px-10">
         <h1
-          class="flex flex-wrap items-center gap-x-[0.16em] text-[clamp(3.5rem,17.5vw,6.5rem)] leading-[0.9] font-semibold tracking-[-0.055em] md:text-[clamp(5rem,11.6vw,10.4rem)]"
+          class="hero-name flex flex-wrap items-center gap-x-[0.16em] text-[clamp(3.5rem,17.5vw,6.5rem)] leading-[0.9] font-semibold tracking-[-0.055em] md:text-[clamp(5rem,11.6vw,10.4rem)]"
         >
           <span class="rise name-first overflow-hidden pb-[0.06em]"><span style="--i:0">Brian</span></span>
           <!-- Fixed pill-sized slot; the photo sits over it so it can open into a circle without moving the page. -->
-          <span class="pop portrait relative inline-block h-[0.8em] w-[1.2em] shrink-0" aria-hidden="true">
+          <span class="pop portrait relative inline-block h-[0.8em] w-[1.2em] shrink-0 [-webkit-tap-highlight-color:transparent]" aria-hidden="true">
             <span
               class="portrait-photo absolute top-1/2 left-1/2 -translate-1/2 overflow-hidden rounded-full bg-[linear-gradient(#2e4a79,#1447a0)]"
             >
@@ -622,6 +622,20 @@ const riseBox = 'overflow-clip pb-[0.12em] -mb-[0.12em]'
       })
       transition.finished.finally(() => root.classList.remove('theme-switching'))
     })
+
+    // Hero portrait (global.css): `.stacked` when "Sittmann" wraps under "Brian" and the photo, so it opens
+    // downward instead of toward its centre. Touch screens have no hover: a tap on the photo opens or closes it,
+    // a touch anywhere else closes it.
+    const heroName = document.querySelector<HTMLElement>('.hero-name')!
+    const portrait = heroName.querySelector<HTMLElement>('.portrait')!
+    const [first, last] = ['.name-first', '.name-last'].map((s) => heroName.querySelector<HTMLElement>(s)!)
+    new ResizeObserver(() => heroName.classList.toggle('stacked', last.offsetTop > first.offsetTop)).observe(heroName)
+    if (matchMedia('(hover: none)').matches) {
+      portrait.addEventListener('click', () => portrait.classList.toggle('open'))
+      document.addEventListener('pointerdown', (e) => {
+        if (!portrait.contains(e.target as Node)) portrait.classList.remove('open')
+      })
+    }
 
     const menu = document.getElementById('menu')!
     menu.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => menu.hidePopover()))

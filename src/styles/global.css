@@ -126,9 +126,12 @@
 }
 
 /*
-  Hero portrait: on hover the pill opens into a larger circle and the name steps back to make room.
-  "Brian" shrinks toward its left edge and "Sittmann", about twice as wide, toward its centre, so both
-  gaps around the circle open by the same amount. Only the photo and transforms change size, so nothing else moves.
+  Hero portrait: on hover (or a tap, `.open`, on touch screens) the pill opens into a larger circle and the
+  name steps back to make room. On one line, "Brian" shrinks toward its left edge and "Sittmann", about twice
+  as wide, toward its centre, so both gaps around the circle open by the same amount. When the name wraps
+  (`.stacked`, set by the script in Home.astro), "Sittmann" sits under the photo: it shrinks toward its left
+  edge, in line with "Brian", and steps down to clear the circle. Only the photo and transforms change size,
+  so nothing else moves.
 */
 .portrait-photo {
   width: 1.2em;
@@ -140,6 +143,19 @@
 .name-last {
   transform-origin: center;
 }
+.stacked .name-last {
+  transform-origin: left top;
+}
+.portrait.open .portrait-photo {
+  width: 1.3em;
+  height: 1.3em;
+}
+h1:has(.portrait.open) :is(.name-first, .name-last) {
+  scale: 0.9;
+}
+h1.stacked:has(.portrait.open) .name-last {
+  translate: 0 0.16em;
+}
 @media (hover: hover) {
   .portrait:hover .portrait-photo {
     width: 1.3em;
@@ -147,6 +163,9 @@
   }
   h1:has(.portrait:hover) :is(.name-first, .name-last) {
     scale: 0.9;
+  }
+  h1.stacked:has(.portrait:hover) .name-last {
+    translate: 0 0.16em;
   }
 }
 
@@ -318,7 +337,9 @@
   }
   .name-first,
   .name-last {
-    transition: scale 800ms var(--ease-out-expo);
+    transition:
+      scale 800ms var(--ease-out-expo),
+      translate 800ms var(--ease-out-expo);
   }
   .words span {
     display: inline-block;
