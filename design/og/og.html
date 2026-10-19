@@ -1,7 +1,7 @@
 <!doctype html>
 <!--
   Open Graph image (1200x630) for LinkedIn and other link previews. Same look as the hero: the name at poster
-  scale with the portrait set into it, the intro, and the API card answering the recruiter's questions.
+  scale with the portrait closing the line, the intro, and the API card answering the recruiter's questions.
   Exported by `node shot.cjs` to public/og.{en,es}.png. LinkedIn shows it at about 550px wide, so nothing under 24px.
 -->
 <html><head><meta charset="utf-8">
@@ -11,16 +11,19 @@
 *{margin:0;padding:0;box-sizing:border-box}
 html,body{width:1200px;height:630px;overflow:hidden}
 body{font-family:Geist,sans-serif;-webkit-font-smoothing:antialiased;color:#0b0b0d;background:#f4f4f5;
-  padding:58px 60px 54px;position:relative;display:flex;flex-direction:column;justify-content:space-between}
+  padding:0 60px;position:relative;display:flex;flex-direction:column;justify-content:center;gap:50px}
 /* Thin frame like the site's bordered column. */
 body::after{content:"";position:absolute;inset:20px;border:1px solid #d9d9de;border-radius:28px;pointer-events:none}
 
 h1{display:flex;align-items:center;gap:.16em;font-size:134px;line-height:.9;font-weight:600;letter-spacing:-.055em;padding-bottom:.06em}
-.pill{display:inline-block;height:.8em;width:1.2em;border-radius:999px;overflow:hidden;flex-shrink:0;
+/* The portrait closes the line, as a circle a little taller than the capitals. */
+.pill{display:inline-block;height:.82em;width:.82em;border-radius:50%;overflow:hidden;flex-shrink:0;margin-left:.06em;
   background:linear-gradient(#2e4a79,#1447a0)}
 .pill img{width:100%;height:100%;object-fit:cover;object-position:50% 8%;transform:scale(1.06)}
 
-.row{display:grid;grid-template-columns:1fr 600px;gap:40px;align-items:end}
+.row{display:grid;grid-template-columns:1fr 600px;gap:40px;align-items:start}
+/* The intro starts where the card's request bar ends. */
+.lead{padding-top:62px}
 .intro{font-size:33px;line-height:1.22;letter-spacing:-.02em;color:#52525b}
 .intro strong{font-weight:550;color:#0b0b0d}
 .url{margin-top:26px;font-family:"Geist Mono",monospace;font-size:24px;color:#2b44e0;font-weight:500}
@@ -34,9 +37,9 @@ pre{font-family:inherit;font-size:22px;line-height:1.6;padding:16px 24px 20px;wh
 .k{color:#0b0b0d}.p{color:#64646c}.s{color:#2b44e0}
 </style></head>
 <body>
-<h1><span>Brian</span><span class="pill"><img src="../../src/assets/heroLogoLight.png" alt=""></span><span>Sittmann</span></h1>
+<h1><span>Brian Sittmann</span><span class="pill"><img src="../../src/assets/heroLogoLight.png" alt=""></span></h1>
 <div class="row">
-  <div>
+  <div class="lead">
     <p class="intro" id="intro"></p>
     <p class="url">briansittmann.dev</p>
   </div>
