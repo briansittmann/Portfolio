@@ -1,0 +1,23 @@
+---
+// Section title that sweeps in letter by letter from the left edge once it is in view (`.play` / `.fx-sweep`).
+// Letters further right travel further, scaled so short and long words unroll the same distance.
+// Screen readers get the plain word.
+interface Props {
+  text: string
+  class?: string
+}
+
+const { text, class: className } = Astro.props
+const letters = [...text]
+const step = Math.min(80, 500 / letters.length)
+---
+
+<h2
+  class:list={[
+    'play overflow-clip pb-[0.12em] text-[clamp(2.5rem,7vw,5.5rem)] leading-none font-semibold tracking-[-0.045em]',
+    className,
+  ]}
+>
+  <span class="sr-only">{text}</span>
+  <span aria-hidden="true">{letters.map((c, i) => <span class="fx fx-sweep inline-block" style={`--d:${Math.round(i * step)}ms; --x:${((i + 1) * 4) / letters.length}`}>{c}</span>)}</span>
+</h2>

@@ -1,0 +1,836 @@
+@import "tailwindcss";
+@import "@fontsource-variable/geist";
+@import "@fontsource-variable/geist-mono";
+
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+/*
+  Zinc base, one accent (cobalt, it matches the portrait's background) for actions and code.
+  Each project keeps its own product colour inside its panel: Mango lime, CalorIA rose, RecuperAR blue.
+  Radius rule: interactive elements are pills, panels are 2rem, media inside panels is 0.75rem.
+*/
+:root {
+  --bg: #f4f4f5;
+  --surface: #ffffff;
+  --surface-2: #ececee;
+  --ink: #0b0b0d;
+  --ink-2: #52525b;
+  --ink-3: #64646c;
+  --line: #d9d9de;
+  --accent: #2b44e0;
+  --accent-ink: #ffffff;
+  --live: #15803d;
+  --caloria: #fbe7e5;
+  --recuperar: #e8eef7;
+  --lift-shadow: 0 1px 2px rgb(24 24 27 / 0.05), 0 22px 44px -14px rgb(24 24 27 / 0.22);
+  color-scheme: light;
+}
+
+[data-theme="dark"] {
+  --bg: #09090b;
+  --surface: #111113;
+  --surface-2: #1a1a1d;
+  --ink: #f4f4f5;
+  --ink-2: #a1a1aa;
+  --ink-3: #8b8b94;
+  --line: #26262a;
+  --accent: #8b9dff;
+  --accent-ink: #09090b;
+  --live: #4ade80;
+  --caloria: #2a1719;
+  --recuperar: #141b26;
+  /* A black shadow vanishes on a near-black page, so the dark lift adds a faint rim as well. */
+  --lift-shadow: 0 0 0 1px rgb(255 255 255 / 0.07), 0 24px 48px -12px rgb(0 0 0 / 0.75);
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-ink-3: var(--ink-3);
+  --color-line: var(--line);
+  --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
+  --color-live: var(--live);
+  --color-caloria: var(--caloria);
+  --color-recuperar: var(--recuperar);
+  --font-sans: "Geist Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Geist Mono Variable", ui-monospace, monospace;
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Mango's own palette, the same in both themes because the product is dark. */
+@theme {
+  --color-mango: #a3e635;
+  --color-mango-bg: #0c1409;
+  --color-mango-ink: #e7efdf;
+  --color-mango-ink-2: #9db38f;
+}
+
+@layer base {
+  html {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    scroll-padding-top: 5rem;
+  }
+  ::selection {
+    background: var(--accent);
+    color: var(--accent-ink);
+  }
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+}
+
+/* Mango panel: the lime light from its own brand art, over near-black green. */
+.stage-mango {
+  background:
+    radial-gradient(55% 45% at 88% 0%, rgb(132 204 22 / 0.2), transparent 70%),
+    radial-gradient(45% 50% at 0% 100%, rgb(132 204 22 / 0.1), transparent 70%),
+    var(--color-mango-bg);
+}
+
+/* Experience chart: one vertical line per year behind the bars. */
+.year-grid {
+  background-image: linear-gradient(to right, var(--line) 1px, transparent 1px);
+  background-size: calc(100% / var(--years)) 100%;
+}
+
+/*
+  Rolling count (RollingCount.astro): each digit column shows one cell through a 1.1em window.
+  At rest the strips sit on the last cell, so without motion the final value is what shows.
+*/
+.roll {
+  display: flex;
+  line-height: 1.1;
+}
+.roll-col {
+  height: 1.1em;
+  overflow: clip;
+}
+.roll-strip {
+  display: flex;
+  flex-direction: column;
+  transform: translateY(calc(var(--to) * -1.1em));
+}
+.roll-strip > span {
+  height: 1.1em;
+}
+
+/*
+  Hero portrait: on hover the pill opens into a larger circle and the name steps back to make room.
+  "Brian" shrinks toward its left edge and "Sittmann", about twice as wide, toward its centre, so both
+  gaps around the circle open by the same amount. Only the photo and transforms change size, so nothing else moves.
+*/
+.portrait-photo {
+  width: 1.2em;
+  height: 0.8em;
+}
+.name-first {
+  transform-origin: left center;
+}
+.name-last {
+  transform-origin: center;
+}
+@media (hover: hover) {
+  .portrait:hover .portrait-photo {
+    width: 1.3em;
+    height: 1.3em;
+  }
+  h1:has(.portrait:hover) :is(.name-first, .name-last) {
+    scale: 0.9;
+  }
+}
+
+/*
+  Hero console (ApiCard.astro). While loading, Send's play icon turns into a spinner.
+  Once open, it lifts like the project cards; the shadow belongs to the frame, which has the radius.
+*/
+.api-play,
+.api-spinner {
+  transition:
+    opacity 220ms ease-out,
+    scale 320ms var(--ease-out-expo),
+    rotate 320ms var(--ease-out-expo);
+}
+.api-spinner {
+  opacity: 0;
+  scale: 0.4;
+  rotate: -90deg;
+}
+.api-send.loading .api-play {
+  opacity: 0;
+  scale: 0.4;
+  rotate: 90deg;
+}
+.api-send.loading .api-spinner {
+  opacity: 1;
+  scale: 1;
+  rotate: 0deg;
+  animation: spin 650ms linear infinite;
+}
+.api-frame {
+  transition: box-shadow 450ms var(--ease-out-expo);
+}
+.api.open:focus-within .api-frame {
+  box-shadow: var(--lift-shadow);
+}
+@media (hover: hover) {
+  .api.open:hover .api-frame {
+    box-shadow: var(--lift-shadow);
+  }
+}
+
+/* JSON response: long lines wrap with a hanging indent instead of scrolling. */
+.json .line {
+  display: block;
+  white-space: pre-wrap;
+  padding-left: 4ch;
+  text-indent: -2ch;
+}
+.json .line.edge {
+  padding-left: 0;
+  text-indent: 0;
+}
+
+/*
+  Project cards lift on hover, or when a link inside has focus, so the whole card reads as the target.
+  The lift uses `translate`, not `transform`: the entry animations own `transform` and would override it.
+*/
+.card {
+  transition:
+    translate 450ms var(--ease-out-expo),
+    box-shadow 450ms var(--ease-out-expo);
+}
+.card:focus-within {
+  box-shadow: var(--lift-shadow);
+}
+@media (hover: hover) {
+  .card:hover {
+    box-shadow: var(--lift-shadow);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  .card:focus-within {
+    translate: 0 -6px;
+  }
+  @media (hover: hover) {
+    .card:hover {
+      translate: 0 -6px;
+    }
+  }
+
+  /*
+    Header: the rule under it draws across, the name rises out of its line, then the links and controls
+    settle in one by one (`--h`), done by the time the hero name lands.
+  */
+  .hd-line {
+    animation: grow 1100ms var(--ease-out-expo) both;
+  }
+  .hd-name > span {
+    animation: rise 900ms var(--ease-out-expo) both;
+    animation-delay: 40ms;
+  }
+  .hd {
+    animation: settle-in 700ms var(--ease-out-expo) both;
+    animation-delay: calc(var(--h, 0) * 70ms + 140ms);
+  }
+
+  /*
+    Language switch: a cross-document view transition between `/` and `/es/`. The page crossfades through a
+    slight blur, so the text seems to turn into the other language in place, while the switch's thumb slides
+    across; its labels are a group of their own so they stay above the thumb. Old and new share one easing,
+    so their opacities always add up to one and the page never dims halfway.
+  */
+  @view-transition {
+    navigation: auto;
+  }
+  .lang-thumb {
+    view-transition-name: lang-thumb;
+  }
+  .lang-labels {
+    view-transition-name: lang-labels;
+  }
+  ::view-transition-old(root) {
+    animation: vt-out 420ms var(--ease-out-expo) both;
+  }
+  ::view-transition-new(root) {
+    animation: vt-in 420ms var(--ease-out-expo) both;
+  }
+  ::view-transition-group(lang-thumb) {
+    animation-duration: 560ms;
+    animation-timing-function: var(--ease-out-expo);
+  }
+  ::view-transition-group(lang-labels) {
+    animation-duration: 420ms;
+  }
+
+  /*
+    Theme toggle (script in Home.astro): the new theme is clipped to a circle growing from the button, over
+    the old one held still. The language switch joins in as part of the page instead of floating above it.
+  */
+  :root.theme-switching::view-transition-old(root),
+  :root.theme-switching::view-transition-new(root) {
+    animation: none;
+    mix-blend-mode: normal;
+  }
+  .theme-switching :is(.lang-thumb, .lang-labels) {
+    view-transition-name: none;
+  }
+
+  /*
+    The page reached from the switch lands at rest (`.swap`, set in Base.astro): the header and hero don't
+    replay, and blocks already in view get `.now` and skip their entrance. Below the fold, entrances run as usual.
+  */
+  .swap :is(.hd, .hd-line, .hd-name > span, .rise > span, .pop, .words span, .enter),
+  .js .now .fx,
+  .js .fx.now {
+    animation: none;
+  }
+
+  /* The name rises out of its own line box, then the portrait opens. */
+  .rise > span {
+    display: inline-block;
+    animation: rise 1000ms var(--ease-out-expo) both;
+    animation-delay: calc(var(--i, 0) * 90ms + 60ms);
+  }
+  .pop {
+    animation: pop 900ms var(--ease-out-expo) both;
+    animation-delay: 260ms;
+  }
+  .portrait-photo {
+    transition:
+      width 800ms var(--ease-out-expo),
+      height 800ms var(--ease-out-expo);
+  }
+  .name-first,
+  .name-last {
+    transition: scale 800ms var(--ease-out-expo);
+  }
+  .words span {
+    display: inline-block;
+    animation: settle-in 700ms var(--ease-out-expo) both;
+    animation-delay: calc(var(--w, 0) * 30ms + 300ms);
+  }
+  .enter {
+    animation: enter 700ms var(--ease-out-expo) both;
+    animation-delay: calc(var(--i, 0) * 80ms + 300ms);
+  }
+
+  /*
+    Hero console: until it opens, only the request bar is drawn (the frame is one bar tall and the
+    response is hidden, though it keeps its space). On open the frame grows down over the response.
+    Gated on `.js`, since the script is what opens it.
+  */
+  .js .api:not(.open) .api-frame {
+    height: 4rem;
+  }
+  .js .api:not(.open) .api-response {
+    opacity: 0;
+    visibility: hidden;
+  }
+  /* Side by side with the intro, the closed bar waits centred beside it and the card opens up and down. */
+  @media (min-width: 1024px) {
+    .js .api:not(.open) :is(.api-frame, .api-bar) {
+      top: calc(50% - 2rem);
+    }
+  }
+  .api-frame {
+    transition:
+      top 750ms var(--ease-out-expo),
+      height 750ms var(--ease-out-expo),
+      box-shadow 450ms var(--ease-out-expo);
+  }
+  .api-bar {
+    transition: top 750ms var(--ease-out-expo);
+  }
+  .api-response {
+    transition: opacity 200ms ease-out;
+  }
+  .api-send.pressed {
+    animation: press 300ms ease-out;
+  }
+  .api {
+    transition: translate 450ms var(--ease-out-expo);
+  }
+  .api.open:focus-within {
+    translate: 0 -6px;
+  }
+  @media (hover: hover) {
+    .api.open:hover {
+      translate: 0 -6px;
+    }
+  }
+
+  /* The request "runs": status first, then the body line by line. Replayed by the Send button. */
+  .api-run .status {
+    animation: fade 240ms ease-out both;
+    animation-delay: 160ms;
+  }
+  .api-run .line {
+    animation: line-in 420ms var(--ease-out-expo) both;
+    animation-delay: calc(260ms + var(--i, 0) * 55ms);
+  }
+
+  /*
+    Triggered entrances: they run on time, not on scroll, so they keep their pace however fast you scroll.
+    A `.play` block gets `.in` once it is in view (script in index.astro) and its `.fx` children start,
+    each after its own `--d`. They wait paused on their first frame; without JS (no `.js`) nothing is hidden.
+  */
+  .js .fx {
+    animation: var(--fx) var(--fx-t, 900ms) var(--fx-ease, var(--ease-out-expo)) var(--d, 0ms) both paused;
+  }
+  .fx-up {
+    --fx: settle-in;
+  }
+  .fx-left {
+    --fx: from-left;
+  }
+  .fx-right {
+    --fx: from-right;
+    --fx-t: 1000ms;
+  }
+  .fx-rise {
+    --fx: rise;
+    --fx-t: 1000ms;
+  }
+  .fx-logo {
+    --fx: logo-in;
+    --fx-t: 1100ms;
+  }
+  .fx-sweep {
+    --fx: sweep;
+    --fx-t: 1400ms;
+  }
+  /* A tech item wipes in while lit in `--mark`, then settles to its own colour. */
+  .fx-mark {
+    --fx: mark;
+    --fx-t: 650ms;
+  }
+  /* Experience chart: the year lines wipe in left to right, then the bar grows from its start year. */
+  .fx-wipe {
+    --fx: wipe;
+    --fx-t: 1200ms;
+  }
+  .fx-grow {
+    --fx: grow;
+    --fx-t: 1200ms;
+  }
+  /*
+    Mango's user count shoots up out of its line while its digits roll from 0 to the real value,
+    fast at first and easing into the last numbers.
+  */
+  .fx-shoot {
+    --fx: shoot;
+  }
+  .fx-roll {
+    --fx: roll;
+    --fx-t: 2600ms;
+    --fx-ease: cubic-bezier(0.33, 1, 0.68, 1);
+  }
+  .js .in .fx,
+  .js .fx.in {
+    animation-play-state: running;
+  }
+
+  @supports (animation-timeline: view()) {
+    /* Short, so the Mango panel is already there when its content starts. */
+    .reveal {
+      animation: reveal linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 20%;
+    }
+
+    /* Mango flow: each stage lights up as the message would reach it. */
+    .flow-step {
+      animation: step-on linear both;
+      animation-timeline: view();
+      animation-range: entry 40% cover 45%;
+    }
+    @media (min-width: 1024px) {
+      .flow {
+        view-timeline: --flow block;
+      }
+      .flow-step {
+        animation-timeline: --flow;
+        animation-range: cover calc(22% + var(--i) * 7%) cover calc(29% + var(--i) * 7%);
+      }
+    }
+
+    /* Section titles rise out of their own line box, like the name in the hero. */
+    .title-rise {
+      view-timeline: --title block;
+    }
+    .title-rise > span {
+      display: inline-block;
+      animation: rise var(--ease-out-expo) both;
+      animation-timeline: --title;
+      animation-range: entry 20% cover 35%;
+    }
+
+    /*
+      Dashboard settles into place. The phone waits until the dashboard has nearly landed, then comes up from below.
+      On small screens the dashboard is hidden and the phone stands alone, so it starts sooner.
+    */
+    .lift {
+      animation: lift var(--ease-out-expo) both;
+      animation-timeline: view();
+      animation-range: entry 0% cover 35%;
+    }
+    .phone-in {
+      animation: phone-in var(--ease-out-expo) both;
+      animation-timeline: view();
+      animation-range: entry 10% cover 40%;
+    }
+    @media (min-width: 768px) {
+      .phone-in {
+        animation-range: cover 16% cover 46%;
+      }
+    }
+
+    /*
+      Project cards slot in like Tetris pieces: CalorIA from the left, RecuperAR from the right,
+      Frog Ninja from below. Shorter travel on small screens, where the cards fill the width.
+    */
+    .tile {
+      --tile-d: 56px;
+      animation: var(--tile-from) ease-out both;
+      animation-timeline: view();
+      animation-range: entry 0% cover 30%;
+    }
+    @media (min-width: 1024px) {
+      .tile {
+        --tile-d: 140px;
+      }
+    }
+    .tile-left {
+      --tile-from: tile-left;
+    }
+    .tile-right {
+      --tile-from: tile-right;
+    }
+    .tile-up {
+      --tile-from: tile-up;
+    }
+
+    /* Project screenshots open from a smaller window. */
+    .settle {
+      animation: settle var(--ease-out-expo) both;
+      animation-timeline: view();
+      animation-range: entry 10% cover 40%;
+    }
+
+    /*
+      Stack: the backend core rises line by line out of its own line box, like the hero name.
+      The padding/margin pair keeps descenders inside the clip without moving the layout.
+    */
+    .line-rise {
+      overflow: clip;
+      padding-bottom: 0.12em;
+      margin-bottom: -0.12em;
+      view-timeline: --line block;
+    }
+    .line-rise > span {
+      display: inline-block;
+      animation: rise var(--ease-out-expo) both;
+      animation-timeline: --line;
+      animation-range: entry 40% cover 30%;
+    }
+
+    /* The supporting groups: the label wipes in, then its items drop into place, column by column. */
+    .stack-group {
+      view-timeline: --group block;
+    }
+    .stack-group h3 {
+      animation: wipe linear both;
+      animation-timeline: --group;
+      animation-range: entry 10% cover calc(22% + var(--g) * 3%);
+    }
+    .stack-group li {
+      animation: settle-in var(--ease-out-expo) both;
+      animation-timeline: --group;
+      animation-range: cover calc(12% + var(--g) * 3% + var(--i) * 3%) cover calc(30% + var(--g) * 3% + var(--i) * 3%);
+    }
+
+    /*
+      Contact: the question comes in word by word, the address writes itself out, then the channels.
+      This is the end of the page, so ranges are in pixels from when each element appears: they must
+      finish before the page runs out of scroll, whatever the viewport height.
+    */
+    .ask {
+      view-timeline: --ask block;
+    }
+    .ask > span {
+      display: inline-block;
+      animation: settle-in var(--ease-out-expo) both;
+      animation-timeline: --ask;
+      animation-range: cover calc(20px + var(--i) * 22px) cover calc(120px + var(--i) * 22px);
+    }
+    .write-in {
+      view-timeline: --write block;
+      animation: write linear both;
+      animation-timeline: --write;
+      animation-range: cover 20px cover 200px;
+    }
+    .write-arrow {
+      animation: arrow-in var(--ease-out-expo) both;
+      animation-timeline: --write;
+      animation-range: cover 120px cover 220px;
+    }
+    .channels {
+      view-timeline: --channels block;
+    }
+    .channels > a {
+      animation: settle-in var(--ease-out-expo) both;
+      animation-timeline: --channels;
+      animation-range: cover calc(10px + var(--i) * 25px) cover calc(90px + var(--i) * 25px);
+    }
+  }
+}
+
+@keyframes rise {
+  from {
+    transform: translateY(105%);
+  }
+}
+
+@keyframes pop {
+  from {
+    opacity: 0;
+    transform: scale(0.4);
+  }
+}
+
+@keyframes enter {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+}
+
+/* Send pressing itself: down, a touch darker, back up. */
+@keyframes press {
+  40% {
+    transform: scale(0.9);
+    filter: brightness(0.8);
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes line-in {
+  from {
+    opacity: 0;
+    transform: translateX(-8px);
+  }
+}
+
+@keyframes reveal {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+}
+
+@keyframes tile-left {
+  from {
+    opacity: 0;
+    transform: translateX(calc(var(--tile-d) * -1));
+  }
+  35% {
+    opacity: 1;
+  }
+}
+
+@keyframes tile-right {
+  from {
+    opacity: 0;
+    transform: translateX(var(--tile-d));
+  }
+  35% {
+    opacity: 1;
+  }
+}
+
+@keyframes tile-up {
+  from {
+    opacity: 0;
+    transform: translateY(var(--tile-d));
+  }
+  35% {
+    opacity: 1;
+  }
+}
+
+@keyframes settle-in {
+  from {
+    opacity: 0;
+    transform: translateY(0.6em);
+    filter: blur(6px);
+  }
+}
+
+@keyframes wipe {
+  from {
+    clip-path: inset(0 100% 0 0);
+  }
+  to {
+    clip-path: inset(0);
+  }
+}
+
+/* Negative insets leave room for descenders, the hover nudge of the arrow and the focus ring. */
+@keyframes write {
+  from {
+    clip-path: inset(-25% 100% -25% -2%);
+  }
+  to {
+    clip-path: inset(-25% -5% -25% -2%);
+  }
+}
+
+@keyframes arrow-in {
+  from {
+    opacity: 0;
+    transform: translate(-0.3em, 0.3em);
+  }
+}
+
+@keyframes step-on {
+  from {
+    opacity: 0.25;
+    transform: translateY(10px);
+    border-color: rgb(163 230 53 / 0.06);
+  }
+}
+
+@keyframes roll {
+  from {
+    transform: translateY(0);
+  }
+}
+
+@keyframes lift {
+  from {
+    opacity: 0.3;
+    transform: translateY(64px) scale(0.95);
+  }
+}
+
+@keyframes phone-in {
+  from {
+    opacity: 0;
+    transform: translateY(180px);
+  }
+  30% {
+    opacity: 1;
+  }
+}
+
+@keyframes shoot {
+  from {
+    opacity: 0;
+    transform: translateY(0.5em);
+    filter: blur(8px);
+  }
+}
+
+@keyframes from-left {
+  from {
+    opacity: 0;
+    transform: translateX(-1.25em);
+    filter: blur(6px);
+  }
+}
+
+@keyframes from-right {
+  from {
+    opacity: 0;
+    transform: translateX(1.25em);
+    filter: blur(6px);
+  }
+}
+
+@keyframes logo-in {
+  from {
+    opacity: 0;
+    transform: translateX(-120%) rotate(-30deg) scale(0.6);
+  }
+}
+
+/* Letters further right travel further, so the word unrolls out of the left edge. */
+@keyframes sweep {
+  from {
+    opacity: 0;
+    transform: translateX(calc(-0.6em - var(--x, 1) * 0.3em)) skewX(-12deg);
+    filter: blur(12px);
+  }
+}
+
+/* Negative insets keep descenders and the comma visible once the wipe is done. */
+@keyframes mark {
+  from {
+    clip-path: inset(-25% 100% -25% 0);
+    color: var(--mark, var(--ink));
+  }
+  45% {
+    clip-path: inset(-25% -10% -25% 0);
+    color: var(--mark, var(--ink));
+  }
+  to {
+    clip-path: inset(-25% -10% -25% 0);
+  }
+}
+
+@keyframes settle {
+  from {
+    clip-path: inset(10% 10% 10% 10% round 0.75rem);
+  }
+  to {
+    clip-path: inset(0 round 0.75rem);
+  }
+}
+
+@keyframes grow {
+  from {
+    transform: scaleX(0);
+  }
+}
+
+/* Language switch crossfade (see `@view-transition` above). */
+@keyframes vt-out {
+  to {
+    opacity: 0;
+    filter: blur(3px);
+  }
+}
+
+@keyframes vt-in {
+  from {
+    opacity: 0;
+    filter: blur(3px);
+  }
+}

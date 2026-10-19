@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Brian Sittmann - Desarrollador Backend Java Junior - CV</title>
+<meta name="author" content="Brian Sittmann">
+<meta name="description" content="CV de Brian Sittmann, Desarrollador Backend Java Junior en Dublín, Irlanda. Java, Spring Boot, APIs REST, PostgreSQL.">
+<meta name="keywords" content="Java, Spring Boot, Spring Security, JWT, API REST, Hibernate, JPA, SQL, PostgreSQL, MySQL, MongoDB, TypeScript, React, Next.js, Supabase, MCP, Desarrollador Backend Junior, Dublín">
+<link rel="stylesheet" href="cv.css">
+</head>
+<body>
+
+<div class="top">
+  <h1>Brian Sittmann</h1>
+  <p class="role">Desarrollador Backend Java Junior</p>
+  <p class="meta"><b>Dublín, Irlanda | Ciudadano de la UE (pasaporte alemán): permiso de trabajo pleno, sin patrocinio</b></p>
+  <p class="meta">+353 85 152 8917 | <a href="mailto:brian.sittmann@gmail.com">brian.sittmann@gmail.com</a> | <a href="https://briansittmann.dev/es/">briansittmann.dev</a></p>
+  <p class="meta"><a href="https://www.linkedin.com/in/brian-sittmann">linkedin.com/in/brian-sittmann</a> | <a href="https://github.com/briansittmann">github.com/briansittmann</a></p>
+</div>
+
+<h2>PERFIL PROFESIONAL</h2>
+<p>Desarrollador backend junior especializado en Java y Spring Boot, residente en Dublín con permiso de trabajo pleno en la UE. Experiencia profesional con Spring Boot en Indra/Minsait, una de las mayores consultoras tecnológicas de España, y proyecto final calificado con 10/10: una API REST segura de 18 endpoints con Spring Boot, Spring Security y JWT. Creador de Mango, app de finanzas personales en producción con 15 usuarios activos, hecha con PostgreSQL, un bot de WhatsApp con Gemini y un servidor MCP para Claude y ChatGPT. Busco un puesto de Desarrollador Java Junior en un equipo ágil.</p>
+
+<h2>HABILIDADES TÉCNICAS</h2>
+<div class="skills">
+  <p><b>Lenguajes:</b> Java, SQL, TypeScript, JavaScript, PHP</p>
+  <p><b>Backend:</b> Spring Boot, Spring Security, JWT, Hibernate / JPA, diseño de APIs REST, Maven, Node.js, rutas API de Next.js, webhooks</p>
+  <p><b>Bases de datos:</b> PostgreSQL, MySQL, MongoDB, Supabase (row-level security, migraciones)</p>
+  <p><b>Frontend:</b> React, Next.js, React Native, HTML, CSS, Tailwind CSS</p>
+  <p><b>IA e integraciones:</b> Model Context Protocol (MCP), Google Gemini API, OpenAI API, WhatsApp Cloud API, OAuth 2.0 (Google)</p>
+  <p><b>Testing y herramientas:</b> Playwright (end-to-end), Git, GitHub, Swagger / OpenAPI, Jira, Scrum, IntelliJ IDEA, Vercel, AWS (Cloud Practitioner, en curso)</p>
+</div>
+
+<h2>PROYECTOS</h2>
+<div class="entry">
+  <p><b>CalorIA: app de coaching nutricional con IA</b> | Proyecto final de ciclo, calificado con 10/10</p>
+  <p class="sub">Java 17, Spring Boot 3, Spring Security, MongoDB Atlas, API de OpenAI, React Native | <a class="url" href="https://github.com/briansittmann/caloria-backend">github.com/briansittmann/caloria-backend</a></p>
+  <ul>
+    <li>Diseñé y construí una API REST de 18 endpoints en 5 controladores con arquitectura en capas (controller, service, repository, DTO).</li>
+    <li>Implementé autenticación JWT sin estado con Spring Security, consumida por el cliente móvil mediante un interceptor de Axios.</li>
+    <li>Integré dos asistentes de OpenAI para analizar comidas y generar recetas según los macros y las alergias del usuario.</li>
+    <li>Documenté la API completa con Swagger / OpenAPI y mantuve las credenciales fuera del código con variables de entorno.</li>
+  </ul>
+</div>
+<div class="entry">
+  <p><b>Mango: app de finanzas personales con bot de WhatsApp</b> | En producción, 15 usuarios activos | <span class="when">sep 2026 – actualidad</span></p>
+  <p class="sub">TypeScript, Next.js, PostgreSQL (Supabase), API de Google Gemini, WhatsApp Cloud API, MCP, Playwright, Vercel | <a class="url" href="https://www.usemango.dev">usemango.dev</a></p>
+  <ul>
+    <li>Diseñé y construí el producto completo en solitario: los usuarios se registran en la web y cargan ingresos y gastos desde un dashboard o con mensajes y notas de voz a un bot de WhatsApp.</li>
+    <li>Construí el webhook de WhatsApp con verificación de firma HMAC y manejo idempotente de los reintentos de Meta; Gemini convierte texto libre y audio en acciones tipadas validadas con Zod.</li>
+    <li>Modelé el esquema de PostgreSQL en 42 migraciones versionadas, con row-level security que aísla los datos de cada usuario; acceso con Google OAuth o código de un solo uso por email.</li>
+    <li>Construí un servidor MCP (Model Context Protocol) para conectar Mango a Claude y ChatGPT y consultar, cargar y editar gastos, ingresos, presupuestos y ahorros desde el asistente.</li>
+    <li>Cubrí los flujos principales con tests end-to-end en Playwright; app bilingüe (inglés y español).</li>
+  </ul>
+</div>
+<div class="entry">
+  <p><b>RecuperAR: plataforma de e-commerce</b> | En producción</p>
+  <p class="sub">React, Vite, PHP, MySQL, JWT | <a class="url" href="https://recuperarsm.com.ar">recuperarsm.com.ar</a> | <a class="url" href="https://github.com/briansittmann/recuperAR">github.com/briansittmann/recuperAR</a></p>
+  <ul>
+    <li>Construí y desplegué un e-commerce en producción con catálogo, variantes, carrito y flujo de pedidos completo.</li>
+    <li>Diseñé e implementé una API REST de 26 endpoints con una capa de autenticación JWT propia, y modelé el esquema MySQL.</li>
+  </ul>
+</div>
+
+<h2>EXPERIENCIA PROFESIONAL</h2>
+<div class="entry">
+  <p><b>Desarrollador de Software en prácticas</b> | Indra / Minsait | Valencia, España | <span class="when">mar 2025 – jun 2025</span></p>
+  <ul>
+    <li>Desarrollé y mantuve servicios REST en Java y Spring Boot para sistemas de clientes corporativos.</li>
+    <li>Construí e integré componentes de front-end con ZK Framework contra endpoints del backend.</li>
+    <li>Escribí consultas SQL sobre bases de datos relacionales para el desarrollo de funcionalidades y la resolución de errores.</li>
+    <li>Trabajé en un equipo Scrum con Git y Jira, participando en dailies y planificación de sprints.</li>
+  </ul>
+</div>
+<div class="entry">
+  <p><b>Desarrollador Web Freelance</b> | Autónomo | Remoto | <span class="when">may 2022 – actualidad</span></p>
+  <ul>
+    <li>Entrego sitios y aplicaciones web de punta a punta, desde la toma de requisitos hasta el lanzamiento y la entrega, incluida la plataforma de e-commerce RecuperAR (ver Proyectos).</li>
+    <li>Gestiono hosting, dominios propios y bases de datos MySQL en producción de sitios de clientes.</li>
+  </ul>
+</div>
+<div class="entry">
+  <p><b>Técnico de Soporte IT</b> | Clínica Asmel | Argentina | <span class="when">2016 – 2018</span></p>
+  <p class="sub">Soporte de primer y segundo nivel a 20 personas: puestos Windows, fallos de hardware y red interna.</p>
+</div>
+<div class="entry">
+  <p><b>Gestión en Hostelería</b> | Irlanda y España | <span class="when">2018 – actualidad</span></p>
+  <p class="sub">Supervisé equipos bilingües (inglés/español) en D'Olier Street Restaurant (Dublín), Meliá Hotels (Ibiza) y Ricard Camarena (2 estrellas Michelin, Valencia) mientras hacía la transición al desarrollo de software.</p>
+</div>
+
+<h2>FORMACIÓN</h2>
+<div class="entry">
+  <p><b>Técnico Superior en Desarrollo de Aplicaciones Multiplataforma (DAM)</b> | Florida Universitaria | Valencia, España | <span class="when">sep 2023 – feb 2026</span></p>
+  <p>C1 Advanced (CAE) | Cambridge English</p>
+  <p>Marketing | Universidad de Negocios | Argentina</p>
+</div>
+
+<h2>IDIOMAS</h2>
+<p>Español: nativo | Inglés: C1 (Cambridge CAE)</p>
+
+</body>
+</html>

@@ -1,0 +1,143 @@
+---
+import { langOf } from '../i18n'
+
+// Career as overlapping bars: it shows the studying, freelancing and hospitality running in parallel.
+const from = 2016
+const to = 2027
+const now = 2026.8
+const years = Array.from({ length: to - from }, (_, i) => from + i)
+
+const lang = langOf(Astro.currentLocale)
+
+const items = [
+  {
+    role: { en: 'Software Developer Intern', es: 'Desarrollador de Software en prácticas' },
+    org: 'Indra / Minsait, Valencia',
+    when: { en: 'Mar 2025 - Jun 2025', es: 'mar 2025 - jun 2025' },
+    start: 2025.17,
+    end: 2025.5,
+    code: true,
+    text: {
+      en: 'REST services in Java and Spring Boot for enterprise clients, ZK front-end components and SQL, in a Scrum team.',
+      es: 'Servicios REST en Java y Spring Boot para clientes corporativos, componentes de front-end con ZK y SQL, en un equipo Scrum.',
+    },
+  },
+  {
+    role: {
+      en: 'Higher National Diploma, Multi-platform Apps',
+      es: 'Técnico Superior en Desarrollo de Aplicaciones Multiplataforma',
+    },
+    org: 'Florida Universitaria, Valencia',
+    when: { en: '2023 - 2026', es: '2023 - 2026' },
+    start: 2023.7,
+    end: 2026.5,
+    code: true,
+    text: { en: 'Final-year project CalorIA graded 10/10.', es: 'Proyecto final CalorIA, calificado con 10/10.' },
+  },
+  {
+    role: { en: 'Freelance Web Developer', es: 'Desarrollador Web Freelance' },
+    org: { en: 'Remote', es: 'Remoto' },
+    when: { en: '2022 - now', es: '2022 - actualidad' },
+    start: 2022,
+    end: now,
+    code: true,
+    text: {
+      en: 'Built and run RecuperAR in production. Client sites from first brief to handover, hosting and databases included.',
+      es: 'Construí y mantengo RecuperAR en producción. Sitios para clientes desde el primer brief hasta la entrega, hosting y bases de datos incluidos.',
+    },
+  },
+  {
+    role: { en: 'Hospitality management', es: 'Gestión en hostelería' },
+    org: { en: 'Dublin, Ibiza, Valencia', es: 'Dublín, Ibiza, Valencia' },
+    when: { en: '2018 - now', es: '2018 - actualidad' },
+    start: 2018,
+    end: now,
+    code: false,
+    text: {
+      en: 'Leading bilingual teams in high-volume service, including two years at Ricard Camarena (two Michelin stars).',
+      es: 'Al frente de equipos bilingües en servicios de alto volumen, con dos años en Ricard Camarena (dos estrellas Michelin).',
+    },
+  },
+  {
+    role: { en: 'IT Support Technician', es: 'Técnico de Soporte IT' },
+    org: 'Clínica Asmel, Argentina',
+    when: { en: '2016 - 2018', es: '2016 - 2018' },
+    start: 2016,
+    end: 2018,
+    code: false,
+    text: {
+      en: 'First and second-line support for 20 staff, workstations and the internal network.',
+      es: 'Soporte de primer y segundo nivel a 20 personas, puestos de trabajo y red interna.',
+    },
+  },
+].map((item) => {
+  const pick = (v: string | Record<string, string>) => (typeof v === 'string' ? v : v[lang])
+  return { ...item, role: pick(item.role), org: pick(item.org), when: pick(item.when), text: pick(item.text) }
+})
+
+const legend = { en: ['Software', 'Other work'], es: ['Software', 'Otros trabajos'] }[lang]
+
+const span = to - from
+const pct = (y: number) => `${((y - from) / span) * 100}%`
+---
+
+<div style={`--years:${span}`}>
+  <!-- Year axis, only where the chart is drawn. The years come in one by one, left to right. -->
+  <div class="play hidden lg:grid lg:grid-cols-[22rem_1fr] lg:gap-10" aria-hidden="true">
+    <span></span>
+    <div class="relative h-8 font-mono text-xs text-ink-3">
+      {
+        years.map((y, i) => (
+          <span class="fx fx-up absolute top-0 pl-1.5" style={`left:${pct(y)}; --d:${i * 70}ms`}>
+            {y}
+          </span>
+        ))
+      }
+    </div>
+  </div>
+
+  <!--
+    Each job enters on its own once in view: the role rises out of its line, then place and dates, the text,
+    and on the chart the year lines wipe in before the bar grows from its start year.
+    Rows that come into view together keep a small offset so they do not land as one block.
+  -->
+  <ol>
+    {
+      items.map((item, i) => {
+        const row = i * 80
+        return (
+          <li class="play grid border-t border-line lg:grid-cols-[22rem_1fr] lg:gap-10">
+            <div class="py-6">
+              <h3 class="overflow-clip pb-[0.12em] -mb-[0.12em] font-medium">
+                <span class="fx fx-rise inline-block" style={`--d:${row}ms`}>
+                  {item.role}
+                </span>
+              </h3>
+              <p class="fx fx-left mt-1 text-sm text-ink-3" style={`--d:${row + 140}ms`}>
+                {item.org}
+                <span class="font-mono"> / {item.when}</span>
+              </p>
+              <p class="fx fx-up mt-3 max-w-[60ch] text-sm leading-relaxed text-ink-2" style={`--d:${row + 240}ms`}>
+                {item.text}
+              </p>
+            </div>
+            <div class="year-grid fx fx-wipe relative hidden lg:block" style={`--d:${row}ms`} aria-hidden="true">
+              <span
+                class:list={[
+                  'fx fx-grow absolute top-7 h-3 origin-left rounded-full',
+                  item.code ? 'bg-accent' : 'bg-ink-3/40',
+                ]}
+                style={`left:${pct(item.start)}; width:${pct(from + item.end - item.start)}; --d:${row + 380}ms`}
+              />
+            </div>
+          </li>
+        )
+      })
+    }
+  </ol>
+
+  <p class="play fx fx-up hidden items-center gap-6 border-t border-line pt-4 text-xs text-ink-3 lg:flex">
+    <span class="flex items-center gap-2"><span class="h-2 w-5 rounded-full bg-accent"></span>{legend[0]}</span>
+    <span class="flex items-center gap-2"><span class="h-2 w-5 rounded-full bg-ink-3/40"></span>{legend[1]}</span>
+  </p>
+</div>

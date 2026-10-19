@@ -1,0 +1,45 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+@font-face{font-family:Geist;src:url(geist.woff2) format("woff2");font-weight:100 900}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1408px;height:968px;overflow:hidden}
+body{font-family:Geist,sans-serif;-webkit-font-smoothing:antialiased;color:#131a2a;
+  background:
+    radial-gradient(ellipse 560px 500px at 77% 48%, #fbdcd8 0%, rgba(251,220,216,0) 70%),
+
+    #fff6f4}
+.copy{position:absolute;left:36px;width:730px;top:50%;transform:translateY(-50%);text-align:center}
+.copy img{display:block;height:290px;margin:0 auto 48px}
+h1{font-size:54px;line-height:1.12;font-weight:620;letter-spacing:-.025em;white-space:nowrap}
+h1 span{display:block;color:#13968e}
+p{margin-top:24px;font-size:28px;font-weight:450;color:#6d5e61;letter-spacing:-.005em}
+.group{position:absolute;width:598px;height:686px;left:790px;bottom:140px;transform:scale(0.94);transform-origin:bottom left}
+.group img{position:absolute}
+.cut,.lean{left:0;top:0;width:598px;height:686px}
+.screen{left:22px;top:20px;width:293px;height:642px;object-fit:cover;object-position:top;border-radius:34px}
+.ground{position:absolute;border-radius:50%;filter:blur(10px)}
+.g1{left:-34px;top:662px;width:380px;height:34px;background:radial-gradient(closest-side,rgba(60,20,25,.38),rgba(60,20,25,0))}
+.g2{left:410px;top:658px;width:150px;height:28px;background:radial-gradient(closest-side,rgba(60,20,25,.38),rgba(60,20,25,0))}
+</style></head>
+<body>
+<div class="copy">
+  <img src="logo.png" alt="">
+  <h1 id="h1"></h1>
+  <p id="sub"></p>
+</div>
+<div class="group">
+  <div class="ground g1"></div><div class="ground g2"></div>
+  <img class="screen" src="screen.png" alt="">
+  <img class="cut" src="cutout.png" alt="">
+  <img class="lean" src="leanshadow.png" alt="">
+</div>
+<script>
+const t={en:["Log what you eat.","Get recipes for what’s left.","Your AI nutrition coach"],
+         es:["Registra lo que comes.","Recetas con lo que te queda.","Tu coach de nutrición con IA"]}
+const [a,b,c]=t[new URLSearchParams(location.search).get('lang')||'en']
+document.getElementById('h1').innerHTML=a+'<span>'+b+'</span>'
+document.getElementById('sub').textContent=c
+document.documentElement.lang=new URLSearchParams(location.search).get('lang')||'en'
+</script>
+</body></html>

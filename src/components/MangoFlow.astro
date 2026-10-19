@@ -1,0 +1,70 @@
+---
+import Icon from './Icon.astro'
+import { langOf } from '../i18n'
+
+// One real message through Mango's pipeline (app/api/whatsapp/route.ts and lib/bot in the Mango repo).
+// The code keys and table name are Spanish in the repo; shown in English in both languages, as code.
+const lang = langOf(Astro.currentLocale)
+const steps = [
+  {
+    icon: 'whatsapp-logo',
+    name: 'WhatsApp',
+    text: { en: 'You send a message or a voice note.', es: 'Mandas un mensaje o una nota de voz.' },
+    code: { en: 'groceries 15', es: 'súper 15' },
+  },
+  {
+    icon: 'webhooks-logo',
+    name: 'Webhook',
+    text: {
+      en: 'Verifies the HMAC signature, answers 200 at once and drops Meta retries by message id.',
+      es: 'Verifica la firma HMAC, responde 200 al instante y descarta los reintentos de Meta por id de mensaje.',
+    },
+    code: 'POST /api/whatsapp',
+  },
+  {
+    icon: 'sparkle',
+    name: 'Gemini',
+    text: { en: 'Turns free text or audio into a typed action.', es: 'Convierte texto libre o audio en una acción tipada.' },
+    code: '{ action: "expense", amount: 15 }',
+  },
+  {
+    icon: 'database',
+    name: 'Supabase',
+    text: {
+      en: 'Writes the row in Postgres. Row-level security keeps every user inside their own data.',
+      es: 'Escribe la fila en Postgres. La row-level security deja a cada usuario dentro de sus propios datos.',
+    },
+    code: 'insert into transactions',
+  },
+  {
+    icon: 'check-circle',
+    name: { en: 'Reply', es: 'Respuesta' },
+    text: {
+      en: 'Confirms with what is left of the budget. The dashboard is already up to date.',
+      es: 'Confirma con lo que queda del presupuesto. El dashboard ya está al día.',
+    },
+    code: { en: 'Logged: Groceries, €15', es: 'Anotado: Súper, 15 €' },
+  },
+].map((s) => {
+  const pick = (v: string | Record<string, string>) => (typeof v === 'string' ? v : v[lang])
+  return { icon: s.icon, name: pick(s.name), text: pick(s.text), code: pick(s.code) }
+})
+---
+
+<ol class="flow grid gap-3 lg:grid-cols-5 lg:gap-4">
+  {
+    steps.map((s, i) => (
+      <li
+        class="flow-step relative flex flex-col rounded-2xl border border-mango/30 bg-white/[0.03] p-5 lg:after:absolute lg:after:top-9 lg:after:-right-4 lg:after:h-px lg:after:w-4 lg:after:bg-mango/40 lg:last:after:hidden"
+        style={`--i:${i}`}
+      >
+        <p class="flex items-center gap-2 text-sm font-medium text-mango-ink">
+          <Icon name={s.icon} class="size-5 text-mango" />
+          {s.name}
+        </p>
+        <p class="mt-3 text-sm leading-relaxed text-mango-ink-2">{s.text}</p>
+        <code class="mt-auto block pt-5 font-mono text-xs break-words text-mango">{s.code}</code>
+      </li>
+    ))
+  }
+</ol>

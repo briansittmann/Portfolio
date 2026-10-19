@@ -1,0 +1,124 @@
+---
+import Icon from './Icon.astro'
+import { langOf } from '../i18n'
+
+const lang = langOf(Astro.currentLocale)
+const stack = ['Java 17', 'Spring Boot 3', 'PostgreSQL', 'TypeScript']
+
+// The facts a recruiter scans for, answered the way a backend developer would. Keys stay in English, as in code.
+const profile: Record<string, string | string[]> = {
+  en: {
+    role: 'Java Backend Developer',
+    level: 'Junior',
+    location: 'Dublin, Ireland',
+    workRights: 'EU citizen, no sponsorship needed',
+    stack,
+    languages: ['Spanish (native)', 'English (C1)'],
+    openTo: 'Junior backend roles',
+  },
+  es: {
+    role: 'Desarrollador Backend Java',
+    level: 'Junior',
+    location: 'Dublín, Irlanda',
+    workRights: 'Ciudadano de la UE, sin patrocinio',
+    stack,
+    languages: ['Español (nativo)', 'Inglés (C1)'],
+    openTo: 'Puestos backend junior',
+  },
+}[lang]
+const send = { en: 'Send', es: 'Enviar' }[lang]
+
+// Built as one string: inside <pre>, any whitespace between spans would render.
+const esc = (s: string) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;')
+const punct = (s: string) => `<span class="text-ink-3">${s}</span>`
+const str = (s: string) => `<span class="text-accent">"${esc(s)}"</span>`
+const entries = Object.entries(profile)
+const lines = [
+  `<span class="line edge" style="--i:0">${punct('{')}</span>`,
+  ...entries.map(([key, value], i) => {
+    const val = Array.isArray(value) ? punct('[') + value.map(str).join(punct(', ')) + punct(']') : str(value)
+    const comma = i < entries.length - 1 ? punct(',') : ''
+    return `<span class="line" style="--i:${i + 1}"><span class="text-ink">"${key}"</span>${punct(': ')}${val}${comma}</span>`
+  }),
+  `<span class="line edge" style="--i:${entries.length + 1}">${punct('}')}</span>`,
+].join('')
+---
+
+<!--
+  On load only the request bar shows (on wide screens, centred beside the intro); Send presses itself,
+  spins, and the card unfolds around it. The card always takes its full height: only the frame
+  (`.api-frame`: background, border, shadow) and the bar move, both absolutely placed, so nothing around it moves. Lifts on hover like the project cards, keeping its own cobalt glow.
+-->
+<div class="api relative pt-16">
+  <div
+    class="api-frame absolute inset-x-0 top-0 h-full rounded-[2rem] border border-line bg-surface shadow-[0_24px_60px_-28px_rgb(43_68_224/0.35)] [--lift-shadow:0_1px_2px_rgb(24_24_27/0.05),0_40px_80px_-30px_rgb(43_68_224/0.5)] dark:shadow-[0_24px_60px_-28px_rgb(0_0_0/0.8)] dark:[--lift-shadow:0_0_0_1px_rgb(255_255_255/0.07),0_40px_80px_-28px_rgb(0_0_0/0.9)]"
+    aria-hidden="true"
+  >
+  </div>
+
+  <div class="api-bar absolute inset-x-0 top-0 flex h-16 items-center gap-3 pr-3 pl-6">
+    <span class="font-mono text-xs font-semibold text-accent">GET</span>
+    <span class="truncate font-mono text-sm">/api/brian</span>
+    <button
+      id="api-send"
+      type="button"
+      aria-controls="api-response"
+      class="api-send ml-auto inline-flex h-10 shrink-0 items-center gap-2 rounded-full bg-ink px-4 text-sm font-medium text-bg transition-transform hover:-translate-y-px active:translate-y-0 active:scale-[0.97]"
+    >
+      <span class="relative grid size-3.5 place-items-center">
+        <Icon name="play" class="api-play size-3.5" />
+        <svg class="api-spinner absolute size-3.5" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <circle cx="8" cy="8" r="6" stroke="currentColor" stroke-opacity="0.25" stroke-width="2.25"></circle>
+          <path d="M8 2a6 6 0 0 1 6 6" stroke="currentColor" stroke-width="2.25" stroke-linecap="round"></path>
+        </svg>
+      </span>
+      {send}
+    </button>
+  </div>
+
+  <div id="api-response" class="api-response relative border-t border-line px-6 pt-4 pb-6 font-mono text-[12.5px] leading-6 sm:text-[13px]">
+    <p class="status flex gap-3 text-xs">
+      <span class="font-semibold text-live">200 OK</span>
+      <span class="text-ink-3">application/json</span>
+    </p>
+    <pre class="json mt-3 font-mono"><code set:html={lines} /></pre>
+  </div>
+</div>
+
+<script>
+  // Load: the bar enters with the hero, Send presses itself and the response unfolds.
+  // Click: Send spins again and the response replays (drop `.api-run`, force a reflow, add it back).
+  const card = document.querySelector<HTMLElement>('.api')!
+  const send = document.getElementById('api-send')!
+  const response = document.getElementById('api-response')!
+  const wait = (ms: number) => new Promise((r) => setTimeout(r, ms))
+  const still = matchMedia('(prefers-reduced-motion: reduce)').matches
+
+  let busy = false
+  const request = async () => {
+    if (busy) return
+    busy = true
+    send.classList.add('loading')
+    await wait(still ? 0 : 520)
+    send.classList.remove('loading')
+    response.classList.remove('api-run')
+    void response.offsetWidth
+    card.classList.add('open')
+    response.classList.add('api-run')
+    busy = false
+  }
+
+  send.addEventListener('click', request)
+
+  const intro = async () => {
+    if (still) return card.classList.add('open')
+    // Once the bar has entered and the intro is nearly in (its last button starts at about 1.1s), unless Send was already clicked.
+    await wait(1400)
+    if (card.classList.contains('open') || busy) return
+    send.classList.add('pressed')
+    send.addEventListener('animationend', () => send.classList.remove('pressed'), { once: true })
+    await wait(140)
+    request()
+  }
+  intro()
+</script>

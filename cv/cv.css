@@ -1,0 +1,62 @@
+/* CV source, printed to PDF by cv/build.sh.
+   Built for ATS and AI parsers first: one column, standard section names, plain text in reading
+   order (no tables, columns, icons or header/footer), ligatures off so "fi"/"fl" extract as letters. */
+@font-face {
+  font-family: 'Geist';
+  font-weight: 100 900;
+  src: url('../node_modules/@fontsource-variable/geist/files/geist-latin-wght-normal.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Geist';
+  font-weight: 100 900;
+  src: url('../node_modules/@fontsource-variable/geist/files/geist-latin-ext-wght-normal.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@page {
+  size: A4;
+  margin: 15mm 17mm 14mm;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Geist', Arial, sans-serif;
+  font-size: 9.9pt;
+  line-height: 1.42;
+  color: #18181b;
+  font-variant-ligatures: none;
+  font-feature-settings: 'liga' 0, 'clig' 0, 'calt' 0;
+}
+
+a { color: inherit; text-decoration: none; }
+.url { white-space: nowrap; }
+
+.top { text-align: center; }
+h1 { font-size: 22pt; font-weight: 650; letter-spacing: -0.01em; line-height: 1.1; }
+.role { font-size: 11pt; color: #2b44e0; font-weight: 500; margin-top: 2pt; }
+.meta { margin-top: 3pt; color: #3f3f46; }
+.meta b { color: #18181b; font-weight: 600; }
+
+h2 {
+  margin-top: 12pt;
+  padding-bottom: 2pt;
+  border-bottom: 0.75pt solid #a1a1aa;
+  font-size: 9.6pt;
+  font-weight: 650;
+  break-after: avoid;
+  letter-spacing: 0.06em;
+}
+
+h2 + p, h2 + .entry, h2 + .skills { margin-top: 5pt; }
+.skills p + p { margin-top: 0.5pt; }
+.skills b, .entry b { font-weight: 600; }
+
+.entry { break-inside: avoid; }
+.entry + .entry { margin-top: 7pt; }
+.when { color: #52525b; font-style: italic; white-space: nowrap; }
+.sub { color: #52525b; font-size: 9.2pt; }
+
+ul { margin-top: 2pt; padding-left: 11pt; }
+li::marker { color: #71717a; }

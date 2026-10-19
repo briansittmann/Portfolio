@@ -1,78 +1,39 @@
-# Brian Sittmann — Portfolio
+# briansittmann.dev
 
-Personal portfolio site built with React, Vite, and Tailwind CSS.
+Personal portfolio of Brian Sittmann, Java and Spring Boot backend developer in Dublin.
 
-## Features
+Live at [briansittmann.dev](https://briansittmann.dev), in English at `/` and in Spanish at `/es/`.
 
-- Light/dark theme toggle
-- English/Spanish language switcher
-- Project showcase with image carousel and detail modals
-- Skills, about, and contact sections
-- Contact form powered by EmailJS
-- Smooth animations via Framer Motion
+## Stack
 
-## Tech Stack
+- [Astro](https://astro.build) 7, static output, no client framework: two small scripts for the theme, menu and entrances.
+- Tailwind CSS 4, with the design tokens as CSS variables in `src/styles/global.css`.
+- Images through `astro:assets` (responsive WebP), Geist and Geist Mono self-hosted, Phosphor icons inlined as SVG.
+- Motion in CSS only: scroll-driven animations, time-based entrances, and view transitions for the theme and language switches. Everything respects `prefers-reduced-motion`.
+- i18n with Astro's routing, `hreflang`, a localized sitemap and Open Graph images per language.
 
-- **Framework:** React 18
-- **Routing:** React Router v6
-- **Styling:** Tailwind CSS
-- **Animations:** Framer Motion
-- **Build tool:** Vite
-- **Linting:** ESLint
-
-See [stack.md](./stack.md) for more detail.
-
-## Getting Started
-
-Install dependencies:
-
-```bash
-npm install
-```
-
-Run the dev server:
-
-```bash
-npm run dev
-```
-
-Build for production:
-
-```bash
-npm run build
-```
-
-Preview the production build:
-
-```bash
-npm run preview
-```
-
-Lint the project:
-
-```bash
-npm run lint
-```
-
-## Project Structure
+## Structure
 
 ```
-portfolio/
-├── public/                 # Static assets (CV, PDFs)
-├── src/
-│   ├── assets/images/      # Project and hero images
-│   ├── components/         # UI components (Header, Hero, Projects, Contact, modals, ...)
-│   ├── context/            # Theme and language React contexts
-│   ├── data/                # Project and skills data
-│   ├── pages/               # Page-level components
-│   ├── translations/       # i18n strings (en/es)
-│   ├── App.jsx
-│   └── main.jsx
-├── index.html
-├── tailwind.config.js
-└── vite.config.js
+src/
+  components/Home.astro   the page, with its copy in both languages
+  components/             hero API card, Mango flow, timeline, language switch, ...
+  layouts/Base.astro      head, SEO, theme and language-switch scripts
+  pages/                  `/` and `/es/`, both rendering Home
+  i18n.ts                 languages and the locale helper
+cv/                       CV source (HTML) and the script that prints both PDFs
+design/                   sources for the CalorIA banner, the Open Graph images and the favicon
+public/                   CVs, favicon, Open Graph images, robots.txt
 ```
 
-## Deployment
+## Commands
 
-Deployed via Vercel / GitHub Pages.
+Requires Node 22.12 or later.
+
+| Command           | Action                                  |
+| :---------------- | :-------------------------------------- |
+| `npm install`     | Install dependencies                    |
+| `npm run dev`     | Dev server at `localhost:4321`          |
+| `npm run build`   | Build the site to `./dist/`             |
+| `npm run preview` | Preview the build locally               |
+| `sh cv/build.sh`  | Print both CVs to `public/` (Chrome)    |

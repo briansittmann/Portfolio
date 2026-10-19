@@ -1,0 +1,59 @@
+---
+// EN / ES switch for the header. Plain links to the same page in each language; the current one sits on the thumb.
+// Switching is a cross-document view transition (global.css): the page crossfades, the thumb slides to the
+// other side, and the new page opens where the reader was (saved here, restored in Base.astro).
+import { getRelativeLocaleUrl } from 'astro:i18n'
+import { languages, langOf, type Lang } from '../i18n'
+
+const lang = langOf(Astro.currentLocale)
+const label = { en: 'Language', es: 'Idioma' }[lang]
+const codes = Object.keys(languages) as Lang[]
+---
+
+<nav aria-label={label} class="relative rounded-full border border-line p-0.5">
+  <span
+    class:list={[
+      'lang-thumb absolute inset-y-0.5 left-0.5 w-[calc(50%-2px)] rounded-full bg-surface-2',
+      lang === 'es' && 'translate-x-full',
+    ]}
+    aria-hidden="true"></span>
+  <ul class="lang-labels relative grid grid-cols-2 font-mono text-xs">
+    {
+      codes.map((code) => (
+        <li>
+          <a
+            href={getRelativeLocaleUrl(code, '')}
+            hreflang={code}
+            lang={code}
+            aria-label={languages[code]}
+            aria-current={code === lang ? 'page' : undefined}
+            data-lang-switch
+            class:list={[
+              'grid h-8 min-w-9 place-items-center rounded-full px-2 uppercase transition-colors',
+              code === lang ? 'text-ink' : 'text-ink-3 hover:text-ink',
+            ]}
+          >
+            {code}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</nav>
+
+<script>
+  // Remember where the reader is, as a section and how far into it, so the other language opens at the same place
+  // even though its text wraps differently. The current language's link does nothing.
+  document.querySelectorAll<HTMLAnchorElement>('[data-lang-switch]').forEach((a) =>
+    a.addEventListener('click', (e) => {
+      if (a.getAttribute('aria-current') === 'page') return e.preventDefault()
+      const sections = [...document.querySelectorAll<HTMLElement>('main > section')]
+      const tops = sections.map((s) => s.getBoundingClientRect().top + scrollY)
+      const i = Math.max(0, tops.findLastIndex((top) => top <= scrollY + 1))
+      const r = sections[i] ? (scrollY - tops[i]) / sections[i].offsetHeight : 0
+      try {
+        sessionStorage.setItem('lang-swap', JSON.stringify({ i, r }))
+      } catch {}
+    }),
+  )
+</script>

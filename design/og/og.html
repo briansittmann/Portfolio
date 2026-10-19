@@ -1,0 +1,67 @@
+<!doctype html>
+<!--
+  Open Graph image (1200x630) for LinkedIn and other link previews. Same look as the hero: the name at poster
+  scale with the portrait set into it, the intro, and the API card answering the recruiter's questions.
+  Exported by `node shot.cjs` to public/og.{en,es}.png. LinkedIn shows it at about 550px wide, so nothing under 24px.
+-->
+<html><head><meta charset="utf-8">
+<style>
+@font-face{font-family:Geist;src:url(../../node_modules/@fontsource-variable/geist/files/geist-latin-wght-normal.woff2) format("woff2");font-weight:100 900}
+@font-face{font-family:"Geist Mono";src:url(../../node_modules/@fontsource-variable/geist-mono/files/geist-mono-latin-wght-normal.woff2) format("woff2");font-weight:100 900}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1200px;height:630px;overflow:hidden}
+body{font-family:Geist,sans-serif;-webkit-font-smoothing:antialiased;color:#0b0b0d;background:#f4f4f5;
+  padding:58px 60px 54px;position:relative;display:flex;flex-direction:column;justify-content:space-between}
+/* Thin frame like the site's bordered column. */
+body::after{content:"";position:absolute;inset:20px;border:1px solid #d9d9de;border-radius:28px;pointer-events:none}
+
+h1{display:flex;align-items:center;gap:.16em;font-size:134px;line-height:.9;font-weight:600;letter-spacing:-.055em;padding-bottom:.06em}
+.pill{display:inline-block;height:.8em;width:1.2em;border-radius:999px;overflow:hidden;flex-shrink:0;
+  background:linear-gradient(#2e4a79,#1447a0)}
+.pill img{width:100%;height:100%;object-fit:cover;object-position:50% 8%;transform:scale(1.06)}
+
+.row{display:grid;grid-template-columns:1fr 600px;gap:40px;align-items:end}
+.intro{font-size:33px;line-height:1.22;letter-spacing:-.02em;color:#52525b}
+.intro strong{font-weight:550;color:#0b0b0d}
+.url{margin-top:26px;font-family:"Geist Mono",monospace;font-size:24px;color:#2b44e0;font-weight:500}
+
+.card{background:#fff;border:1px solid #d9d9de;border-radius:26px;box-shadow:0 24px 60px -28px rgb(43 68 224/.35);
+  font-family:"Geist Mono",monospace;overflow:hidden}
+.bar{display:flex;align-items:center;gap:14px;height:62px;padding:0 12px 0 24px;border-bottom:1px solid #d9d9de;font-size:24px}
+.get{color:#2b44e0;font-weight:650}
+.ok{margin-left:auto;font-size:20px;font-weight:600;color:#15803d;background:#15803d14;border-radius:999px;padding:7px 14px}
+pre{font-family:inherit;font-size:22px;line-height:1.6;padding:16px 24px 20px;white-space:pre}
+.k{color:#0b0b0d}.p{color:#64646c}.s{color:#2b44e0}
+</style></head>
+<body>
+<h1><span>Brian</span><span class="pill"><img src="../../src/assets/heroLogoLight.png" alt=""></span><span>Sittmann</span></h1>
+<div class="row">
+  <div>
+    <p class="intro" id="intro"></p>
+    <p class="url">briansittmann.dev</p>
+  </div>
+  <div class="card">
+    <div class="bar"><span class="get">GET</span><span>/api/brian</span><span class="ok">200 OK</span></div>
+    <pre id="json"></pre>
+  </div>
+</div>
+<script>
+const lang = new URLSearchParams(location.search).get('lang') || 'en'
+const t = {
+  en: {
+    intro: ['Java and Spring Boot backend developer', 'in Dublin.'],
+    json: { role: 'Java Backend Developer', location: 'Dublin, Ireland', workRights: 'EU, no sponsorship' },
+  },
+  es: {
+    intro: ['Desarrollador backend Java y Spring Boot', 'en Dublín.'],
+    json: { role: 'Desarrollador Backend Java', location: 'Dublín, Irlanda', workRights: 'UE, sin patrocinio' },
+  },
+}[lang]
+document.documentElement.lang = lang
+document.getElementById('intro').innerHTML = `<strong>${t.intro[0]}</strong> ${t.intro[1]}`
+const entries = Object.entries(t.json)
+document.getElementById('json').innerHTML = '<span class="p">{</span>\n' +
+  entries.map(([k, v], i) => `  <span class="k">"${k}"</span><span class="p">: </span><span class="s">"${v}"</span>${i < entries.length - 1 ? '<span class="p">,</span>' : ''}`).join('\n') +
+  '\n<span class="p">}</span>'
+</script>
+</body></html>

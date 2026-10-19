@@ -1,0 +1,31 @@
+---
+// Odometer-style count from 0 to `value`, using `transform` only, so every browser shows each number.
+// One column per digit place; every column holds one cell per number from 0 to `value`, and all columns
+// roll the same distance at the same time, so the tens turn over exactly when the units pass 9.
+// Leading zeros are blank. Starts with its `.play` block; the resting state is the final value.
+interface Props {
+  value: number
+  class?: string
+  style?: string
+}
+
+const { value, class: className, style } = Astro.props
+const numbers = Array.from({ length: value + 1 }, (_, n) => n)
+const places = String(value).length
+const columns = Array.from({ length: places }, (_, i) => {
+  const place = 10 ** (places - 1 - i)
+  return numbers.map((n) => (place > 1 && n < place ? ' ' : String(Math.floor(n / place) % 10)))
+})
+---
+
+<span class:list={['roll fx fx-shoot', className]} style={style} aria-hidden="true">
+  {
+    columns.map((cells) => (
+      <span class="roll-col">
+        <span class="roll-strip fx fx-roll" style={`--to:${value}`}>
+          {cells.map((c) => <span>{c}</span>)}
+        </span>
+      </span>
+    ))
+  }
+</span>

@@ -1,0 +1,642 @@
+---
+import { Image } from 'astro:assets'
+import Base from '../layouts/Base.astro'
+import Icon from './Icon.astro'
+import ApiCard from './ApiCard.astro'
+import LangSwitch from './LangSwitch.astro'
+import MangoFlow from './MangoFlow.astro'
+import RollingCount from './RollingCount.astro'
+import SweepTitle from './SweepTitle.astro'
+import TechLine from './TechLine.astro'
+import Timeline from './Timeline.astro'
+import { langOf } from '../i18n'
+
+import photo from '../assets/heroLogoLight.png'
+import mangoLightEn from '../assets/mango-desktop-light.en.png'
+import mangoDarkEn from '../assets/mango-desktop-dark.en.png'
+import mangoPhoneEn from '../assets/mango-mobile-dark.en.png'
+import mangoPhoneLightEn from '../assets/mango-mobile-light.en.png'
+import mangoLightEs from '../assets/mango-desktop-light.es.png'
+import mangoDarkEs from '../assets/mango-desktop-dark.es.png'
+import mangoPhoneEs from '../assets/mango-mobile-dark.es.png'
+import mangoPhoneLightEs from '../assets/mango-mobile-light.es.png'
+import mangoLogo from '../assets/mango-logo-dark.svg'
+import caloriaEn from '../assets/caloria-banner.en.png'
+import caloriaEs from '../assets/caloria-banner.es.png'
+import recuperar from '../assets/recuperar-home.jpg'
+import frog from '../assets/plataformer2D.png'
+
+// The page in English at `/` and in Spanish at `/es/`; every string and localized image comes from here.
+const lang = langOf(Astro.currentLocale)
+const t = {
+  en: {
+    title: 'Brian Sittmann · Java Backend Developer in Dublin',
+    description:
+      'Java and Spring Boot backend developer in Dublin, EU work rights. Builder of Mango, a personal finance app you update from the web, WhatsApp or your AI assistant.',
+    skip: 'Skip to work',
+    nav: ['Work', 'Experience', 'Contact'],
+    themeToggle: 'Toggle dark theme',
+    themeToDark: 'Switch to dark theme',
+    themeToLight: 'Switch to light theme',
+    openMenu: 'Open menu',
+    menu: 'Mobile',
+    introLead: 'Java and Spring Boot backend developer',
+    introRest: 'in Dublin. I build the API first, then whatever the product needs on top.',
+    cv: '/Brian_Sittmann_Java_Developer_CV.pdf',
+    downloadCv: 'Download CV',
+    work: 'Work',
+    mangoPitch:
+      'Personal finance you keep up to date from the web, from WhatsApp or from Claude and ChatGPT. I designed and built all of it, from the database to the bot and the MCP server.',
+    activeUsers: 'active users',
+    openDemo: 'Open the demo',
+    mangoDeskAlt: 'Mango dashboard: free margin of 864 euros, spending by category and a calendar of daily spending',
+    mangoPhoneAlt: "Mango on a phone: free margin of 864 euros and the month's categories",
+    mangoFlow: 'What happens when you text it',
+    caloriaAlt:
+      "CalorIA logo next to a phone showing the app's home screen, with daily calories and macros, and the CalorIA flame mascot leaning on it",
+    caloriaMeta: 'Final-year project, graded 10/10',
+    caloriaText:
+      'Nutrition coaching app. A Spring Boot API with 18 endpoints and JWT auth, two OpenAI assistants that read meals and write recipes around your remaining macros and allergies, and a React Native client.',
+    backendRepo: 'Backend repo',
+    appRepo: 'App repo',
+    demoVideo: 'Demo video',
+    recuperarAlt: 'RecuperAR home page: a wheelchair behind the headline Soluciones Médicas con compromiso Humano',
+    inProduction: 'In production',
+    recuperarText:
+      'E-commerce for a medical equipment supplier in Argentina. Catalogue, variants, cart and orders over a 26-endpoint PHP REST API with its own JWT layer.',
+    liveSite: 'Live site',
+    repo: 'Repo',
+    frogAlt: 'Frog Ninja gameplay: a ninja frog jumping between neon platforms',
+    frogText: 'A 2D platformer in Unity and C#.',
+    gameplay: 'Gameplay',
+    experience: 'Experience',
+    experienceText:
+      'I moved into software in 2023, after years in IT support and running teams in hospitality. Both still show: I keep systems up and I stay calm when it is busy.',
+    stackGroups: ['Data', 'Frontend', 'Tooling'],
+    hiring: 'Hiring a junior backend developer in Dublin?',
+    backToTop: 'Back to top',
+    mango: { desk: mangoDarkEn, deskLight: mangoLightEn, phone: mangoPhoneEn, phoneLight: mangoPhoneLightEn },
+    caloria: caloriaEn,
+  },
+  es: {
+    title: 'Brian Sittmann · Desarrollador Backend Java en Dublín',
+    description:
+      'Desarrollador backend Java y Spring Boot en Dublín, con permiso de trabajo en la UE. Creador de Mango, una app de finanzas personales que se actualiza desde la web, WhatsApp o tu asistente de IA.',
+    skip: 'Saltar a proyectos',
+    nav: ['Proyectos', 'Experiencia', 'Contacto'],
+    themeToggle: 'Cambiar el tema oscuro',
+    themeToDark: 'Cambiar a tema oscuro',
+    themeToLight: 'Cambiar a tema claro',
+    openMenu: 'Abrir menú',
+    menu: 'Móvil',
+    introLead: 'Desarrollador backend Java y Spring Boot',
+    introRest: 'en Dublín. Primero construyo la API, después lo que el producto necesite encima.',
+    cv: '/Brian_Sittmann_Desarrollador_Java_CV.pdf',
+    downloadCv: 'Descargar CV',
+    work: 'Proyectos',
+    mangoPitch:
+      'Finanzas personales que mantienes al día desde la web, desde WhatsApp o desde Claude y ChatGPT. Lo diseñé y lo construí entero, de la base de datos al bot y el servidor MCP.',
+    activeUsers: 'usuarios activos',
+    openDemo: 'Abrir la demo',
+    mangoDeskAlt: 'Dashboard de Mango: margen libre de 864 euros, gasto por categoría y un calendario del gasto diario',
+    mangoPhoneAlt: 'Mango en un teléfono: margen libre de 864 euros y las categorías del mes',
+    mangoFlow: 'Qué pasa cuando le escribes',
+    caloriaAlt:
+      'Logo de CalorIA junto a un teléfono con la pantalla de inicio de la app, con las calorías y los macros del día, y la mascota de CalorIA, una llamita de fuego, apoyada en él',
+    caloriaMeta: 'Proyecto final de ciclo, calificado con 10/10',
+    caloriaText:
+      'App de coaching nutricional. Una API en Spring Boot con 18 endpoints y autenticación JWT, dos asistentes de OpenAI que analizan comidas y escriben recetas según los macros y las alergias que te quedan, y un cliente en React Native.',
+    backendRepo: 'Repo del backend',
+    appRepo: 'Repo de la app',
+    demoVideo: 'Video de la demo',
+    recuperarAlt: 'Inicio de RecuperAR: una silla de ruedas detrás del titular Soluciones Médicas con compromiso Humano',
+    inProduction: 'En producción',
+    recuperarText:
+      'E-commerce para un proveedor de equipamiento médico en Argentina. Catálogo, variantes, carrito y pedidos sobre una API REST en PHP de 26 endpoints con su propia capa JWT.',
+    liveSite: 'Sitio en vivo',
+    repo: 'Repo',
+    frogAlt: 'Partida de Frog Ninja: una rana ninja saltando entre plataformas de neón',
+    frogText: 'Un juego de plataformas 2D en Unity y C#.',
+    gameplay: 'Gameplay',
+    experience: 'Experiencia',
+    experienceText:
+      'Me pasé al software en 2023, después de años en soporte IT y al frente de equipos en hostelería. Las dos cosas se notan: mantengo los sistemas en pie y no pierdo la calma cuando hay presión.',
+    stackGroups: ['Datos', 'Frontend', 'Herramientas'],
+    hiring: '¿Buscas un desarrollador backend junior en Dublín?',
+    backToTop: 'Volver arriba',
+    mango: { desk: mangoDarkEs, deskLight: mangoLightEs, phone: mangoPhoneEs, phoneLight: mangoPhoneLightEs },
+    caloria: caloriaEs,
+  },
+}[lang]
+
+const nav = ['#work', '#experience', '#contact'].map((href, i) => ({ href, label: t.nav[i] }))
+
+const cv = t.cv
+const email = 'brian.sittmann@gmail.com'
+const github = 'https://github.com/briansittmann'
+const linkedin = 'https://www.linkedin.com/in/brian-sittmann'
+
+const stack = {
+  backend: ['Java 17', 'Spring Boot 3', 'Spring Security, JWT', 'Hibernate / JPA', 'Maven'],
+  rest: [
+    { group: t.stackGroups[0], items: ['PostgreSQL', 'MySQL', 'MongoDB', 'Supabase'] },
+    { group: t.stackGroups[1], items: ['TypeScript', 'React, Next.js', 'React Native', 'Tailwind CSS'] },
+    { group: t.stackGroups[2], items: ['Git, GitHub', 'Playwright', 'Swagger / OpenAPI', 'Jira', 'Vercel, AWS'] },
+  ],
+}
+
+// Hero intro, split into words so it can come in one word at a time (`.words` in global.css, 30ms apart).
+const introLead = t.introLead.split(' ')
+const introRest = t.introRest.split(' ')
+// The buttons follow on the `.enter` beat (80ms steps from 300ms), starting as the last words land.
+const introButtonsAt = Math.round(((introLead.length + introRest.length) * 30) / 80)
+
+const link =
+  'inline-flex items-center gap-1.5 text-sm font-medium underline decoration-current/30 underline-offset-4 transition-colors hover:decoration-current'
+const iconButton =
+  'grid size-12 place-items-center rounded-full border border-line text-ink-2 transition-colors hover:border-ink-3 hover:text-ink'
+// Clips a heading to its own line box so its text can rise out of it; the padding/margin pair keeps descenders in.
+const riseBox = 'overflow-clip pb-[0.12em] -mb-[0.12em]'
+---
+
+<Base title={t.title} description={t.description}>
+  <a
+    href="#work"
+    class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:rounded-full focus:bg-surface focus:px-4 focus:py-2"
+    >{t.skip}</a
+  >
+
+  <div class="mx-auto max-w-[1440px] md:border-x md:border-line">
+    <!--
+      Header entrance: the rule draws across, the name rises out of its line, then the links and controls
+      settle in one by one (`.hd-*` in global.css), finishing as the hero name lands.
+    -->
+    <header class="sticky top-0 z-40 bg-bg/80 backdrop-blur-md">
+      <span class="hd-line absolute inset-x-0 bottom-0 h-px origin-left bg-line" aria-hidden="true"></span>
+      <div class="flex h-16 items-center justify-between px-4 sm:px-6 lg:px-10">
+        <a href="#top" class={`hd-name ${riseBox} inline-block font-medium tracking-tight`}><span class="inline-block">Brian Sittmann</span></a>
+
+        <div class="flex items-center gap-2 md:gap-6">
+          <nav aria-label="Primary" class="hidden md:block">
+            <ul class="flex gap-8 font-mono text-sm text-ink-2">
+              {
+                nav.map((n, i) => (
+                  <li class="hd" style={`--h:${i}`}>
+                    <a href={n.href} class="transition-colors hover:text-ink">
+                      {n.label}
+                    </a>
+                  </li>
+                ))
+              }
+            </ul>
+          </nav>
+          <div class="hd" style="--h:3"><LangSwitch /></div>
+          <button
+            id="theme-toggle"
+            type="button"
+            style="--h:4"
+            aria-label={t.themeToggle}
+            data-to-dark={t.themeToDark}
+            data-to-light={t.themeToLight}
+            class="hd grid size-10 place-items-center rounded-full text-ink-2 transition-colors hover:bg-surface-2 hover:text-ink active:scale-95"
+          >
+            <Icon name="moon" class="size-5 dark:hidden" />
+            <Icon name="sun" class="hidden size-5 dark:block" />
+          </button>
+          <button
+            type="button"
+            popovertarget="menu"
+            aria-label={t.openMenu}
+            style="--h:5"
+            class="hd grid size-10 place-items-center rounded-full text-ink-2 transition-colors hover:bg-surface-2 hover:text-ink md:hidden"
+          >
+            <Icon name="list" class="size-5" />
+          </button>
+        </div>
+      </div>
+
+      <nav
+        id="menu"
+        popover
+        aria-label={t.menu}
+        class="m-0 mt-2 mr-4 ml-auto w-48 rounded-2xl border border-line bg-surface p-2 text-ink shadow-lg shadow-black/5 [inset:3.5rem_0_auto_auto]"
+      >
+        <ul>
+          {
+            nav.map((n) => (
+              <li>
+                <a href={n.href} class="block rounded-xl px-3 py-2.5 hover:bg-surface-2">
+                  {n.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+    </header>
+
+    <main id="top">
+      <!-- Hero: the name at poster scale, the portrait set into it, and the facts answered as an API. -->
+      <section class="px-4 pt-10 pb-16 sm:px-6 md:pt-14 md:pb-24 lg:px-10">
+        <h1
+          class="flex flex-wrap items-center gap-x-[0.16em] text-[clamp(3.5rem,17.5vw,6.5rem)] leading-[0.9] font-semibold tracking-[-0.055em] md:text-[clamp(5rem,11.6vw,10.4rem)]"
+        >
+          <span class="rise name-first overflow-hidden pb-[0.06em]"><span style="--i:0">Brian</span></span>
+          <!-- Fixed pill-sized slot; the photo sits over it so it can open into a circle without moving the page. -->
+          <span class="pop portrait relative inline-block h-[0.8em] w-[1.2em] shrink-0" aria-hidden="true">
+            <span
+              class="portrait-photo absolute top-1/2 left-1/2 -translate-1/2 overflow-hidden rounded-full bg-[linear-gradient(#2e4a79,#1447a0)]"
+            >
+              <Image
+                src={photo}
+                alt=""
+                widths={[240, 480]}
+                sizes="(min-width: 768px) 280px, 120px"
+                priority
+                class="size-full scale-[1.06] object-cover object-[50%_8%]"
+              />
+            </span>
+          </span>
+          <span class="rise name-last overflow-hidden pb-[0.06em]"><span style="--i:1">Sittmann</span></span>
+        </h1>
+
+        <div class="mt-10 grid gap-10 md:mt-14 lg:grid-cols-12 lg:items-center lg:gap-12">
+          <div class="lg:col-span-5">
+            <!-- The intro comes in word by word, then the buttons one at a time. -->
+            <p class="words max-w-[34ch] text-xl leading-snug text-ink-2 md:text-2xl">
+              <strong class="font-medium text-ink"
+                >{introLead.map((w, n) => <><span style={`--w:${n}`}>{w}</span>{' '}</>)}</strong
+              >{introRest.map((w, n) => <><span style={`--w:${introLead.length + n}`}>{w}</span>{' '}</>)}
+            </p>
+            <div class="mt-8 flex flex-wrap items-center gap-3">
+              <a
+                href={cv}
+                class="enter inline-flex h-12 items-center gap-2 rounded-full bg-accent px-6 font-medium text-accent-ink transition-transform hover:-translate-y-px active:translate-y-0 active:scale-[0.98]"
+                style={`--i:${introButtonsAt}`}
+              >
+                <Icon name="file-arrow-down" />
+                {t.downloadCv}
+              </a>
+              <a href={github} aria-label="GitHub" class:list={['enter', iconButton]} style={`--i:${introButtonsAt + 1}`}
+                ><Icon name="github-logo" /></a
+              >
+              <a href={linkedin} aria-label="LinkedIn" class:list={['enter', iconButton]} style={`--i:${introButtonsAt + 2}`}
+                ><Icon name="linkedin-logo" /></a
+              >
+            </div>
+          </div>
+
+          <div class="enter lg:col-span-7" style="--i:2">
+            <ApiCard />
+          </div>
+        </div>
+      </section>
+
+      <!-- Work -->
+      <section id="work" class="overflow-x-clip border-t border-line px-3 py-16 sm:px-6 md:py-24 lg:px-10">
+        <SweepTitle text={t.work} class="px-1" />
+
+        <!-- Mango, the flagship: product first, then what happens behind one message. -->
+        <article class="stage-mango reveal mt-10 overflow-clip rounded-[2rem] p-6 text-mango-ink md:mt-14 md:p-10 lg:p-14">
+          <!-- Logo and name meet from opposite sides, then the pitch, then the stack marks itself in. -->
+          <div class="grid gap-8 lg:grid-cols-12 lg:items-end">
+            <div class="play lg:col-span-8">
+              <div class="flex items-center gap-4">
+                <Image src={mangoLogo} alt="" width={56} height={64} class="fx fx-logo h-12 w-auto md:h-16" />
+                <h3 class="fx fx-right text-5xl font-semibold tracking-[-0.04em] md:text-6xl" style="--d:60ms">Mango</h3>
+              </div>
+              <p class="fx fx-up mt-6 max-w-[46ch] text-lg leading-relaxed text-mango-ink-2 md:text-xl" style="--d:260ms">
+                {t.mangoPitch}
+              </p>
+              <TechLine
+                items={['Next.js', 'TypeScript', 'Supabase', 'Gemini', 'WhatsApp Cloud API', 'MCP', 'Google OAuth', 'Vercel']}
+                start={480}
+                class="mt-5 leading-6 text-mango-ink-2 [--mark:var(--color-mango)]"
+              />
+            </div>
+            <div class="play flex items-end justify-between gap-6 lg:col-span-4 lg:flex-col lg:items-end">
+              <p class="lg:text-right">
+                <RollingCount
+                  value={15}
+                  class="text-6xl font-semibold tracking-[-0.04em] text-mango tabular-nums md:text-7xl lg:justify-end"
+                  style="--d:200ms"
+                />
+                <span class="sr-only">15</span>
+                <span class="fx fx-up inline-block text-sm whitespace-nowrap text-mango-ink-2" style="--d:700ms">{t.activeUsers}</span>
+              </p>
+              <div class="flex flex-wrap justify-end gap-x-5 gap-y-3">
+                <a
+                  href="https://www.usemango.dev"
+                  class="fx fx-up inline-flex h-11 items-center gap-1.5 rounded-full bg-mango px-5 text-sm font-medium text-mango-bg transition-transform hover:-translate-y-px active:translate-y-0 active:scale-[0.98]"
+                  style="--d:820ms"
+                >
+                  usemango.dev
+                  <Icon name="arrow-up-right" class="size-4" />
+                </a>
+                <a href="https://www.usemango.dev/demo" class:list={[link, 'fx fx-up h-11 text-mango-ink']} style="--d:900ms"
+                  >{t.openDemo}</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <!--
+            Each screen shows Mango's light theme while the pointer is on it. Moving from the dashboard to the phone
+            crossfades both at once: the dashboard back to dark, the phone to light.
+          -->
+          <figure class="relative mt-10 md:mt-14">
+            <div class="lift group/desk relative overflow-hidden rounded-xl border border-white/10 max-md:hidden">
+              <Image
+                src={t.mango.desk}
+                alt={t.mangoDeskAlt}
+                widths={[800, 1200, 1600, 2000]}
+                sizes="(min-width: 1440px) 1220px, 90vw"
+                class="w-full"
+              />
+              <Image
+                src={t.mango.deskLight}
+                alt=""
+                widths={[800, 1200, 1600, 2000]}
+                sizes="(min-width: 1440px) 1220px, 90vw"
+                class="absolute inset-0 w-full opacity-0 transition-opacity duration-900 ease-in-out group-hover/desk:opacity-100"
+              />
+            </div>
+            <!-- Phone frame sized in container units so bezel, island and radii scale with the phone. -->
+            <div
+              class="phone-in group/phone @container mx-auto w-[66%] max-w-[290px] md:absolute md:right-6 md:-bottom-12 md:w-[18%] lg:right-10"
+            >
+              <div class="rounded-[15cqw] border border-white/15 bg-[#050605] p-[3cqw] shadow-2xl shadow-black/60">
+                <div
+                  class="relative overflow-hidden rounded-[12cqw] bg-[#111512] pt-[11cqw] pb-[6cqw] transition-colors duration-900 ease-in-out group-hover/phone:bg-[#eef1ec]"
+                >
+                  <span
+                    class="absolute top-[3.2cqw] left-1/2 h-[5.5cqw] w-[28cqw] -translate-x-1/2 rounded-full bg-black"
+                    aria-hidden="true"></span>
+                  <div class="relative">
+                    <Image
+                      src={t.mango.phone}
+                      alt={t.mangoPhoneAlt}
+                      widths={[300, 600]}
+                      sizes="(min-width: 768px) 260px, 66vw"
+                      class="w-full"
+                    />
+                    <Image
+                      src={t.mango.phoneLight}
+                      alt=""
+                      widths={[300, 600]}
+                      sizes="(min-width: 768px) 260px, 66vw"
+                      class="absolute inset-0 w-full opacity-0 transition-opacity duration-900 ease-in-out group-hover/phone:opacity-100"
+                    />
+                  </div>
+                  <span
+                    class="absolute bottom-[2.2cqw] left-1/2 h-[1.1cqw] w-[32cqw] -translate-x-1/2 rounded-full bg-white/35 transition-colors duration-900 ease-in-out group-hover/phone:bg-black/30"
+                    aria-hidden="true"></span>
+                </div>
+              </div>
+            </div>
+          </figure>
+
+          <h4 class="mt-14 text-2xl font-semibold tracking-tight text-balance md:mt-24 md:text-3xl">
+            {t.mangoFlow}
+          </h4>
+          <div class="mt-6 md:mt-8">
+            <MangoFlow />
+          </div>
+        </article>
+
+        <!-- The rest of the work, each in its own product colour. The cards slot in from three sides. -->
+        <div class="mt-4 grid gap-4 md:mt-6 md:gap-6 lg:grid-cols-12">
+          <article class="card tile tile-left group overflow-clip rounded-[2rem] bg-caloria lg:col-span-7">
+            <div class="px-6 pt-6 md:px-10 md:pt-10">
+              <Image
+                src={t.caloria}
+                alt={t.caloriaAlt}
+                widths={[480, 807, 1360]}
+                sizes="(min-width: 1024px) 680px, 100vw"
+                class="settle aspect-[16/11] w-full rounded-xl object-cover object-top transition-transform duration-700 ease-out-expo group-hover:scale-[1.015]"
+              />
+            </div>
+            <!-- Card copy: the name rises out of its line, then meta, text, stack and links, each on its own beat. -->
+            <div class="play p-6 md:p-10">
+              <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+                <h3 class={`${riseBox} text-3xl font-semibold tracking-tight md:text-4xl`}>
+                  <span class="fx fx-rise inline-block">CalorIA</span>
+                </h3>
+                <p class="fx fx-right font-mono text-xs text-ink-2" style="--d:180ms">{t.caloriaMeta}</p>
+              </div>
+              <p class="fx fx-up mt-4 max-w-[56ch] leading-relaxed text-ink-2" style="--d:240ms">
+                {t.caloriaText}
+              </p>
+              <TechLine
+                items={['Java 17', 'Spring Boot 3', 'Spring Security', 'MongoDB Atlas']}
+                start={420}
+                class="mt-4 text-ink-2"
+              />
+              <div class="mt-6 flex flex-wrap gap-x-6 gap-y-2">
+                <a href="https://github.com/briansittmann/caloria-backend" class:list={[link, 'fx fx-up']} style="--d:640ms"
+                  >{t.backendRepo}</a
+                >
+                <a href="https://github.com/briansittmann/CalorIA_SDK53" class:list={[link, 'fx fx-up']} style="--d:710ms"
+                  >{t.appRepo}</a
+                >
+                <a href="https://youtube.com/shorts/SMwFc1f5Tf8" class:list={[link, 'fx fx-up']} style="--d:780ms"
+                  >{t.demoVideo}</a
+                >
+              </div>
+            </div>
+          </article>
+
+          <div class="grid content-start gap-4 md:gap-6 lg:col-span-5">
+            <article class="card tile tile-right group overflow-clip rounded-[2rem] bg-recuperar">
+              <div class="px-6 pt-6 md:px-10 md:pt-10">
+                <Image
+                  src={recuperar}
+                  alt={t.recuperarAlt}
+                  widths={[480, 960]}
+                  sizes="(min-width: 1024px) 480px, 100vw"
+                  class="settle aspect-[16/9] w-full rounded-xl object-cover transition-transform duration-700 ease-out-expo group-hover:scale-[1.015]"
+                />
+              </div>
+              <div class="play p-6 md:p-10">
+                <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+                  <h3 class={`${riseBox} text-3xl font-semibold tracking-tight`}>
+                    <span class="fx fx-rise inline-block">RecuperAR</span>
+                  </h3>
+                  <p class="fx fx-left flex items-center gap-1.5 font-mono text-xs text-ink-2" style="--d:180ms">
+                    <span class="size-1.5 rounded-full bg-live" aria-hidden="true"></span>{t.inProduction}
+                  </p>
+                </div>
+                <p class="fx fx-up mt-4 leading-relaxed text-ink-2" style="--d:240ms">
+                  {t.recuperarText}
+                </p>
+                <TechLine items={['React', 'PHP', 'MySQL']} start={420} class="mt-4 text-ink-2" />
+                <div class="mt-6 flex flex-wrap gap-x-6 gap-y-2">
+                  <a href="https://recuperarsm.com.ar" class:list={[link, 'fx fx-up']} style="--d:580ms">{t.liveSite}</a>
+                  <a href="https://github.com/briansittmann/recuperAR" class:list={[link, 'fx fx-up']} style="--d:650ms"
+                    >{t.repo}</a
+                  >
+                </div>
+              </div>
+            </article>
+
+            <article class="card tile tile-up play flex items-center gap-5 rounded-[2rem] border border-line p-4 pr-6">
+              <Image
+                src={frog}
+                alt={t.frogAlt}
+                widths={[200, 400]}
+                sizes="128px"
+                class="settle aspect-square w-24 shrink-0 rounded-xl object-cover md:w-32"
+              />
+              <div>
+                <h3 class={`${riseBox} font-semibold tracking-tight`}>
+                  <span class="fx fx-rise inline-block" style="--d:120ms">Frog Ninja</span>
+                </h3>
+                <p class="fx fx-up mt-1 text-sm leading-relaxed text-ink-2" style="--d:260ms">{t.frogText}</p>
+                <div class="mt-3 flex flex-wrap gap-x-5 gap-y-1">
+                  <a href="https://www.youtube.com/watch?v=5bU7d4cKiBE" class:list={[link, 'fx fx-up']} style="--d:400ms"
+                    >{t.gameplay}</a
+                  >
+                  <a href="https://github.com/briansittmann/plataformer2D" class:list={[link, 'fx fx-up']} style="--d:470ms"
+                    >{t.repo}</a
+                  >
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Experience -->
+      <section id="experience" class="border-t border-line px-4 py-16 sm:px-6 md:py-24 lg:px-10">
+        <SweepTitle text={t.experience} />
+        <p class="play fx fx-up mt-6 max-w-[48ch] text-lg leading-relaxed text-ink-2" style="--d:250ms">
+          {t.experienceText}
+        </p>
+        <div class="mt-12 md:mt-16">
+          <Timeline />
+        </div>
+      </section>
+
+      <!-- Stack: the backend core at display size, the rest as supporting lists. -->
+      <section class="border-t border-line px-4 py-16 sm:px-6 md:py-24 lg:px-10">
+        <h2 class="title-rise overflow-clip pb-[0.12em] text-[clamp(2.5rem,7vw,5.5rem)] leading-none font-semibold tracking-[-0.045em]"><span>Stack</span></h2>
+        <div class="mt-12 grid gap-12 md:mt-16 lg:grid-cols-12 lg:gap-10">
+          <div class="lg:col-span-6">
+            <h3 class="font-mono text-sm text-accent">Backend</h3>
+            <ul class="mt-4 space-y-1 text-[clamp(1.75rem,3.6vw,3rem)] leading-tight font-semibold tracking-[-0.03em]">
+              {
+                stack.backend.map((i) => (
+                  <li class="line-rise">
+                    <span>{i}</span>
+                  </li>
+                ))
+              }
+            </ul>
+          </div>
+          <div class="grid grid-cols-2 gap-x-8 gap-y-10 sm:grid-cols-3 lg:col-span-6 lg:pt-1">
+            {
+              stack.rest.map((s, g) => (
+                <div class="stack-group" style={`--g:${g}`}>
+                  <h3 class="font-mono text-sm text-ink-3">{s.group}</h3>
+                  <ul class="mt-4 space-y-2 text-ink-2">
+                    {s.items.map((i, n) => (
+                      <li style={`--i:${n}`}>{i}</li>
+                    ))}
+                  </ul>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact -->
+      <section id="contact" class="border-t border-line px-4 pt-16 pb-20 sm:px-6 md:pt-24 md:pb-28 lg:px-10">
+        <h2 class="ask max-w-[22ch] text-3xl font-semibold tracking-tight md:text-4xl">
+          {
+            t.hiring.split(' ').map((w, n) => (
+              <>
+                <span style={`--i:${n}`}>{w}</span>{' '}
+              </>
+            ))
+          }
+        </h2>
+        <a
+          href={`mailto:${email}`}
+          class="write-in group mt-8 inline-flex max-w-full items-center gap-[0.2em] text-[clamp(1.6rem,6.4vw,6.25rem)] leading-none font-semibold tracking-[-0.045em] break-all transition-colors hover:text-accent sm:break-normal"
+        >
+          {email}
+          <Icon
+            name="arrow-up-right"
+            class="write-arrow size-[0.7em] shrink-0 text-ink-3 transition-transform duration-300 ease-out-expo group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:text-accent"
+          />
+        </a>
+        <div class="channels mt-10 flex flex-wrap items-center gap-x-6 gap-y-3 text-ink-2">
+          <a href={linkedin} class={link} style="--i:0"><Icon name="linkedin-logo" class="size-4" />LinkedIn</a>
+          <a href={github} class={link} style="--i:1"><Icon name="github-logo" class="size-4" />GitHub</a>
+          <a href={cv} class={link} style="--i:2"><Icon name="file-arrow-down" class="size-4" />{t.downloadCv}</a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="border-t border-line">
+      <div class="flex flex-wrap items-center justify-between gap-4 px-4 py-6 text-sm text-ink-3 sm:px-6 lg:px-10">
+        <p>© 2026 Brian Sittmann</p>
+        <a href="#top" class="inline-flex items-center gap-1.5 transition-colors hover:text-ink">
+          {t.backToTop} <Icon name="arrow-up" class="size-4" />
+        </a>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    const toggle = document.getElementById('theme-toggle')!
+    const root = document.documentElement
+    const sync = () => {
+      const dark = root.dataset.theme === 'dark'
+      toggle.setAttribute('aria-label', (dark ? toggle.dataset.toLight : toggle.dataset.toDark)!)
+    }
+    sync()
+    const commit = () => {
+      root.dataset.theme = root.dataset.theme === 'dark' ? 'light' : 'dark'
+      try {
+        localStorage.setItem('theme', root.dataset.theme)
+      } catch {}
+      sync()
+    }
+    // As in Mango (components/theme/use-theme-choice.ts): the new theme spreads from the button as a circle,
+    // 700ms on Mango's drawer easing. `.theme-switching` keeps the language thumb out of it (global.css).
+    toggle.addEventListener('click', () => {
+      if (!document.startViewTransition || matchMedia('(prefers-reduced-motion: reduce)').matches) return commit()
+      const { left, top, width, height } = toggle.getBoundingClientRect()
+      const x = left + width / 2
+      const y = top + height / 2
+      const radius = Math.hypot(Math.max(x, innerWidth - x), Math.max(y, innerHeight - y))
+      root.classList.add('theme-switching')
+      const transition = document.startViewTransition(commit)
+      transition.ready.then(() => {
+        root.animate(
+          { clipPath: [`circle(0px at ${x}px ${y}px)`, `circle(${radius}px at ${x}px ${y}px)`] },
+          { duration: 700, easing: 'cubic-bezier(0.32, 0.72, 0, 1)', pseudoElement: '::view-transition-new(root)' },
+        )
+      })
+      transition.finished.finally(() => root.classList.remove('theme-switching'))
+    })
+
+    const menu = document.getElementById('menu')!
+    menu.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => menu.hidePopover()))
+
+    // Triggered entrances (`.play` / `.fx` in global.css): a block starts its children once it is in view.
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const e of entries) {
+          if (!e.isIntersecting) continue
+          e.target.classList.add('in')
+          io.unobserve(e.target)
+        }
+      },
+      { rootMargin: '0px 0px -12% 0px' },
+    )
+    document.querySelectorAll('.play').forEach((el) => io.observe(el))
+  </script>
+</Base>

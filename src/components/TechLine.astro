@@ -1,0 +1,18 @@
+---
+// A project's tech line. Once its `.play` block is in view, each item marks itself in, one after another.
+interface Props {
+  items: string[]
+  start?: number
+  class?: string
+}
+
+const { items, start = 0, class: className } = Astro.props
+---
+
+<ul class:list={['flex flex-wrap gap-x-[1ch] font-mono text-xs', className]}>
+  {
+    items.map((t, i) => (
+      <li class="fx fx-mark" style={`--d:${start + i * 60}ms`}>{t}{i < items.length - 1 && ','}</li>
+    ))
+  }
+</ul>
