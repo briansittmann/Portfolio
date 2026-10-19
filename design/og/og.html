@@ -15,21 +15,26 @@ body{font-family:Geist,sans-serif;-webkit-font-smoothing:antialiased;color:#0b0b
 /* Thin frame like the site's bordered column. */
 body::after{content:"";position:absolute;inset:20px;border:1px solid #d9d9de;border-radius:28px;pointer-events:none}
 
-h1{display:flex;align-items:center;gap:.16em;font-size:134px;line-height:.9;font-weight:600;letter-spacing:-.055em;padding-bottom:.06em}
-/* The portrait closes the line, as a circle a little taller than the capitals. */
-.pill{display:inline-block;height:.82em;width:.82em;border-radius:50%;overflow:hidden;flex-shrink:0;margin-left:.06em;
+h1{display:flex;align-items:baseline;gap:.16em;font-size:134px;line-height:.9;font-weight:600;letter-spacing:-.055em;padding-bottom:.06em}
+/*
+  The portrait closes the line as a 1em circle, centred on the capitals: Geist caps are 0.71em tall, so the
+  circle sits on the baseline and drops by half its size minus half the cap height.
+*/
+.pill{display:block;position:relative;top:calc(.5em - .355em);height:1em;width:1em;border-radius:50%;overflow:hidden;flex-shrink:0;margin-left:.08em;
   background:linear-gradient(#2e4a79,#1447a0)}
-.pill img{width:100%;height:100%;object-fit:cover;object-position:50% 8%;transform:scale(1.06)}
+.pill img{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 8%;transform:scale(1.06)}
 
-.row{display:grid;grid-template-columns:1fr 600px;gap:40px;align-items:start}
-/* The intro starts where the card's request bar ends. */
-.lead{padding-top:62px}
-.intro{font-size:33px;line-height:1.22;letter-spacing:-.02em;color:#52525b}
+.row{display:grid;grid-template-columns:1fr 510px;gap:40px;align-items:start}
+/* The intro starts where the card's request bar ends (62px at the card's 0.85 zoom). */
+.lead{padding-top:53px}
+.intro{font-size:39px;line-height:1.22;letter-spacing:-.02em;color:#52525b}
 .intro strong{font-weight:550;color:#0b0b0d}
 .url{margin-top:26px;font-family:"Geist Mono",monospace;font-size:24px;color:#2b44e0;font-weight:500}
 
 .card{background:#fff;border:1px solid #d9d9de;border-radius:26px;box-shadow:0 24px 60px -28px rgb(43 68 224/.35);
-  font-family:"Geist Mono",monospace;overflow:hidden}
+  font-family:"Geist Mono",monospace;overflow:hidden;
+  /* Drawn at 600px and scaled to 510, so the code keeps its proportions. */
+  width:600px;zoom:.85}
 .bar{display:flex;align-items:center;gap:14px;height:62px;padding:0 12px 0 24px;border-bottom:1px solid #d9d9de;font-size:24px}
 .get{color:#2b44e0;font-weight:650}
 .ok{margin-left:auto;font-size:20px;font-weight:600;color:#15803d;background:#15803d14;border-radius:999px;padding:7px 14px}
