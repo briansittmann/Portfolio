@@ -459,7 +459,7 @@ h1.stacked:has(.portrait.open) .name-last {
   }
   .fx-roll {
     --fx: roll;
-    --fx-t: 2600ms;
+    --fx-t: 1500ms;
     --fx-ease: cubic-bezier(0.33, 1, 0.68, 1);
   }
   .js .in .fx,
