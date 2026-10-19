@@ -447,16 +447,25 @@
   }
 
   @supports (animation-timeline: view()) {
+    /*
+      Scroll-driven easing goes through `var(--linear)`, never a bare `linear`: with only plain values the build's
+      CSS minifier folds `animation-timeline` into the `animation` shorthand (`animation: linear both reveal view()`),
+      which browsers reject, and the effect is gone in production while dev still shows it. A var() stops the fold.
+    */
+    :root {
+      --linear: linear;
+    }
+
     /* Short, so the Mango panel is already there when its content starts. */
     .reveal {
-      animation: reveal linear both;
+      animation: reveal var(--linear) both;
       animation-timeline: view();
       animation-range: entry 0% entry 20%;
     }
 
     /* Mango flow: each stage lights up as the message would reach it. */
     .flow-step {
-      animation: step-on linear both;
+      animation: step-on var(--linear) both;
       animation-timeline: view();
       animation-range: entry 40% cover 45%;
     }
@@ -555,7 +564,7 @@
       view-timeline: --group block;
     }
     .stack-group h3 {
-      animation: wipe linear both;
+      animation: wipe var(--linear) both;
       animation-timeline: --group;
       animation-range: entry 10% cover calc(22% + var(--g) * 3%);
     }
@@ -581,7 +590,7 @@
     }
     .write-in {
       view-timeline: --write block;
-      animation: write linear both;
+      animation: write var(--linear) both;
       animation-timeline: --write;
       animation-range: cover 20px cover 200px;
     }
