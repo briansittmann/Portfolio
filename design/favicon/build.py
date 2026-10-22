@@ -39,5 +39,5 @@ def svg(size, width_ratio, bg):
             f'{bg}<path fill="#fff" d="{pen.getCommands()}"/></svg>\n')
 
 out = sys.argv[1]
-open(f'{out}/favicon.svg', 'w').write(svg(512, 0.6, '<circle cx="256" cy="256" r="256" fill="#2b44e0"/>'))
+open(f'{out}/favicon.svg', 'w').write(svg(512, 0.6, '<circle cx="256" cy="256" r="256" fill="#4a5ff0"/>'))
 open(f'{out}/apple-touch-icon.svg', 'w').write(svg(512, 0.46, '<rect width="512" height="512" fill="#2b44e0"/>'))
