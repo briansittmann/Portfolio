@@ -28,3 +28,6 @@ pnpm-debug.log*
 
 # internal handoff notes, kept local (public repo)
 CONTEXTO.md
+
+# LinkedIn profile mock-ups of the banner, local previews only
+design/linkedin-banner/preview-*.png

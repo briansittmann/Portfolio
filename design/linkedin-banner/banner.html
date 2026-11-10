@@ -1,0 +1,99 @@
+<!doctype html>
+<!--
+  LinkedIn banner (1584x396, exported at 2x). Same system as the site and the OG image: Geist, the hero's tagline
+  at poster scale, and the API card answering the recruiter's questions.
+  LinkedIn puts the profile photo over the bottom-left corner (about x 40-500, y 170-396 counting the mobile app),
+  so that area only carries the blue glow the photo sits on. On desktop the banner shows at about 800px wide:
+  nothing under 20px.
+  ?theme=dark for the dark variant. Exported by `node shot.mjs`.
+-->
+<html><head><meta charset="utf-8">
+<style>
+@font-face{font-family:Geist;src:url(../../node_modules/@fontsource-variable/geist/files/geist-latin-wght-normal.woff2) format("woff2");font-weight:100 900}
+@font-face{font-family:"Geist Mono";src:url(../../node_modules/@fontsource-variable/geist-mono/files/geist-mono-latin-wght-normal.woff2) format("woff2");font-weight:100 900}
+:root{
+  --bg:#f4f4f5;--surface:#fff;--ink:#0b0b0d;--ink-2:#52525b;--ink-3:#64646c;--line:#d9d9de;
+  --accent:#2b44e0;--live:#15803d;
+  --grid:rgb(11 11 13/.08);--glow-a:rgb(20 71 160/.42);--glow-b:rgb(43 68 224/.16);
+  --card-shadow:0 1px 2px #18181b0d,0 30px 60px -24px rgb(43 68 224/.38);
+}
+:root[data-theme=dark]{
+  --bg:#09090b;--surface:#111113;--ink:#f4f4f5;--ink-2:#a1a1aa;--ink-3:#8b8b94;--line:#26262a;
+  --accent:#8b9dff;--live:#4ade80;
+  --grid:rgb(244 244 245/.06);--glow-a:rgb(20 71 160/.55);--glow-b:rgb(139 157 255/.14);
+  --card-shadow:0 0 0 1px #ffffff12,0 30px 70px -20px rgb(43 68 224/.45);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1584px;height:396px;overflow:hidden;background:var(--bg)}
+body{font-family:Geist,sans-serif;-webkit-font-smoothing:antialiased;color:var(--ink);position:relative}
+
+/* Dot grid, fading out towards the copy so it never sits under text. */
+.grid{position:absolute;inset:0;
+  background-image:radial-gradient(var(--grid) 1.6px,transparent 1.8px);background-size:28px 28px;background-position:14px 14px;
+  -webkit-mask-image:radial-gradient(ellipse 620px 380px at 12% 100%,#000 10%,transparent 75%),
+                     radial-gradient(ellipse 520px 300px at 100% 0%,#000 0%,transparent 70%);
+  -webkit-mask-composite:source-over}
+/* The blue the photo is shot against, so the avatar lands on its own colour. */
+.glow{position:absolute;left:-160px;top:120px;width:720px;height:520px;border-radius:50%;
+  background:radial-gradient(closest-side,var(--glow-a),var(--glow-b) 55%,transparent 100%);filter:blur(8px)}
+/* Hairline frame like the site's bordered column. */
+.frame{position:absolute;inset:18px;border:1px solid var(--line);border-radius:26px;pointer-events:none}
+
+.links{position:absolute;left:56px;top:50px;font-family:"Geist Mono",monospace;font-size:21px;line-height:1.7;color:var(--ink-3)}
+.links .site{color:var(--accent);font-weight:550}
+.links .dot{display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--live);margin-right:12px;vertical-align:2px;
+  box-shadow:0 0 0 5px color-mix(in srgb,var(--live) 18%,transparent)}
+
+.copy{position:absolute;left:520px;top:56px;width:450px}
+h1{font-size:76px;line-height:.94;font-weight:600;letter-spacing:-.052em}
+h1 em{font-style:normal;color:var(--accent)}
+.sub{margin-top:20px;font-size:27px;line-height:1.25;letter-spacing:-.02em;color:var(--ink-2);max-width:400px;text-wrap:balance}
+.stack{position:absolute;left:520px;bottom:52px;display:flex;gap:7px}
+.stack span{font-family:"Geist Mono",monospace;font-size:17.5px;font-weight:500;color:var(--ink);
+  height:36px;padding:0 11px;border:1px solid var(--line);border-radius:999px;background:var(--surface);display:inline-flex;align-items:center}
+
+.card{position:absolute;right:42px;top:48px;width:508px;background:var(--surface);border:1px solid var(--line);border-radius:24px;
+  box-shadow:var(--card-shadow);font-family:"Geist Mono",monospace;overflow:hidden}
+.bar{display:flex;align-items:center;gap:14px;height:60px;padding:0 12px 0 22px;border-bottom:1px solid var(--line);font-size:22px}
+.get{color:var(--accent);font-weight:650}
+.ok{margin-left:auto;font-size:18px;font-weight:600;color:var(--live);background:color-mix(in srgb,var(--live) 12%,transparent);border-radius:999px;padding:7px 14px}
+pre{font-family:inherit;font-size:19.5px;line-height:1.66;padding:14px 22px 18px;white-space:pre}
+.k{color:var(--ink)}.p{color:var(--ink-3)}.s{color:var(--accent)}
+</style></head>
+<body>
+<div class="grid"></div>
+<div class="glow"></div>
+<div class="frame"></div>
+
+<div class="links">
+  <div class="site">briansittmann.dev</div>
+  <div>github.com/briansittmann</div>
+</div>
+
+<div class="copy">
+  <h1>I build the<br><em>API first.</em></h1>
+  <p class="sub">Then whatever the product needs on top.</p>
+</div>
+<div class="stack"><span>Java</span><span>Spring Boot</span><span>TypeScript</span><span>PostgreSQL</span></div>
+
+<div class="card">
+  <div class="bar"><span class="get">GET</span><span>/api/brian</span><span class="ok">200 OK</span></div>
+  <pre id="json"></pre>
+</div>
+
+<script>
+const theme = new URLSearchParams(location.search).get('theme')
+if (theme === 'dark') document.documentElement.dataset.theme = 'dark'
+
+const json = {
+  role: 'Backend Developer',
+  location: 'Dublin, Ireland',
+  workRights: 'EU, no sponsorship',
+  openTo: 'Backend & full-stack roles',
+}
+const esc = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;')
+const lines = Object.entries(json).map(([k, v], i, all) =>
+  `  <span class="k">"${k}"</span><span class="p">:</span> <span class="s">"${esc(v)}"</span>${i < all.length - 1 ? '<span class="p">,</span>' : ''}`)
+document.getElementById('json').innerHTML = `<span class="p">{</span>\n${lines.join('\n')}\n<span class="p">}</span>`
+</script>
+</body></html>
