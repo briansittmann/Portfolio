@@ -16,20 +16,20 @@ const canonical = new URL(Astro.url.pathname, site).href
 const alternates = (Object.keys(languages) as Lang[]).map((code) => ({ code, href: getAbsoluteLocaleUrl(code, '') }))
 const ogLocale: Record<Lang, string> = { en: 'en_IE', es: 'es_ES' }
 const ogAlt: Record<Lang, string> = {
-  en: 'Brian Sittmann, Java and Spring Boot backend developer in Dublin',
-  es: 'Brian Sittmann, desarrollador backend Java y Spring Boot en Dublín',
+  en: 'Brian Sittmann, backend developer in Java and TypeScript, Dublin',
+  es: 'Brian Sittmann, desarrollador backend en Java y TypeScript, Dublín',
 }
 
 const person = {
   '@context': 'https://schema.org',
   '@type': 'Person',
   name: 'Brian Sittmann',
-  jobTitle: { en: 'Java Backend Developer', es: 'Desarrollador Backend Java' }[lang],
+  jobTitle: { en: 'Backend Developer', es: 'Desarrollador Backend' }[lang],
   url: canonical,
   email: 'mailto:brian.sittmann@gmail.com',
   address: { '@type': 'PostalAddress', addressLocality: 'Dublin', addressCountry: 'IE' },
   sameAs: ['https://github.com/briansittmann', 'https://www.linkedin.com/in/brian-sittmann'],
-  knowsAbout: ['Java', 'Spring Boot', 'REST APIs', 'TypeScript', 'React', 'PostgreSQL', 'MySQL'],
+  knowsAbout: ['Java', 'Spring Boot', 'REST APIs', 'TypeScript', 'Node.js', 'React', 'PostgreSQL', 'MySQL'],
   knowsLanguage: ['es', 'en'],
 }
 ---

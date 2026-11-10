@@ -1,6 +1,6 @@
 # briansittmann.dev
 
-Personal portfolio of Brian Sittmann, Java and Spring Boot backend developer in Dublin.
+Personal portfolio of Brian Sittmann, backend developer in Java and TypeScript, based in Dublin.
 
 Live at [briansittmann.dev](https://briansittmann.dev), in English at `/` and in Spanish at `/es/`.
 
@@ -22,7 +22,7 @@ src/
   pages/                  `/` and `/es/`, both rendering Home
   i18n.ts                 languages and the locale helper
 cv/                       CV source (HTML) and the script that prints both PDFs
-design/                   sources for the CalorIA banner, the Open Graph images and the favicon
+design/                   sources for the CalorIA banner, the Open Graph images, the favicon and the LinkedIn banner
 public/                   CVs, favicon, Open Graph images, robots.txt
 ```
 
@@ -36,4 +36,4 @@ Requires Node 22.12 or later.
 | `npm run dev`     | Dev server at `localhost:4321`          |
 | `npm run build`   | Build the site to `./dist/`             |
 | `npm run preview` | Preview the build locally               |
-| `sh cv/build.sh`  | Print both CVs to `public/` (Chrome)    |
+| `sh cv/build.sh`  | Print the CVs to `public/` (Chrome)     |

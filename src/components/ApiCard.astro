@@ -3,27 +3,27 @@ import Icon from './Icon.astro'
 import { langOf } from '../i18n'
 
 const lang = langOf(Astro.currentLocale)
-const stack = ['Java 17', 'Spring Boot 3', 'PostgreSQL', 'TypeScript']
+const stack = ['Java', 'Spring Boot', 'PostgreSQL', 'TypeScript']
 
 // The facts a recruiter scans for, answered the way a backend developer would. Keys stay in English, as in code.
 const profile: Record<string, string | string[]> = {
   en: {
-    role: 'Java Backend Developer',
+    role: 'Backend Developer',
     level: 'Junior',
     location: 'Dublin, Ireland',
     workRights: 'EU citizen, no sponsorship needed',
     stack,
     languages: ['Spanish (native)', 'English (C1)'],
-    openTo: 'Junior backend roles',
+    openTo: 'Backend & full-stack roles',
   },
   es: {
-    role: 'Desarrollador Backend Java',
+    role: 'Desarrollador Backend',
     level: 'Junior',
     location: 'Dublín, Irlanda',
     workRights: 'Ciudadano de la UE, sin patrocinio',
     stack,
     languages: ['Español (nativo)', 'Inglés (C1)'],
-    openTo: 'Puestos backend junior',
+    openTo: 'Puestos backend y full-stack',
   },
 }[lang]
 const send = { en: 'Send', es: 'Enviar' }[lang]
